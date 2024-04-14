@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>XCaw</title>
+    <title>detogo.app</title>
 
      <style>
       html, body {
@@ -82,7 +82,7 @@
 
      
 
-     <nav class="navbar navbar-inverse" role="navigation" style="border: 2px solid skyblue; border-radius: 20px; background:black;">
+     <nav class="navbar navbar-inverse" role="navigation" style="border: none; border-radius: 20px; background:black;">
           <div class="container-fluid">
              <div class="container-fluid">
                   
@@ -99,11 +99,13 @@
                    <img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="50" class="img-circle" style=" display:inline-block; margin-left: 5px;">
 
                    <h3 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="white"> <i>detogo.app</i> </font> </h3> 
+
+                   <h5 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="skyblue"> <i>Ahuachapán</i> </font> </h5> 
                  </a>
           
                  <div class="navbar-brand">             
 
-                      <h4 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="white"> <i>Ahuachapán</i> </font> </h4> 
+                     
                         
                 </div>    
 
@@ -202,8 +204,10 @@
 
 
 
-<ul class="gallery_toolbar">                 
-       <a data-toggle="tab" href="#home">  <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="35"></a> </a>
+<ul class="gallery_toolbar">     
+
+      
+       <a data-toggle="tab" href="#home">  <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="35"></a> 
        <a data-toggle="tab" href="#godelivery">  <img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="35"> </a>
        <a data-toggle="tab" href="#gocars">  <img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="35"> </a>
        <a data-toggle="tab" href="#gofood">  <img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="35"> </a>
@@ -350,7 +354,7 @@
     // Función para obtener la lista de carpetas y archivos
     function obtenerListado() {
       // Ruta del directorio donde se encuentran las carpetas y archivos
-      var rutaDirectorio = "/";
+      var rutaDirectorio = "/detogo.github.io";
 
       // Realizar una solicitud al servidor para obtener la lista de carpetas y archivos
       fetch(rutaDirectorio)
