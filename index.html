@@ -21,6 +21,46 @@
           padding: 0px; /* Ajusta el padding según sea necesario */
       }
 
+      .btn-llamar-telefono {
+            background-color: silver;
+            color: black;
+            border: 2px solid silver;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display:inline-block;
+            margin-left: 10px;
+        }
+
+        .btn-llamar-telefono:hover {
+            background-color: dodgerblue;
+            border-color: dodgerblue;
+            display:inline-block;
+
+        }
+
+        .btn-llamar-whatsapp {
+            background-color: silver;
+            color: black;
+            border: 2px solid silver;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display:inline-block;
+            margin-left: 10px;
+        }
+
+        .btn-llamar-whatsapp:hover {
+            background-color: lime;
+            border-color: lime;
+            display:inline-block;
+
+        }
+
            
      
   
@@ -78,13 +118,26 @@
 
 
           
- <div class="col-sm-6">             
+ <div class="col-sm-6">           
+
+ <div class="well" style="border: none; border-radius: 20px; background:black; padding: 0px;">
+
+  <a>           
+                   <img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="50" class="img-circle" style=" display:inline-block; margin-left: 5px;">
+
+                   <h3 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="white"> <i>detogo.app</i> </font> </h3> 
+
+                   <h5 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="skyblue"> <i>Ahuachapán</i> </font> </h5> 
+  </a>
+
+
+
+ </div>  
 
      
-
+<!--
      <nav class="navbar navbar-inverse" role="navigation" style="border: none; border-radius: 20px; background:black;">
-          <div class="container-fluid">
-             <div class="container-fluid">
+          
                   
              <div class="navbar-header">
                        <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -119,17 +172,16 @@
             <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav navbar-right">
                  
-                   <!--  <li><a href="#" data-toggle="modal" data-target="#myModal">NFT-Username</a></li>-->
-                   <!--  <li><a id="profile-create" href="#" data-toggle="modal" data-target="#myModalprofile">Profile</a></li>-->
-                  <!--<li><a href="#" id="btn-aprobar-contrato">Aprobar Contrato</a></li>-->
+                     <li><a href="#" data-toggle="modal" data-target="#myModal">NFT-Username</a></li>
+                   <li><a id="profile-create" href="#" data-toggle="modal" data-target="#myModalprofile">Profile</a></li>
+                  <li><a href="#" id="btn-aprobar-contrato">Aprobar Contrato</a></li>
                 </ul>
 
             
 
-            </div>
-             </div>
+           
     </nav>
-
+-->
 
 
 
@@ -261,8 +313,8 @@
    <br>
 
      <center>
-         <button class="btn-llamar-telefono" id="btn-llamar-telefono" onclick="llamar_telefono()" style="display: inline-block; margin-left: 10px;">Llamar por teléfono</button>
-         <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp" onclick="enviar_whatsapp()" style="display: inline-block; margin-left: 10px;">Llamar por whatsapp </button>
+         <button class="btn-llamar-telefono" id="btn-llamar-telefono" onclick="llamar_telefono_delivery()" style="display: inline-block; margin-left: 10px;">Llamar por teléfono</button>
+         <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp" onclick="enviar_whatsapp_delivery()" style="display: inline-block; margin-left: 10px;">Llamar por whatsapp </button>
      </center>
    </div>  
 
@@ -339,16 +391,22 @@
 
 
 <script>
-    function llamar_telefono() {
+    function llamar_telefono_delivery() {
       var numero_telefono = "78218224"; // Aquí se puede cambiar por el número de teléfono deseado
       window.location.href = "tel:" + numero_telefono;
     }
 
-     function enviar_whatsapp() {
+     function enviar_whatsapp_delivery() {
       var numero_whatsapp = "78218224"; // Aquí se puede cambiar por el número de WhatsApp deseado
       window.location.href = "https://wa.me/" + numero_whatsapp;
     }
 </script>
+
+
+
+
+
+
 
  <script>
     // Función para obtener la lista de carpetas y archivos
