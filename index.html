@@ -270,29 +270,6 @@
 </ul>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
   <div class="tab-content">   
         <div id="home" class="tab-pane fade in active" >
     
@@ -313,8 +290,8 @@
    <br>
 
      <center>
-         <button class="btn-llamar-telefono" id="btn-llamar-telefono" onclick="llamar_telefono_delivery()" style="display: inline-block; margin-left: 10px;">Llamar por teléfono</button>
-         <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp" onclick="enviar_whatsapp_delivery()" style="display: inline-block; margin-left: 10px;">Llamar por whatsapp </button>
+         <button class="btn-llamar-telefono" id="btn-llamar-telefono" onclick="llamar_telefono_delivery()" style="display: inline-block; margin-left: 10px;">Llamar</button>
+         <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp" onclick="enviar_whatsapp_delivery()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
      </center>
    </div>  
 
@@ -409,44 +386,45 @@
 
 
  <script>
-    // Función para obtener la lista de carpetas y archivos
-    function obtenerListado() {
-      // Ruta del directorio donde se encuentran las carpetas y archivos
-      var rutaDirectorio = "/detogo.github.io";
+    async function obtenerListado() {
+  try {
+    // Ruta del directorio donde se encuentran las carpetas y archivos
+    var rutaDirectorio = "detogo.github.io/";
 
-      // Realizar una solicitud al servidor para obtener la lista de carpetas y archivos
-      fetch(rutaDirectorio)
-      .then(response => response.text())
-      .then(data => {
-        // Convertir la respuesta del servidor a HTML para poder manipularla
-        var parser = new DOMParser();
-        var html = parser.parseFromString(data, 'text/html');
+    // Realizar una solicitud al servidor para obtener la lista de carpetas y archivos
+    const response = await fetch(rutaDirectorio);
+    const data = await response.text();
 
-        // Obtener los nombres de las carpetas
-        var carpetas = Array.from(html.querySelectorAll('a')).map(a => a.textContent);
-        // Mostrar los nombres de las carpetas en la lista
-        var listaCarpetas = document.getElementById("lista-carpetas");
-        carpetas.forEach(nombre => {
-          var listItem = document.createElement("li");
-          listItem.textContent = nombre;
-          listaCarpetas.appendChild(listItem);
-        });
+    // Convertir la respuesta del servidor a HTML para poder manipularla
+    var parser = new DOMParser();
+    var html = parser.parseFromString(data, 'text/html');
 
-        // Obtener los nombres de los archivos
-        var archivos = Array.from(html.querySelectorAll('a')).map(a => a.textContent);
-        // Mostrar los nombres de los archivos en la lista
-        var listaArchivos = document.getElementById("lista-archivos");
-        archivos.forEach(nombre => {
-          var listItem = document.createElement("li");
-          listItem.textContent = nombre;
-          listaArchivos.appendChild(listItem);
-        });
-      })
-      .catch(error => console.error('Error al obtener el listado:', error));
-    }
+    // Obtener los nombres de las carpetas
+    var carpetas = Array.from(html.querySelectorAll('a')).map(a => a.textContent);
+    // Mostrar los nombres de las carpetas en la lista
+    var listaCarpetas = document.getElementById("lista-carpetas");
+    carpetas.forEach(nombre => {
+      var listItem = document.createElement("li");
+      listItem.textContent = nombre;
+      listaCarpetas.appendChild(listItem);
+    });
 
-    // Llamar a la función para obtener el listado al cargar la página
-    window.onload = obtenerListado;
+    // Obtener los nombres de los archivos
+    var archivos = Array.from(html.querySelectorAll('a')).map(a => a.textContent);
+    // Mostrar los nombres de los archivos en la lista
+    var listaArchivos = document.getElementById("lista-archivos");
+    archivos.forEach(nombre => {
+      var listItem = document.createElement("li");
+      listItem.textContent = nombre;
+      listaArchivos.appendChild(listItem);
+    });
+  } catch (error) {
+    console.error('Error al obtener el listado:', error);
+  }
+}
+
+// Llamar a la función para obtener el listado al cargar la página
+window.onload = obtenerListado;
   </script>
 
 
