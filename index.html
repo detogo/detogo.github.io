@@ -3,65 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>XCaw</title>
 
      <style>
+      html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+      }
       html {
-           background: linear-gradient(45deg, black, dodgerblue);
-             }
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(0deg, dodgerblue, black);
-        } 
+          background: linear-gradient(45deg, black, dodgerblue);
+      }
+      body {
+          font-family: Arial, sans-serif;
+          background: linear-gradient(0deg, dodgerblue, black);
+          padding: 0px; /* Ajusta el padding según sea necesario */
+      }
 
-        .container{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .btn-llamar-telefono {
-            background-color: silver;
-            color: black;
-            border: 2px solid silver;
-            border-radius: 20px;
-            padding: 5px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display:inline-block;
-            margin-left: 10px;
-        }
-
-        .btn-llamar-telefono:hover {
-            background-color: skyblue;
-            border-color: blue;
-            display:inline-block;
-
-        }
-
-        .btn-llamar-whatsapp {
-            background-color: silver;
-            color: black;
-            border: 2px solid silver;
-            border-radius: 20px;
-            padding: 5px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display:inline-block;
-            margin-left: 10px;
-        }
-
-        .btn-llamar-whatsapp:hover {
-            background-color: green;
-            border-color: darkgreen;
-            display:inline-block;
-
-        }
-               
-
+           
+     
+  
     </style>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -80,77 +42,84 @@
 <script src="stakingpool.js"></script>
 <script src="responses.js"></script>
 
+<br>
+ 
 
 
 
 
-<div class="container-fluid">
+
 <div class="row">
+ 
 
    <div class="col-sm-1"> 
    </div>
-          
- <div class="col-sm-6">                    
 
-
- <br>
- <nav class="navbar navbar-inverse" role="navigation" style="border: 4px solid blue; border-radius: 20px; background:black;">
-  <div class="container-fluid">
-     <div class="container-fluid">
-          
-     <div class="navbar-header">
-               <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
 
           
-          <a class="navbar-brand" style="display:inline-block; margin-bottom: 20px;">            
-           <img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="60" class="img-circle" style=" display:inline-block; margin-left: 5px;">
-         </a>
-  
-         <div class="navbar-brand">             
-
-              <h3 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 5px;"><font color="white"> <i>detogo.app</i> </font> </h3> 
-                
-        </div>    
-
-        <div class="navbar-brand">
-           
-        </div>
-       
-     </div>
-         
-       
-    <div class="collapse navbar-collapse navbar-responsive-collapse">
-        <ul class="nav navbar-nav navbar-right">
-         
-             <li><a href="#" data-toggle="modal" data-target="#myModal">Ahuachapán</a></li>
-             <li><a id="profile-create" href="#" data-toggle="modal" data-target="#myModalprofile">Profile</a></li>
-          <!--<li><a href="#" id="btn-aprobar-contrato">Aprobar Contrato</a></li>-->
-        </ul>
-
-   
-
-    </div>
-     </div>
-</nav>
+ <div class="col-sm-6">             
 
      
 
+     <nav class="navbar navbar-inverse" role="navigation" style="border: 2px solid skyblue; border-radius: 20px; background:black;">
+          <div class="container-fluid">
+             <div class="container-fluid">
+                  
+             <div class="navbar-header">
+                       <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                       <span class="sr-only">Toggle navigation</span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                       <span class="icon-bar"></span>
+                       </button>
+
+                  
+                  <a class="navbar-brand" style="display:inline-block; margin-bottom: 20px;">            
+                   <img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="50" class="img-circle" style=" display:inline-block; margin-left: 5px;">
+
+                   <h3 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="white"> <i>detogo.app</i> </font> </h3> 
+                 </a>
+          
+                 <div class="navbar-brand">             
+
+                      <h4 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="white"> <i>Ahuachapán</i> </font> </h4> 
+                        
+                </div>    
+
+                <div class="navbar-brand">
+                   
+                </div>
+               
+             </div>
+                 
+               
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                 
+                   <!--  <li><a href="#" data-toggle="modal" data-target="#myModal">NFT-Username</a></li>-->
+                   <!--  <li><a id="profile-create" href="#" data-toggle="modal" data-target="#myModalprofile">Profile</a></li>-->
+                  <!--<li><a href="#" id="btn-aprobar-contrato">Aprobar Contrato</a></li>-->
+                </ul>
+
+            
+
+            </div>
+             </div>
+    </nav>
+
+
+
+
+
 
        <!--  <div class="well" style="background: linear-gradient(45deg, black, yellow);">  -->
-       <div class="well" style="border: 4px solid blue; border-radius: 20px;">
+       <div class="well" style="border: 2px solid skyblue; border-radius: 20px;">
+     
                     <!--<div style="background: red; width:90px; height: 50px; display: inline-block; margin-top: 50px;"></div>  -->
 
 
 <style>
-          body {
-            margin: 0;
-            overflow: hidden;
-          }
+          
 
           .calle {
             position: relative;
@@ -174,16 +143,12 @@
             height: 10px;
           }
 
-
-
           .moto {
             position: absolute;
             top: 10px; /* Ajusta la posición vertical de la moto */
             left: -50px; /* Ajusta la posición inicial horizontal de la moto */
             animation: mover-moto 6s linear infinite, vibrar-moto 0.1s alternate infinite; /* Ajusta la velocidad de movimiento y vibración según tus necesidades */
           }
-
-
 
           @keyframes mover-linea {
             0% { right: -50%; }
@@ -215,47 +180,45 @@
 
 
 
-<div class="container-fluid">  
+
 
 
   <ul class="nav nav-tabs">
-    <li  class="active"><a data-toggle="tab" href="#home"> <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="30"></a></li>
+    <li  class="active"><a data-toggle="tab" href="#home"> <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="25"></a></li>
     
-    <li><a data-toggle="tab" href="#godelivery"><img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="30"></a></li>
+    <li><a data-toggle="tab" href="#godelivery"><img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="25"></a></li>
     
-    <li><a data-toggle="tab" href="#gocars"><img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="30"></a></li>
+    <li><a data-toggle="tab" href="#gocars"><img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="25"></a></li>
     
-    <li><a data-toggle="tab" href="#gofood"><img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="30"></a></li>
+    <li><a data-toggle="tab" href="#gofood"><img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="25"></a></li>
 
-    <li><a data-toggle="tab" href="#gomarket"><img  id="image-market" src="detogo_app/gomarket.SVG " alt="home" width="30"></a></li>
+    <li><a data-toggle="tab" href="#gomarket"><img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="25"></a></li>
 
-    <li><a data-toggle="tab" href="#goservice"><img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="30"></a></li>
+    <li><a data-toggle="tab" href="#goservice"><img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="25"></a></li>
 
-    <li><a data-toggle="tab" href="#callcenter"><img  id="image-callcenter" src="detogo_app/callcenter.SVG" alt="home" width="30"></a></li>
+    <li><a data-toggle="tab" href="#callcenter"><img  id="image-callcenter" src="detogo_app/callcenter.SVG" alt="home" width="25"></a></li>
 
-  </ul>
- 
+  </ul> 
 
 
 
   <div class="tab-content">   
-
-    <div id="home" class="tab-pane fade in active" >
-        
-    </div>
-<!--#################################################-->    
+        <div id="home" class="tab-pane fade in active" >
+    
+  </div>
+       <!--#################################################-->    
 
 
 
 
 
     <div id="godelivery" class="tab-pane fade">   
-        <div class="container-fluid">  
+        
               <div class="calle">
                     <div class="linea"></div>
-                    <img src="detogo_app/moto.svg" alt="Moto" width="250" class="moto">
+                    <img src="detogo_app/moto.SVG" alt="Moto" width="250" class="moto">
               </div>
-        </div>
+       
    <br>
 
      <center>
@@ -288,7 +251,7 @@
       
 
   </div>
-</div>
+
                     
   
      
@@ -299,26 +262,17 @@
 
                 </div>
             </div>
-   
 
 
 
-<style>
-.col-sm-4 {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    height: 100vh; /* Establece la altura máxima del contenido pegajoso */
-    overflow-y: auto; /* Agrega un desplazamiento vertical si es necesario */
-    /* Otros estilos para la columna sm-3 */
-}
 
-</style>
+
+
 
 
 
             <div class="col-sm-4">
-                <div class="well" style="border: 4px solid blue; border-radius: 20px;">    
+                 <div class="well" style="border: 2px solid skyblue; border-radius: 20px;">
 
                     <h2>Listado de carpetas:</h2>
                     <ul id="lista-carpetas"></ul>
@@ -341,7 +295,7 @@
 
             
         </div>
-    </div>
+   
 
 
 
@@ -361,7 +315,7 @@
     // Función para obtener la lista de carpetas y archivos
     function obtenerListado() {
       // Ruta del directorio donde se encuentran las carpetas y archivos
-      var rutaDirectorio = "/";
+      var rutaDirectorio = "";
 
       // Realizar una solicitud al servidor para obtener la lista de carpetas y archivos
       fetch(rutaDirectorio)
