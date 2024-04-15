@@ -93,7 +93,7 @@
     select {
       width: 100%;
       padding: 10px;
-      font-size: 40px;
+      font-size: 24px !important;
       border: 4px solid dodgerblue; /* Borde de 1px sólido de color DodgerBlue */
       border-radius: 15px;
       background-color: white;
@@ -232,21 +232,40 @@
 <ul class="gallery_toolbar">     
 
       
-       <a data-toggle="tab" href="#home">  <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="35"></a> 
-       <a data-toggle="tab" href="#godelivery">  <img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="35"> </a>
-       <a data-toggle="tab" href="#gocars">  <img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="35"> </a>
-       <a data-toggle="tab" href="#gofood">  <img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="35"> </a>
-       <a data-toggle="tab" href="#gomarket">  <img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="35"> </a>
-       <a data-toggle="tab" href="#goservice">  <img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="35"> </a>
-       <a a data-toggle="tab" href="#callcenter">  <img  id="image-callcenter" src="detogo_app/callcenter.SVG" alt="home" width="35"> </a>
+       <a data-toggle="tab" href="#home">  <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="45"></a> 
+       <a data-toggle="tab" href="#godelivery">  <img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#gocars">  <img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#gofood">  <img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#gomarket">  <img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#goservice">  <img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="45"> </a>
+       
        
 </ul>
 
 
   <div class="tab-content">   
         <div id="home" class="tab-pane fade in active" >
-    
-  </div>
+             <br>
+            <center><img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="200" class="img-circle" style=" display:inline-block; margin-left: 5px;"></center>
+             <br>
+
+            <center><h1 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="black"> <i>detogo.app</i> </font> </h1> </center>
+
+              <center><h3>  <p><i>
+              Plataforma lider en servicio delivery, Solicita el mejor viaje, lo que quieras, mira nuestras tiendas en linea y mucho mas</i> 
+            </p></h3>   </center> 
+
+
+             <br>
+             <center>
+                     <button class="btn-llamar-telefono" id="btn-llamar-telefono-callcenter" onclick="llamar_telefono_callcenter()" style="display: inline-block; margin-left: 10px;">Llamar</button>
+                     <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp-callcenter" onclick="enviar_whatsapp_callcenter()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
+             </center> 
+
+
+
+
+        </div>
        <!--#################################################-->    
 
 
@@ -288,9 +307,30 @@
 
     <div id="gocars" class="tab-pane fade">              
               <div class="calle">
-                    <div class="linea"></div>
-                    <img src="detogo_app/carro.SVG" alt="Moto" width="350" class="moto">
+                    <div class="linea"></div>                    
+                     <img id="imagen-vehiculo" src="detogo_app/carro.SVG" alt="Carro" width="350" class="moto">
+
               </div>
+
+               <br>
+
+
+              <div>
+                  <select id="select-nombre-car">
+                <option value="Go! delivery, todo, 68218224" >Selecciona tu vehiculo  preferido!</option>
+                <option value="Go! delivery, Sedan, 68218224 ">Ernesto Valdez Sedan</option>
+                <option value="Go! delivery, Pickup, 68218224 ">Ernesto Valdez Pickup</option>
+                <option value="Ernesto Valdez, Grua, 68218224 ">Ernesto Valdez grua</option>
+                <option value="Marvin saldaña, Camion, 68425255 ">Marvin saldaña Camion</option>
+                <option value="Enrique mariano, Microbus, 68252584 ">Enrique mariano microbus</option>
+                   </select>
+               </div>
+
+               <br>
+                 <center>
+                     <button class="btn-llamar-telefono" id="btn-llamar-telefono-car" onclick="llamar_telefono_car()" style="display: inline-block; margin-left: 10px;">Llamar</button>
+                     <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp-car" onclick="enviar_whatsapp_car()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
+                 </center>
         
     </div>
     
@@ -361,12 +401,12 @@
 
 
 <script>
-    function llamar_telefono_delivery2() {
+    function llamar_telefono_callcenter() {
       var numero_telefono = "78218224"; // Aquí se puede cambiar por el número de teléfono deseado
       window.location.href = "tel:" + numero_telefono;
     }
 
-     function enviar_whatsapp_delivery2() {
+     function enviar_whatsapp_callcenter() {
       var numero_whatsapp = "78218224"; // Aquí se puede cambiar por el número de WhatsApp deseado
       window.location.href = "https://wa.me/" + numero_whatsapp;
     }
@@ -374,14 +414,14 @@
 
 
 <script>
-  async function obtenerListado() {
+    function obtenerListado() {
     try {
       const username = 'detogo';
       const repo = 'detogo.github.io';
 
       // Realizar una solicitud al servidor para obtener la lista de archivos del repositorio
-      const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
-      const data = await response.json();
+      const response = fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
+      const data = response.json();
 
       // Obtener los nombres de los archivos del repositorio
       const archivos = data.map(file => file.name);
@@ -436,9 +476,11 @@ slider.addEventListener('mousemove', e => {
 </script> 
 
 
-<script>
+
+
+  <script>
     // Acceder al elemento select
-    const selectNombre = document.getElementById('select-nombre-delivery');
+    const selectNombre = document.getElementById('select-nombre-car');
 
     // Añadir un evento para capturar la selección del usuario
     selectNombre.addEventListener('change', function() {
@@ -481,6 +523,70 @@ slider.addEventListener('mousemove', e => {
         console.error('No se ha seleccionado un número de teléfono.');
       }
     }
+
+    function llamar_telefono_car() {
+      // Obtener el número de teléfono seleccionado
+      const seleccion = document.getElementById('select-nombre-car').value.split(', ');
+      const numero_telefono = seleccion[2] || ''; // Si no se selecciona un número, será una cadena vacía
+      // Llamar al número de teléfono
+      if (numero_telefono !== '') {
+        window.location.href = "tel:" + numero_telefono;
+      } else {
+        console.error('No se ha seleccionado un número de teléfono.');
+      }
+    }
+
+    // Función para enviar un mensaje de WhatsApp al número seleccionado en el <select>
+    function enviar_whatsapp_car() {
+      // Obtener el número de teléfono seleccionado
+      const seleccion = document.getElementById('select-nombre-car').value.split(', ');
+      const numero_whatsapp = seleccion[2] || ''; // Si no se selecciona un número, será una cadena vacía
+      // Enviar mensaje de WhatsApp al número
+      if (numero_whatsapp !== '') {
+        window.location.href = "https://wa.me/" + numero_whatsapp;
+      } else {
+        console.error('No se ha seleccionado un número de teléfono.');
+      }
+    }
+  </script>
+
+    <script>
+    // Función para cambiar la imagen del vehículo según el tipo seleccionado
+    function cambiarImagenVehiculo() {
+      // Obtener el valor seleccionado
+      const seleccion = document.getElementById('select-nombre-car').value.split(', ');
+      const tipoVehiculo = seleccion[1];
+
+      // Obtener la imagen del vehículo
+      const imagenVehiculo = document.getElementById('imagen-vehiculo');
+
+      // Cambiar la imagen según el tipo de vehículo seleccionado
+      if (tipoVehiculo === 'Sedan') {
+        imagenVehiculo.src = 'detogo_app/carro.SVG'; // Cambia 'ruta/imagen_sedan.jpg' por la ruta de tu imagen de sedan
+      } else if (tipoVehiculo === 'Pickup') {
+        imagenVehiculo.src = 'detogo_app/pickup.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
+      } else if (tipoVehiculo === 'Pickup 4x4') {
+        imagenVehiculo.src = 'detogo_app/pickup4x4.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
+      } else if (tipoVehiculo === 'Microbus') {
+        imagenVehiculo.src = 'detogo_app/microbus.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
+      } else if (tipoVehiculo === 'Camion') {
+        imagenVehiculo.src = 'detogo_app/camion.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
+      } else if (tipoVehiculo === 'Grua') {
+        imagenVehiculo.src = 'detogo_app/grua.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
+
+
+
+
+      } else {
+        // Si no se selecciona ningún tipo válido, puedes mostrar una imagen por defecto o dejar la actual
+      }
+    }
+
+    // Añadir un evento para capturar la selección del usuario y cambiar la imagen del vehículo
+    document.getElementById('select-nombre-car').addEventListener('change', cambiarImagenVehiculo);
+
+    // Llamar a la función una vez al cargar la página para mostrar la imagen predeterminada
+    cambiarImagenVehiculo();
   </script>
  
 
