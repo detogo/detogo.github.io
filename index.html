@@ -22,12 +22,12 @@
       }
 
       .btn-llamar-telefono {
-            background-color: silver;
+            background-color: dodgerblue ;
             color: black;
-            border: 2px solid silver;
+            border: 2px dodgerblue;
             border-radius: 20px;
             padding: 5px 10px;
-            font-size: 16px;
+            font-size: 24px;
             cursor: pointer;
             transition: background-color 0.3s ease;
             display:inline-block;
@@ -35,19 +35,19 @@
         }
 
         .btn-llamar-telefono:hover {
-            background-color: dodgerblue;
-            border-color: dodgerblue;
+            background-color: blue;
+            border-color: blue;
             display:inline-block;
 
         }
 
         .btn-llamar-whatsapp {
-            background-color: silver;
+            background-color: lime;
             color: black;
-            border: 2px solid silver;
+            border: 2px solid lime;
             border-radius: 20px;
             padding: 5px 10px;
-            font-size: 16px;
+            font-size: 24px;
             cursor: pointer;
             transition: background-color 0.3s ease;
             display:inline-block;
@@ -55,8 +55,8 @@
         }
 
         .btn-llamar-whatsapp:hover {
-            background-color: lime;
-            border-color: lime;
+            background-color: green;
+            border-color: green;
             display:inline-block;
 
         }
@@ -86,6 +86,27 @@
   scroll-snap-type: unset;
 }
 </style>
+
+
+ <style>
+    /* Estilo para el elemento select */
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 40px;
+      border: 4px solid dodgerblue; /* Borde de 1px sólido de color DodgerBlue */
+      border-radius: 15px;
+      background-color: white;
+      color: dodgerblue;
+      cursor: pointer;
+    }
+
+    /* Estilo para las opciones del select */
+    option {
+      background-color: white;
+      color: dodgerblue;
+    }
+  </style>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -135,54 +156,6 @@
  </div>  
 
      
-<!--
-     <nav class="navbar navbar-inverse" role="navigation" style="border: none; border-radius: 20px; background:black;">
-          
-                  
-             <div class="navbar-header">
-                       <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                       <span class="sr-only">Toggle navigation</span>
-                       <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                       </button>
-
-                  
-                  <a class="navbar-brand" style="display:inline-block; margin-bottom: 20px;">            
-                   <img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="50" class="img-circle" style=" display:inline-block; margin-left: 5px;">
-
-                   <h3 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="white"> <i>detogo.app</i> </font> </h3> 
-
-                   <h5 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="skyblue"> <i>Ahuachapán</i> </font> </h5> 
-                 </a>
-          
-                 <div class="navbar-brand">             
-
-                     
-                        
-                </div>    
-
-                <div class="navbar-brand">
-                   
-                </div>
-               
-             </div>
-                 
-               
-            <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                 
-                     <li><a href="#" data-toggle="modal" data-target="#myModal">NFT-Username</a></li>
-                   <li><a id="profile-create" href="#" data-toggle="modal" data-target="#myModalprofile">Profile</a></li>
-                  <li><a href="#" id="btn-aprobar-contrato">Aprobar Contrato</a></li>
-                </ul>
-
-            
-
-           
-    </nav>
--->
-
 
 
 
@@ -287,18 +260,33 @@
                     <img src="detogo_app/moto.SVG" alt="Moto" width="250" class="moto">
               </div>
        
-   <br>
-
-     <center>
-         <button class="btn-llamar-telefono" id="btn-llamar-telefono" onclick="llamar_telefono_delivery()" style="display: inline-block; margin-left: 10px;">Llamar</button>
-         <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp" onclick="enviar_whatsapp_delivery()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
-     </center>
-   </div>  
+              <br>
 
 
+              <div>
+                  <select id="select-nombre-delivery">
+                        <option value="Go! delivery,todo ,78218224" >Selecciona a tu delivery preferido!</option>
+                        <option value="Go! delivery, Pickup, 78218224">Ernesto Valdez Sedan</option>
+                        <option value="Ernesto Valdez Sedan, Pickup, 78218224">Ernesto Valdez Sedan</option>
+                        <option value="Marvin saldaña Sedan, Sedan, 60425255">Marvin saldaña Sedan</option>
+                        <option value="Enrique mariano Pickup, Pickup,78252584 ">Enrique mariano Pickup</option>
+                   </select>
+               </div>
 
-    <div id="gocars" class="tab-pane fade">
-              
+               <br>
+                 <center>
+                     <button class="btn-llamar-telefono" id="btn-llamar-telefono" onclick="llamar_telefono_delivery()" style="display: inline-block; margin-left: 10px;">Llamar</button>
+                     <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp" onclick="enviar_whatsapp_delivery()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
+                 </center>
+               
+    </div>  
+
+
+
+
+
+
+    <div id="gocars" class="tab-pane fade">              
               <div class="calle">
                     <div class="linea"></div>
                     <img src="detogo_app/carro.SVG" alt="Moto" width="350" class="moto">
@@ -367,65 +355,53 @@
 
 
 
+
+
+
+
+
 <script>
-    function llamar_telefono_delivery() {
+    function llamar_telefono_delivery2() {
       var numero_telefono = "78218224"; // Aquí se puede cambiar por el número de teléfono deseado
       window.location.href = "tel:" + numero_telefono;
     }
 
-     function enviar_whatsapp_delivery() {
+     function enviar_whatsapp_delivery2() {
       var numero_whatsapp = "78218224"; // Aquí se puede cambiar por el número de WhatsApp deseado
       window.location.href = "https://wa.me/" + numero_whatsapp;
     }
 </script>
 
 
+<script>
+  async function obtenerListado() {
+    try {
+      const username = 'detogo';
+      const repo = 'detogo/detogo.github.io';
 
+      // Realizar una solicitud al servidor para obtener la lista de archivos del repositorio
+      const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
+      const data = await response.json();
 
+      // Obtener los nombres de los archivos del repositorio
+      const archivos = data.map(file => file.name);
 
-
-
- <script>
-    async function obtenerListado() {
-  try {
-    // Ruta del directorio donde se encuentran las carpetas y archivos
-    var rutaDirectorio = "detogo.github.io/";
-
-    // Realizar una solicitud al servidor para obtener la lista de carpetas y archivos
-    const response = await fetch(rutaDirectorio);
-    const data = await response.text();
-
-    // Convertir la respuesta del servidor a HTML para poder manipularla
-    var parser = new DOMParser();
-    var html = parser.parseFromString(data, 'text/html');
-
-    // Obtener los nombres de las carpetas
-    var carpetas = Array.from(html.querySelectorAll('a')).map(a => a.textContent);
-    // Mostrar los nombres de las carpetas en la lista
-    var listaCarpetas = document.getElementById("lista-carpetas");
-    carpetas.forEach(nombre => {
-      var listItem = document.createElement("li");
-      listItem.textContent = nombre;
-      listaCarpetas.appendChild(listItem);
-    });
-
-    // Obtener los nombres de los archivos
-    var archivos = Array.from(html.querySelectorAll('a')).map(a => a.textContent);
-    // Mostrar los nombres de los archivos en la lista
-    var listaArchivos = document.getElementById("lista-archivos");
-    archivos.forEach(nombre => {
-      var listItem = document.createElement("li");
-      listItem.textContent = nombre;
-      listaArchivos.appendChild(listItem);
-    });
-  } catch (error) {
-    console.error('Error al obtener el listado:', error);
+      // Mostrar los nombres de los archivos en la lista
+      const listaArchivos = document.getElementById("lista-archivos");
+      archivos.forEach(nombre => {
+        const listItem = document.createElement("li");
+        listItem.textContent = nombre;
+        listaArchivos.appendChild(listItem);
+      });
+    } catch (error) {
+      console.error('Error al obtener el listado:', error);
+    }
   }
-}
 
-// Llamar a la función para obtener el listado al cargar la página
-window.onload = obtenerListado;
-  </script>
+  // Llamar a la función para obtener el listado al cargar la página
+  window.onload = obtenerListado;
+</script>
+
 
 
 <script> 
@@ -459,8 +435,55 @@ slider.addEventListener('mousemove', e => {
 });
 </script> 
 
-  
-   
+
+<script>
+    // Acceder al elemento select
+    const selectNombre = document.getElementById('select-nombre-delivery');
+
+    // Añadir un evento para capturar la selección del usuario
+    selectNombre.addEventListener('change', function() {
+      // Obtener el valor seleccionado
+      const seleccion = selectNombre.value.split(', ');
+      const nombreSeleccionado = seleccion[0];
+      const tipoVehiculo = seleccion[1];
+      const telefono = seleccion[2] || 'Número no disponible';
+      
+      // Mostrar el nombre, tipo de vehículo y número de teléfono seleccionado en la consola
+      console.log("Nombre seleccionado:", nombreSeleccionado);
+      console.log("Tipo de vehículo:", tipoVehiculo);
+      console.log("Número de teléfono:", telefono);
+    });
+  </script>
+
+<script>
+    // Función para llamar al número de teléfono seleccionado en el <select>
+    function llamar_telefono_delivery() {
+      // Obtener el número de teléfono seleccionado
+      const seleccion = document.getElementById('select-nombre-delivery').value.split(', ');
+      const numero_telefono = seleccion[2] || ''; // Si no se selecciona un número, será una cadena vacía
+      // Llamar al número de teléfono
+      if (numero_telefono !== '') {
+        window.location.href = "tel:" + numero_telefono;
+      } else {
+        console.error('No se ha seleccionado un número de teléfono.');
+      }
+    }
+
+    // Función para enviar un mensaje de WhatsApp al número seleccionado en el <select>
+    function enviar_whatsapp_delivery() {
+      // Obtener el número de teléfono seleccionado
+      const seleccion = document.getElementById('select-nombre-delivery').value.split(', ');
+      const numero_whatsapp = seleccion[2] || ''; // Si no se selecciona un número, será una cadena vacía
+      // Enviar mensaje de WhatsApp al número
+      if (numero_whatsapp !== '') {
+        window.location.href = "https://wa.me/" + numero_whatsapp;
+      } else {
+        console.error('No se ha seleccionado un número de teléfono.');
+      }
+    }
+  </script>
+ 
+
 <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
 <script src="bootstrap/js/jquery.min.js" ></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
