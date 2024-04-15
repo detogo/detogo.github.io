@@ -252,7 +252,7 @@
             <center><h1 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="black"> <i>detogo.app</i> </font> </h1> </center>
 
               <center><h3>  <p><i>
-              Plataforma lider en servicio delivery, Solicita el mejor viaje, lo que quieras, mira nuestras tiendas en linea y mucho mas</i> 
+              Plataforma lider en servicio delivery, Solicitá el mejor viaje, lo que quieras, mira nuestras tiendas en linea y mucho más</i> 
             </p></h3>   </center> 
 
 
@@ -414,14 +414,14 @@
 
 
 <script>
-    function obtenerListado() {
+    async function obtenerListado() {
     try {
       const username = 'detogo';
       const repo = 'detogo.github.io';
 
       // Realizar una solicitud al servidor para obtener la lista de archivos del repositorio
-      const response = fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
-      const data = response.json();
+      const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
+      const data = await response.json();
 
       // Obtener los nombres de los archivos del repositorio
       const archivos = data.map(file => file.name);
