@@ -688,24 +688,43 @@ slider.addEventListener('mousemove', e => {
       fichaServicio = listaNombres;
     } else {
       // Crear elemento de lista para el nombre y el número de teléfono
-      // Crear la ficha de servicio
+      
+
+// Separar el nombre y el número de teléfono
+
+
+// Crear la ficha de servicio
 const fichaElemento = document.createElement('div');
 fichaElemento.classList.add('ficha-servicio');
 
-// Separar el nombre y el número de teléfono
+
 const [nombre, telefono] = linea.split(',');
 console.log('Nombre:', nombre.trim());
 console.log('Teléfono:', telefono.trim());
 
-// Crear un contenedor para el nombre y los botones
+// Crear contenedor para la información
 const contenedorInfo = document.createElement('div');
 contenedorInfo.classList.add('info-servicio');
 fichaElemento.appendChild(contenedorInfo);
+
+// Agregar la imagen fija redonda
+const imagen = document.createElement('img');
+imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
+imagen.alt = 'People';
+imagen.style.width = '50px'; // Establece el ancho de la imagen
+imagen.style.height = '50px'; // Establece la altura de la imagen
+imagen.classList.add('servicio-img');
+contenedorInfo.appendChild(imagen);
 
 // Agregar el nombre del servicio
 const nombreElemento = document.createElement('h5');
 nombreElemento.textContent = nombre.trim();
 contenedorInfo.appendChild(nombreElemento);
+
+// Crear contenedor para los botones
+const contenedorBotones = document.createElement('div');
+contenedorBotones.classList.add('botones-servicio');
+contenedorInfo.appendChild(contenedorBotones);
 
 // Agregar botón de llamar por teléfono
 const btnLlamar = document.createElement('button');
@@ -715,7 +734,7 @@ btnLlamar.onclick = function() {
     // Lógica para llamar por teléfono
     console.log('Llamar al número de teléfono:', telefono.trim());
 };
-contenedorInfo.appendChild(btnLlamar);
+contenedorBotones.appendChild(btnLlamar);
 
 // Agregar botón de WhatsApp
 const btnWhatsapp = document.createElement('button');
@@ -725,17 +744,7 @@ btnWhatsapp.onclick = function() {
     // Lógica para usar WhatsApp
     console.log('Enviar mensaje por WhatsApp al número de teléfono:', telefono.trim());
 };
-contenedorInfo.appendChild(btnWhatsapp);
-
-// Agregar la imagen fija redonda
-const imagen = document.createElement('img');
-imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
-imagen.alt = 'People';
-imagen.style.width = '50px'; // Establece el ancho de la imagen
-imagen.style.height = '50px'; // Establece la altura de la imagen
-imagen.classList.add('servicio-img');
-// Agregar la imagen antes del contenedor de información
-fichaElemento.insertBefore(imagen, contenedorInfo);
+contenedorBotones.appendChild(btnWhatsapp);
 
 // Agregar la ficha de servicio al contenedor principal
 fichaServicio.appendChild(fichaElemento);
