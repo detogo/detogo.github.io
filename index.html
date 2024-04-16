@@ -75,6 +75,7 @@
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
   overflow: scroll;
+
  
   scroll-snap-type: both mandatory;
   scroll-padding: 1rem;
@@ -105,6 +106,34 @@
     option {
       background-color: white;
       color: dodgerblue;
+    }
+  </style>
+
+
+  <style>
+    /* Estilo para la imagen redonda */
+    .servicio-img {
+      width: 100px; /* Tamaño de la imagen */
+      height: 100px;
+      border-radius: 50%; /* Hacer la imagen redonda */
+      margin-right: 20px;
+    }
+
+    /* Estilo para los botones */
+    .btn-llamar, .btn-whatsapp {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: DodgerBlue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp {
+      background-color: green;
+      margin-left: 10px;
     }
   </style>
 
@@ -232,12 +261,12 @@
 <ul class="gallery_toolbar">     
 
       
-       <a data-toggle="tab" href="#home">  <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="45"></a> 
-       <a data-toggle="tab" href="#godelivery">  <img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="45"> </a>
-       <a data-toggle="tab" href="#gocars">  <img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="45"> </a>
-       <a data-toggle="tab" href="#gofood">  <img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="45"> </a>
-       <a data-toggle="tab" href="#gomarket">  <img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="45"> </a>
-       <a data-toggle="tab" href="#goservice">  <img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#home" style=" margin-left: 15px;">  <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="45"></a> 
+       <a data-toggle="tab" href="#godelivery" style=" margin-left: 15px;">  <img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#gocars" style=" margin-left: 15px;">  <img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#gofood" style=" margin-left: 15px;">  <img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#gomarket" style=" margin-left: 15px;">  <img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#goservice" style=" margin-left: 15px;">  <img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="45"> </a>
        
        
 </ul>
@@ -338,7 +367,28 @@
 
     <!--/////////////////////////////////////////////////////////////-->
     <!--/////////////////////////////////////////////////////////////-->
+    <div id="gofood" class="tab-pane fade">    
+    
+    </div>
+    <!--/////////////////////////////////////////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////-->
+
+
+     <!--/////////////////////////////////////////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////-->
     <div id="gomarkets" class="tab-pane fade">    
+    
+    </div>
+    <!--/////////////////////////////////////////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////-->
+
+
+     <!--/////////////////////////////////////////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////-->
+    <div id="goservice" class="tab-pane fade">   
+          
+          <div id="service" >
+          </div> 
     
     </div>
     <!--/////////////////////////////////////////////////////////////-->
@@ -346,23 +396,11 @@
 
       
 
-  </div>
-
-                    
+  </div>                 
   
      
-
-
-
-
-
                 </div>
             </div>
-
-
-
-
-
 
 
 
@@ -588,6 +626,109 @@ slider.addEventListener('mousemove', e => {
     // Llamar a la función una vez al cargar la página para mostrar la imagen predeterminada
     cambiarImagenVehiculo();
   </script>
+
+
+
+  <script>
+    // Función para cargar y procesar el contenido del archivo de servicios
+    function leerArchivoServicios() {
+      // Ruta del archivo de servicios
+      const rutaArchivo = '/servicios.txt';
+
+      // Crear una nueva solicitud XMLHttpRequest
+      const xhr = new XMLHttpRequest();
+
+      // Configurar la solicitud
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            // El archivo se cargó correctamente
+            const contenido = xhr.responseText;
+            // Procesar el contenido
+            procesarContenidoServicios(contenido);
+          } else {
+            // Hubo un error al cargar el archivo
+            console.error('Error al cargar el archivo:', xhr.status);
+          }
+        }
+      };
+
+      // Abrir y enviar la solicitud
+      xhr.open('GET', rutaArchivo, true);
+      xhr.send();
+    }
+
+    // Función para procesar el contenido del archivo de servicios
+    function procesarContenidoServicios(contenido) {
+      // Dividir el contenido en líneas
+      const lineas = contenido.split('\n');
+
+      // Obtener el elemento donde se mostrarán los servicios
+      const servicioDiv = document.getElementById('service');
+
+      // Recorrer cada línea del archivo
+      let servicioActual = '';
+      lineas.forEach(linea => {
+        // Eliminar espacios en blanco al principio y al final de la línea
+        linea = linea.trim();
+        
+        // Si la línea está vacía, continuar con la siguiente línea
+        if (linea === '') return;
+
+        // Si la línea termina con ':' es un tipo de servicio
+        if (linea.endsWith(':')) {
+          // Crear un elemento de ficha de servicio
+          const servicioElemento = document.createElement('div');
+          servicioElemento.classList.add('servicio');
+
+          // Guardar el nombre del servicio
+          servicioActual = linea.slice(0, -1); // Eliminar el ':' al final de la línea
+
+          // Agregar la imagen fija redonda
+          const imagen = document.createElement('img');
+          imagen.src = 'detogo_logo.svg'; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
+          imagen.alt = 'Logo';
+          imagen.classList.add('servicio-img');
+          servicioElemento.appendChild(imagen);
+
+          // Agregar el nombre del servicio
+          const nombre = document.createElement('h2');
+          nombre.textContent = servicioActual;
+          servicioElemento.appendChild(nombre);
+
+          // Agregar botón de llamar por teléfono
+          const btnLlamar = document.createElement('button');
+          btnLlamar.textContent = 'Llamar';
+          btnLlamar.classList.add('btn-llamar');
+          btnLlamar.onclick = function() {
+            // Aquí puedes agregar la lógica para llamar por teléfono
+            console.log('Llamar al número de teléfono del servicio:', servicioActual);
+          };
+          servicioElemento.appendChild(btnLlamar);
+
+          // Agregar botón de WhatsApp
+          const btnWhatsapp = document.createElement('button');
+          btnWhatsapp.textContent = 'WhatsApp';
+          btnWhatsapp.classList.add('btn-whatsapp');
+          btnWhatsapp.onclick = function() {
+            // Aquí puedes agregar la lógica para usar WhatsApp
+            console.log('Enviar mensaje por WhatsApp al servicio:', servicioActual);
+          };
+          servicioElemento.appendChild(btnWhatsapp);
+
+          // Agregar la ficha de servicio al contenedor principal
+          servicioDiv.appendChild(servicioElemento);
+        }
+      });
+    }
+
+    // Llamar a la función para leer el archivo de servicios al cargar la página
+    window.onload = leerArchivoServicios;
+  </script>
+
+
+
+
  
 
 <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
