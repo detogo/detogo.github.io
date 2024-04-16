@@ -696,6 +696,8 @@ slider.addEventListener('mousemove', e => {
 // Crear la ficha de servicio
 const fichaElemento = document.createElement('div');
 fichaElemento.classList.add('ficha-servicio');
+fichaElemento.style.marginBottom = '25px'; // Agregar margen inferior para crear espacio entre las fichas
+fichaElemento.classList.add('ficha-servicio');
 
 
 const [nombre, telefono] = linea.split(',');
@@ -733,6 +735,7 @@ btnLlamar.textContent = 'Llamar';
 btnLlamar.classList.add('btn-llamar');
 btnLlamar.onclick = function() {
     // Lógica para llamar por teléfono
+    window.location.href = "tel:" + telefono.trim();
     console.log('Llamar al número de teléfono:', telefono.trim());
 };
 contenedorBotones.appendChild(btnLlamar);
@@ -743,6 +746,7 @@ btnWhatsapp.textContent = 'WhatsApp';
 btnWhatsapp.classList.add('btn-whatsapp');
 btnWhatsapp.onclick = function() {
     // Lógica para usar WhatsApp
+    window.location.href = "https://wa.me/" + telefono.trim();
     console.log('Enviar mensaje por WhatsApp al número de teléfono:', telefono.trim());
 };
 contenedorBotones.appendChild(btnWhatsapp);
