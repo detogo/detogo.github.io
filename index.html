@@ -666,33 +666,37 @@ slider.addEventListener('mousemove', e => {
       // Crear un elemento de título para el tipo de servicio
       const tituloServicio = document.createElement('h2');
       tituloServicio.textContent = servicioActual;
+      // Agregar un evento de clic para mostrar u ocultar la lista de nombres
+      tituloServicio.addEventListener('click', function() {
+        // Mostrar u ocultar la lista de nombres
+        const listaNombres = tituloServicio.nextElementSibling;
+        listaNombres.style.display = listaNombres.style.display === 'none' ? 'block' : 'none';
+      });
       servicioDiv.appendChild(tituloServicio);
-      // Crear un contenedor para las fichas de servicio
-      fichaServicio = document.createElement('div');
-      fichaServicio.classList.add('fichas-servicio');
-      servicioDiv.appendChild(fichaServicio);
+      // Crear un contenedor para las listas de nombres de servicio
+      const listaNombres = document.createElement('ul');
+      listaNombres.classList.add('lista-nombres');
+      servicioDiv.appendChild(listaNombres);
+      // Asignar el contenedor a la variable de ficha de servicio
+      fichaServicio = listaNombres;
     } else {
-      // Crear ficha de servicio
-      const fichaElemento = document.createElement('div');
-      fichaElemento.classList.add('ficha-servicio');
-
+      // Crear elemento de lista para el nombre y el número de teléfono
+      const nombreTelefonoElemento = document.createElement('li');
       // Separar el nombre y el número de teléfono
       const [nombre, telefono] = linea.split(',');
       console.log('Nombre:', nombre.trim());
       console.log('Teléfono:', telefono.trim());
-
+      // Agregar el nombre y el número de teléfono al elemento de lista
+      nombreTelefonoElemento.textContent = nombre.trim() + ' - ' + telefono.trim();
+      // Agregar el elemento de lista al contenedor de lista de nombres
+      fichaServicio.appendChild(nombreTelefonoElemento);
       // Agregar la imagen fija redonda
       const imagen = document.createElement('img');
-      imagen.src = 'detogo_logo.svg'; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
-      imagen.alt = 'Logo';
+      imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
+      imagen.alt = 'People';
       imagen.classList.add('servicio-img');
-      fichaElemento.appendChild(imagen);
-
-      // Agregar el nombre del servicio
-      const nombreElemento = document.createElement('h3');
-      nombreElemento.textContent = nombre.trim();
-      fichaElemento.appendChild(nombreElemento);
-
+      // Agregar la imagen antes del nombre
+      nombreTelefonoElemento.insertBefore(imagen, nombreTelefonoElemento.firstChild);
       // Agregar botón de llamar por teléfono
       const btnLlamar = document.createElement('button');
       btnLlamar.textContent = 'Llamar';
@@ -701,7 +705,7 @@ slider.addEventListener('mousemove', e => {
         // Aquí puedes agregar la lógica para llamar por teléfono
         console.log('Llamar al número de teléfono:', telefono.trim());
       };
-      fichaElemento.appendChild(btnLlamar);
+      nombreTelefonoElemento.appendChild(btnLlamar);
 
       // Agregar botón de WhatsApp
       const btnWhatsapp = document.createElement('button');
@@ -711,10 +715,7 @@ slider.addEventListener('mousemove', e => {
         // Aquí puedes agregar la lógica para usar WhatsApp
         console.log('Enviar mensaje por WhatsApp al número de teléfono:', telefono.trim());
       };
-      fichaElemento.appendChild(btnWhatsapp);
-
-      // Agregar la ficha de servicio al contenedor de fichas de servicio
-      fichaServicio.appendChild(fichaElemento);
+      nombreTelefonoElemento.appendChild(btnWhatsapp);
     }
   });
 }
