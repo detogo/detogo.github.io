@@ -674,7 +674,7 @@ slider.addEventListener('mousemove', e => {
       const tituloServicio = document.createElement('h2');
       tituloServicio.textContent = servicioActual;
       // Agregar un evento de clic para mostrar u ocultar la lista de nombres
-      tituloServicio.addEventListener('click', function() {
+      tituloServicio.addEventListener('mousedown', function() {
         // Mostrar u ocultar la lista de nombres
         const listaNombres = tituloServicio.nextElementSibling;
         listaNombres.style.display = listaNombres.style.display === 'none' ? 'block' : 'none';
