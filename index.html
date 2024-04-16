@@ -635,77 +635,76 @@ slider.addEventListener('mousemove', e => {
   <script>
      // Función para procesar el contenido del archivo de servicios
     function procesarContenidoServicios(contenido) {
-  console.log('Procesando contenido de servicios...');
-             
-  // Dividir el contenido en líneas
-  const lineas = contenido.split('\n');
-  console.log('Líneas del contenido:', lineas);
+        console.log('Procesando contenido de servicios...');
+        // Dividir el contenido en líneas
+        const lineas = contenido.split('\n');
+        console.log('Líneas del contenido:', lineas);
 
-  // Obtener el elemento donde se mostrarán los servicios
-  const servicioDiv = document.getElementById('service');
-  console.log('Elemento de servicio:', servicioDiv);
+        // Obtener el elemento donde se mostrarán los servicios
+        const servicioDiv = document.getElementById('service');
+        console.log('Elemento de servicio:', servicioDiv);
 
-  // Recorrer cada línea del archivo
-  let servicioActual = '';
-  lineas.forEach(linea => {
-    // Eliminar espacios en blanco al principio y al final de la línea
-    linea = linea.trim();
-    
-    // Si la línea está vacía, continuar con la siguiente línea
-    if (linea === '') {
-      console.log('Línea vacía, saltando...');
-      return;
-    }
+        // Recorrer cada línea del archivo
+        let servicioActual = '';
+        lineas.forEach(linea => {
+          // Eliminar espacios en blanco al principio y al final de la línea
+          linea = linea.trim();
+          
+          // Si la línea está vacía, continuar con la siguiente línea
+          if (linea === '') {
+            console.log('Línea vacía, saltando...');
+            return;
+          }
 
-    // Si la línea termina con ':' es un tipo de servicio
-    if (linea.endsWith(':')) {
-      console.log('Tipo de servicio encontrado:', linea);
+          // Si la línea termina con ':' es un tipo de servicio
+          if (linea.endsWith(':')) {
+            console.log('Tipo de servicio encontrado:', linea);
 
-      // Crear un elemento de ficha de servicio
-      const servicioElemento = document.createElement('div');
-      servicioElemento.classList.add('servicio');
+            // Crear un elemento de ficha de servicio
+            const servicioElemento = document.createElement('div');
+            servicioElemento.classList.add('servicio');
 
-      // Guardar el nombre del servicio
-      servicioActual = linea.slice(0, -1); // Eliminar el ':' al final de la línea
-      console.log('Nombre del servicio:', servicioActual);
+            // Guardar el nombre del servicio
+            servicioActual = linea.slice(0, -1); // Eliminar el ':' al final de la línea
+            console.log('Nombre del servicio:', servicioActual);
 
-      // Agregar la imagen fija redonda
-      const imagen = document.createElement('img');
-      imagen.src = 'detogo_logo.svg'; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
-      imagen.alt = 'Logo';
-      imagen.classList.add('servicio-img');
-      servicioElemento.appendChild(imagen);
+            // Agregar la imagen fija redonda
+            const imagen = document.createElement('img');
+            imagen.src = 'detogo_logo.svg'; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
+            imagen.alt = 'Logo';
+            imagen.classList.add('servicio-img');
+            servicioElemento.appendChild(imagen);
 
-      // Agregar el nombre del servicio
-      const nombre = document.createElement('h2');
-      nombre.textContent = servicioActual;
-      servicioElemento.appendChild(nombre);
+            // Agregar el nombre del servicio
+            const nombre = document.createElement('h2');
+            nombre.textContent = servicioActual;
+            servicioElemento.appendChild(nombre);
 
-      // Agregar botón de llamar por teléfono
-      const btnLlamar = document.createElement('button');
-      btnLlamar.textContent = 'Llamar';
-      btnLlamar.classList.add('btn-llamar');
-      btnLlamar.onclick = function() {
-        // Aquí puedes agregar la lógica para llamar por teléfono
-        console.log('Llamar al número de teléfono del servicio:', servicioActual);
-      };
-      servicioElemento.appendChild(btnLlamar);
+            // Agregar botón de llamar por teléfono
+            const btnLlamar = document.createElement('button');
+            btnLlamar.textContent = 'Llamar';
+            btnLlamar.classList.add('btn-llamar');
+            btnLlamar.onclick = function() {
+              // Aquí puedes agregar la lógica para llamar por teléfono
+              console.log('Llamar al número de teléfono del servicio:', servicioActual);
+            };
+            servicioElemento.appendChild(btnLlamar);
 
-      // Agregar botón de WhatsApp
-      const btnWhatsapp = document.createElement('button');
-      btnWhatsapp.textContent = 'WhatsApp';
-      btnWhatsapp.classList.add('btn-whatsapp');
-      btnWhatsapp.onclick = function() {
-        // Aquí puedes agregar la lógica para usar WhatsApp
-        console.log('Enviar mensaje por WhatsApp al servicio:', servicioActual);
-      };
-      servicioElemento.appendChild(btnWhatsapp);
+            // Agregar botón de WhatsApp
+            const btnWhatsapp = document.createElement('button');
+            btnWhatsapp.textContent = 'WhatsApp';
+            btnWhatsapp.classList.add('btn-whatsapp');
+            btnWhatsapp.onclick = function() {
+              // Aquí puedes agregar la lógica para usar WhatsApp
+              console.log('Enviar mensaje por WhatsApp al servicio:', servicioActual);
+            };
+            servicioElemento.appendChild(btnWhatsapp);
 
-      // Agregar la ficha de servicio al contenedor principal
-      servicioDiv.appendChild(servicioElemento);
-    }
-  });
-}
+            // Agregar la ficha de servicio al contenedor principal
+            servicioDiv.appendChild(servicioElemento);
+          }
+        });
+      }
 
    // Función para cargar y procesar el contenido del archivo de servicios
 function leerArchivoServicios() {
@@ -727,6 +726,7 @@ function leerArchivoServicios() {
         console.log('Contenido del archivo:', contenido);
         // Procesar el contenido
         procesarContenidoServicios(contenido);
+
       } else {
         // Hubo un error al cargar el archivo
         console.error('Error al cargar el archivo:', xhr.status);
@@ -745,17 +745,9 @@ window.onload = function() {
   leerArchivoServicios();
 };
 
-
-    // Llamar a la función para leer el archivo de servicios al cargar la página
-    window.onload = leerArchivoServicios;
-
-    // Llamar a la función para leer el archivo de servicios al cargar la página
-  window.onload = function() {
-       console.log('La página se ha cargado correctamente.');
-       leerArchivoServicios();
-  };
   
-  </script>
+  
+</script>
 
 
   
