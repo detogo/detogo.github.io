@@ -388,8 +388,15 @@
 
      <!--/////////////////////////////////////////////////////////////-->
     <!--/////////////////////////////////////////////////////////////-->
-    <div id="goservice" class="tab-pane fade">   
-          
+    <div id="goservice" class="tab-pane fade">  
+         
+          <style>
+              .lista-nombres {
+                               display: none;  /* No aparece la lista de nombres al principio  */
+                             } 
+          </style>   
+         
+
           <div id="service" >
           </div> 
     
@@ -687,13 +694,16 @@ slider.addEventListener('mousemove', e => {
       console.log('Nombre:', nombre.trim());
       console.log('Teléfono:', telefono.trim());
       // Agregar el nombre y el número de teléfono al elemento de lista
-      nombreTelefonoElemento.textContent = nombre.trim() + ' - ' + telefono.trim();
+      nombreTelefonoElemento.textContent = nombre.trim();
       // Agregar el elemento de lista al contenedor de lista de nombres
       fichaServicio.appendChild(nombreTelefonoElemento);
       // Agregar la imagen fija redonda
       const imagen = document.createElement('img');
       imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
       imagen.alt = 'People';
+      imagen.style.width = '20px'; // Establece el ancho de la imagen
+      imagen.style.height = '20px'; // Establece la altura de la imagen
+
       imagen.classList.add('servicio-img');
       // Agregar la imagen antes del nombre
       nombreTelefonoElemento.insertBefore(imagen, nombreTelefonoElemento.firstChild);
