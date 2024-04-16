@@ -707,15 +707,6 @@ const contenedorInfo = document.createElement('div');
 contenedorInfo.classList.add('info-servicio');
 fichaElemento.appendChild(contenedorInfo);
 
-// Agregar la imagen fija redonda
-const imagen = document.createElement('img');
-imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
-imagen.alt = 'People';
-imagen.style.width = '50px'; // Establece el ancho de la imagen
-imagen.style.height = '50px'; // Establece la altura de la imagen
-imagen.classList.add('servicio-img');
-contenedorInfo.appendChild(imagen);
-
 // Agregar el nombre del servicio
 const nombreElemento = document.createElement('h5');
 nombreElemento.textContent = nombre.trim();
@@ -725,6 +716,16 @@ contenedorInfo.appendChild(nombreElemento);
 const contenedorBotones = document.createElement('div');
 contenedorBotones.classList.add('botones-servicio');
 contenedorInfo.appendChild(contenedorBotones);
+
+// Agregar la imagen fija redonda
+const imagen = document.createElement('img');
+imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
+imagen.alt = 'People';
+imagen.style.width = '50px'; // Establece el ancho de la imagen
+imagen.style.height = '50px'; // Establece la altura de la imagen
+imagen.classList.add('servicio-img');
+contenedorBotones.appendChild(imagen);
+
 
 // Agregar botón de llamar por teléfono
 const btnLlamar = document.createElement('button');
