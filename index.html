@@ -674,7 +674,7 @@ slider.addEventListener('mousemove', e => {
       const tituloServicio = document.createElement('h2');
       tituloServicio.textContent = servicioActual;
       // Agregar un evento de clic para mostrar u ocultar la lista de nombres
-      tituloServicio.addEventListener('mousedown', function() {
+      tituloServicio.addEventListener('touchstart', function() {
         // Mostrar u ocultar la lista de nombres
         const listaNombres = tituloServicio.nextElementSibling;
         listaNombres.style.display = listaNombres.style.display === 'none' ? 'block' : 'none';
@@ -696,7 +696,7 @@ slider.addEventListener('mousemove', e => {
 // Crear la ficha de servicio
 const fichaElemento = document.createElement('div');
 fichaElemento.classList.add('ficha-servicio');
-fichaElemento.style.marginBottom = '25px'; // Agregar margen inferior para crear espacio entre las fichas
+fichaElemento.style.marginBottom = '45px'; // Agregar margen inferior para crear espacio entre las fichas
 fichaElemento.classList.add('ficha-servicio');
 
 
@@ -707,10 +707,11 @@ console.log('Teléfono:', telefono.trim());
 // Crear contenedor para la información
 const contenedorInfo = document.createElement('div');
 contenedorInfo.classList.add('info-servicio');
+contenedorInfo.style.marginBottom = '5px'; 
 fichaElemento.appendChild(contenedorInfo);
 
 // Agregar el nombre del servicio
-const nombreElemento = document.createElement('h5');
+const nombreElemento = document.createElement('h6');
 nombreElemento.textContent = nombre.trim();
 contenedorInfo.appendChild(nombreElemento);
 
