@@ -687,45 +687,50 @@ slider.addEventListener('mousemove', e => {
       // Asignar el contenedor a la variable de ficha de servicio
       fichaServicio = listaNombres;
     } else {
-      // Crear elemento de lista para el nombre y el número de teléfono
-      const nombreTelefonoElemento = document.createElement('li');
-      // Separar el nombre y el número de teléfono
-      const [nombre, telefono] = linea.split(',');
-      console.log('Nombre:', nombre.trim());
-      console.log('Teléfono:', telefono.trim());
-      // Agregar el nombre y el número de teléfono al elemento de lista
-      nombreTelefonoElemento.textContent = nombre.trim();
-      // Agregar el elemento de lista al contenedor de lista de nombres
-      fichaServicio.appendChild(nombreTelefonoElemento);
-      // Agregar la imagen fija redonda
-      const imagen = document.createElement('img');
-      imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
-      imagen.alt = 'People';
-      imagen.style.width = '20px'; // Establece el ancho de la imagen
-      imagen.style.height = '20px'; // Establece la altura de la imagen
+      // Crear ficha de servicio
+const fichaElemento = document.createElement('tr');
 
-      imagen.classList.add('servicio-img');
-      // Agregar la imagen antes del nombre
-      nombreTelefonoElemento.insertBefore(imagen, nombreTelefonoElemento.firstChild);
-      // Agregar botón de llamar por teléfono
-      const btnLlamar = document.createElement('button');
-      btnLlamar.textContent = 'Llamar';
-      btnLlamar.classList.add('btn-llamar');
-      btnLlamar.onclick = function() {
-        // Aquí puedes agregar la lógica para llamar por teléfono
-        console.log('Llamar al número de teléfono:', telefono.trim());
-      };
-      nombreTelefonoElemento.appendChild(btnLlamar);
+// Crear celda para la imagen
+const celdaImagen = document.createElement('td');
+const imagen = document.createElement('img');
+imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
+imagen.alt = 'People';
+imagen.style.width = '50px'; // Establece el ancho de la imagen
+imagen.style.height = '50px'; // Establece la altura de la imagen
+celdaImagen.appendChild(imagen);
+fichaElemento.appendChild(celdaImagen);
 
-      // Agregar botón de WhatsApp
-      const btnWhatsapp = document.createElement('button');
-      btnWhatsapp.textContent = 'WhatsApp';
-      btnWhatsapp.classList.add('btn-whatsapp');
-      btnWhatsapp.onclick = function() {
-        // Aquí puedes agregar la lógica para usar WhatsApp
-        console.log('Enviar mensaje por WhatsApp al número de teléfono:', telefono.trim());
-      };
-      nombreTelefonoElemento.appendChild(btnWhatsapp);
+// Crear celda para el nombre de la persona
+const celdaNombre = document.createElement('td');
+const nombre = document.createElement('h5');
+nombre.textContent = nombre.trim();
+celdaNombre.appendChild(nombre);
+fichaElemento.appendChild(celdaNombre);
+
+// Crear celda para los botones de llamar y WhatsApp
+const celdaBotones = document.createElement('td');
+const btnLlamar = document.createElement('button');
+btnLlamar.textContent = 'Llamar';
+btnLlamar.classList.add('btn-llamar');
+btnLlamar.onclick = function() {
+    // Lógica para llamar por teléfono
+    console.log('Llamar al número de teléfono:', telefono.trim());
+};
+celdaBotones.appendChild(btnLlamar);
+
+const btnWhatsapp = document.createElement('button');
+btnWhatsapp.textContent = 'WhatsApp';
+btnWhatsapp.classList.add('btn-whatsapp');
+btnWhatsapp.onclick = function() {
+    // Lógica para usar WhatsApp
+    console.log('Enviar mensaje por WhatsApp al número de teléfono:', telefono.trim());
+};
+celdaBotones.appendChild(btnWhatsapp);
+
+fichaElemento.appendChild(celdaBotones);
+
+// Agregar la ficha de servicio al contenedor de fichas de servicio
+fichaServicio.appendChild(fichaElemento);
     }
   });
 }
