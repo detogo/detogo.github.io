@@ -275,21 +275,24 @@
   <div class="tab-content">   
         <div id="home" class="tab-pane fade in active" >
              <br>
-            <center><img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="200" class="img-circle" style=" display:inline-block; margin-left: 5px;"></center>
-             <br>
-
+            <center><img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="150" class="img-circle" style=" display:inline-block; margin-left: 5px;"></center>
+            
             <center><h1 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="black"> <i>detogo.app</i> </font> </h1> </center>
-
-              <center><h3>  <p><i>
-              Plataforma lider en servicio delivery, Solicitá el mejor viaje, lo que quieras, mira nuestras tiendas en linea y mucho más</i> 
-            </p></h3>   </center> 
-
 
              <br>
              <center>
                      <button class="btn-llamar-telefono" id="btn-llamar-telefono-callcenter" onclick="llamar_telefono_callcenter()" style="display: inline-block; margin-left: 10px;">Llamar</button>
                      <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp-callcenter" onclick="enviar_whatsapp_callcenter()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
              </center> 
+
+             <br>
+          
+              <center><h3>  <p><i>
+              Plataforma lider en servicio delivery, Solicitá el mejor viaje, lo que quieras, mira nuestras tiendas en linea y mucho más</i> 
+            </p></h3>   </center> 
+
+
+             
 
 
 
@@ -313,7 +316,7 @@
 
               <div>
                   <select id="select-nombre-delivery">
-                        <option value="Go! delivery,todo ,78218224" >Selecciona a tu delivery preferido!</option>
+                        <option value="Go! delivery,todo ,78218224" >Selecciona tu delivery</option>
                         <option value="Go! delivery, Pickup, 78218224">Ernesto Valdez Sedan</option>
                         <option value="Ernesto Valdez Sedan, Pickup, 78218224">Ernesto Valdez Sedan</option>
                         <option value="Marvin saldaña Sedan, Sedan, 60425255">Marvin saldaña Sedan</option>
@@ -346,7 +349,7 @@
 
               <div>
                   <select id="select-nombre-car">
-                <option value="Go! delivery, todo, 68218224" >Selecciona tu vehiculo  preferido!</option>
+                <option value="Go! delivery, todo, 68218224" >Selecciona tu vehiculo</option>
                 <option value="Go! delivery, Sedan, 68218224 ">Ernesto Valdez Sedan</option>
                 <option value="Go! delivery, Pickup, 68218224 ">Ernesto Valdez Pickup</option>
                 <option value="Ernesto Valdez, Grua, 68218224 ">Ernesto Valdez grua</option>
@@ -633,7 +636,7 @@ slider.addEventListener('mousemove', e => {
     // Función para cargar y procesar el contenido del archivo de servicios
     function leerArchivoServicios() {
       // Ruta del archivo de servicios
-      const rutaArchivo = '/servicios.txt';
+      const rutaArchivo = 'servicios.txt';
 
       // Crear una nueva solicitud XMLHttpRequest
       const xhr = new XMLHttpRequest();
