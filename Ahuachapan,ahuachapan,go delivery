@@ -1,0 +1,124 @@
+{
+
+  "Administracion": [
+    {
+      "nombre": "Go! delivery",
+      "tel": "78218224",
+      "coorxy": "951934.3, 65658.98"
+    }
+  ],
+
+
+
+
+
+  "Deliverys": {
+    "moto": [
+      {"nombre": "Ernesto Vladimir Valdez", "tel": "78218224"},
+      {"nombre": "Juan Manuel Reyes", "tel": "78218224"}
+    ],
+    "carro": [
+      {"nombre": "Juan Manuel Reyes", "tel": "78218224"}
+    ],
+    "mototaxi": [
+      {"nombre": "Juan Manuel Reyes", "tel": "78218224"}
+    ]
+  },
+
+
+
+
+
+
+  "Cars": {
+    "Mototaxi": [
+      {"nombre": "Juan Manuel Reyes", "tel": "78218224"}
+    ],
+    "moto": [
+      {"nombre": "Juan Manuel Reyes", "tel": "78218224"}
+    ],
+    "sedan": [
+      {"nombre": "Ernesto Vladimir Valdez", "descripcion": "Año 91 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "descripcion": "Año 91 4 puertas A/C", "tel": "78218224"}
+    ],
+    "pickup": [
+      {"nombre": "Ernesto Vladimir Valdez", "descripcion": "Año 91 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "descripcion": "Año 91 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "descripcion": "Año 91 4 puertas A/C", "tel": "78218224"}
+    ],
+    "grua": [
+      {"nombre": "Ernesto Vladimir Valdez", "type": "Sedan", "tel": "78218224"}
+    ],
+    "camion": [
+      {"nombre": "Ernesto Vladimir Valdez", "descripcion": "Año 91 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "descripcion": "Año 91 4 puertas A/C", "tel": "78218224"}
+    ],
+    "microbus": [
+      {"nombre": "Ernesto Vladimir Valdez", "type": "Camion", "tel": "78218224"}
+    ],
+    "equipo_pesado": [
+      {"nombre": "Ernesto Vladimir Valdez", "type": "Camion", "tel": "78218224"}
+    ]
+  },
+
+
+
+
+
+  "Services": {
+    "abogados": [
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"}
+    ],
+    "pintores": [
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"}
+    ],
+    "plomeros": [
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"}
+    ]
+  },
+
+
+
+
+
+
+
+
+  "Simple_markets": {
+    "comidas_rapida": [
+      {"nombre": "Tortas Concordia", "especialidad": "Tortas, papas, sodas", "tel": "78218224"},
+      {"nombre": "Shoby's", "especialidad": "Shobys Hotdog, Tortas", "tel": "78218224"},
+      {"nombre": "Pupusas Marina", "especialidad": "Pupusas, loroco", "tel": "78218224"}
+    ],
+    "lubricantes": [
+      {"nombre": "Lubricentro Adin", "especialidad": "Lubricantes, Aceites importados", "tel": "78218224"}
+    ],
+    "licores": [
+      {"nombre": "Tilo Gancho", "especialidad": "Licores nacionales y extrangeros", "otro": "atendemos de 7 am a 7 pm, entregamos en todos lugares", "tel": "78218224"}
+    ]
+  },
+
+
+
+
+
+
+
+
+
+  "Markets": {
+    "restaurantes": [
+      {"nombre": "El Patron", "especialidad": "Comida mexicana de la mejor especialidad", "otro": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224"},
+      {"nombre": "Aurora Crepe", "especialidad": "Crepas de Amor", "otro": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224"}
+    ],
+    "confecciones": [
+      {"nombre": "Confecciones y Serigrafia Valdez", "especialidad": "Uniformes de futbol y mucho más", "otro": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224"}
+    ]
+  }
+}
+
