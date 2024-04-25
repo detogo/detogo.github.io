@@ -120,7 +120,7 @@
     }
 
     /* Estilo para los botones */
-    .btn-llamar, .btn-whatsapp {
+    .btn-llamar, .btn-whatsapp, .btn-tienda  {
       display: inline-block;
       padding: 10px 20px;
       margin-top: 10px;
@@ -135,6 +135,13 @@
       background-color: green;
       margin-left: 10px;
     }
+
+    .btn-tienda {
+      background-color: black;
+      margin-left: 10px;
+    }
+
+
   </style>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -149,7 +156,7 @@
 
 
 <body>
-<script src="messageDirect.js"></script>
+<script src="miTienda.js"></script>
 <script src="stakingpool.js"></script>
 <script src="responses.js"></script>
 
@@ -172,14 +179,15 @@
 
  <div class="well" style="border: none; border-radius: 20px; background:black; padding: 0px;">
 
-              
+              <!--
               <a>           
                    <img  id="image-perfil" src="detogo_app/detogo_logo.svg" alt="My svg_logo" width="50" class="img-circle" style=" display:inline-block; margin-left: 15px;">
 
                    <h3 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 10px;"><font color="white"> <i>detogo.app</i> </font> </h3> 
               </a>
-              
-
+                
+              -->
+ 
                 <div style="display: flex; align-items: center;  padding: 5px;">
                   <select id="select-departamento">
                         <option value="Ahuachapan" >Seleccione departamento</option>
@@ -190,15 +198,15 @@
                         <option value="Ahuachapan, Go! delivery" >Seleccione Ubicacion</option>
                      
                    </select>
+
+                   <a data-toggle="tab" href="#gofood" style=" margin-left: 10px;margin-right: 10px; display: flex; align-items: center;">  <img  id="image-food" src="detogo_app/detogo_logo.svg" alt="ubicacion" width="50"> </a>
+
                    
-                   <a data-toggle="tab" href="#gofood" style=" margin-left: 25px;margin-right: 15px;">  <img  id="image-food" src="detogo_app/ubicacion.SVG" alt="ubicacion" width="35"> </a>
+                 
+                 
 
                </div>
-
-                  
-
-
-
+             
 
  </div>  
 
@@ -266,24 +274,20 @@
 </style>
 
 
-
-
-
-
-
-
-
-
+	
+	
 
 
 <ul class="gallery_toolbar">     
-
-      
+     
        <a data-toggle="tab" href="#home" style=" margin-left: 15px;">  <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="45"></a> 
        <a data-toggle="tab" href="#godelivery" style=" margin-left: 15px;">  <img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="45"> </a>
        <a data-toggle="tab" href="#gocars" style=" margin-left: 15px;">  <img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="45"> </a>
        <a data-toggle="tab" href="#gofood" style=" margin-left: 15px;">  <img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="45"> </a>
-       <a data-toggle="tab" href="#gomarket" style=" margin-left: 15px;">  <img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="45"> </a>
+       <a data-toggle="tab" href="#gomarkets" style=" margin-left: 15px;">  <img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="45"> </a>
+
+       <a data-toggle="tab" href="#mymarket" style=" margin-left: 15px;">  <img  id="image-mymarket" src="detogo_app/mymarket.SVG" alt="mymarket" width="45"> </a>
+
        <a data-toggle="tab" href="#goservice" style=" margin-left: 15px;">  <img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="45"> </a>
        
        
@@ -298,9 +302,15 @@
             <center><h1 style="display: inline-block; margin: 0; vertical-align: middle; margin-left: 2px;"><font color="black"> <i>detogo.app</i> </font> </h1> </center>
 
              <br>
+             
+
+
              <center>
-                     <button class="btn-llamar-telefono" id="btn-llamar-telefono-callcenter" onclick="llamar_telefono_callcenter()" style="display: inline-block; margin-left: 10px;">Llamar</button>
-                     <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp-callcenter" onclick="enviar_whatsapp_callcenter()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
+                    
+                    <div id= "botones-administracion">
+                    </div>
+                     
+                   
              </center> 
 
              <br>
@@ -324,29 +334,25 @@
 
     <div id="godelivery" class="tab-pane fade">   
         
+
+            <center>
               <div class="calle">
                     <div class="linea"></div>
                     <img src="detogo_app/moto.SVG" alt="Moto" width="250" class="moto">
               </div>
        
-              <br>
-
-
-              <div>
-                  <select id="select-nombre-delivery">
-                        <option value="Go! delivery,todo ,78218224" >Selecciona tu delivery</option>
-                        <option value="Go! delivery, Pickup, 78218224">Ernesto Valdez Sedan</option>
-                        <option value="Ernesto Valdez Sedan, Pickup, 78218224">Ernesto Valdez Sedan</option>
-                        <option value="Marvin saldaña Sedan, Sedan, 60425255">Marvin saldaña Sedan</option>
-                        <option value="Enrique mariano Pickup, Pickup,78252584 ">Enrique mariano Pickup</option>
-                   </select>
-               </div>
-
                <br>
-                 <center>
-                     <button class="btn-llamar-telefono" id="btn-llamar-telefono" onclick="llamar_telefono_delivery()" style="display: inline-block; margin-left: 10px;">Llamar</button>
-                     <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp" onclick="enviar_whatsapp_delivery()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
-                 </center>
+
+                <div id= "selector-deliverys">
+                </div>
+                
+                <br>
+
+                <div id= "botones-deliverys">
+                </div>
+            
+            </center>
+
                
     </div>  
 
@@ -356,31 +362,42 @@
 
 
     <div id="gocars" class="tab-pane fade">              
+              
+           <center>   
               <div class="calle">
                     <div class="linea"></div>                    
                      <img id="imagen-vehiculo" src="detogo_app/carro.SVG" alt="Carro" width="350" class="moto">
 
-              </div>
+              </div>            
 
                <br>
 
+                
+                <div id="selector-tipo-car">
+                </div>
+                
+                <br>
 
-              <div>
-                  <select id="select-nombre-car">
-                <option value="Go! delivery, todo, 68218224" >Selecciona tu vehiculo</option>
-                <option value="Go! delivery, Sedan, 68218224 ">Ernesto Valdez Sedan</option>
-                <option value="Go! delivery, Pickup, 68218224 ">Ernesto Valdez Pickup</option>
-                <option value="Ernesto Valdez, Grua, 68218224 ">Ernesto Valdez grua</option>
-                <option value="Marvin saldaña, Camion, 68425255 ">Marvin saldaña Camion</option>
-                <option value="Enrique mariano, Microbus, 68252584 ">Enrique mariano microbus</option>
-                   </select>
-               </div>
+                <div id= "selector-cars">                	
+                </div>
+                               
 
-               <br>
-                 <center>
-                     <button class="btn-llamar-telefono" id="btn-llamar-telefono-car" onclick="llamar_telefono_car()" style="display: inline-block; margin-left: 10px;">Llamar</button>
-                     <button class="btn-llamar-whatsapp" id="btn-llamar-whatsapp-car" onclick="enviar_whatsapp_car()" style="display: inline-block; margin-left: 10px;">Whatsapp </button>
-                 </center>
+                <div id="Descripcion">                	
+                </div> 
+
+                <br>
+
+                <div id= "botones-cars">                	
+                </div>
+            
+            </center>
+
+
+
+
+
+
+
         
     </div>
     
@@ -388,7 +405,9 @@
 
     <!--/////////////////////////////////////////////////////////////-->
     <!--/////////////////////////////////////////////////////////////-->
-    <div id="gofood" class="tab-pane fade">    
+    <div id="gofood" class="tab-pane fade"> 
+        <div id="solo-comidas">
+        </div>    
     
     </div>
     <!--/////////////////////////////////////////////////////////////-->
@@ -397,11 +416,30 @@
 
      <!--/////////////////////////////////////////////////////////////-->
     <!--/////////////////////////////////////////////////////////////-->
-    <div id="gomarkets" class="tab-pane fade">    
+    <div id="gomarkets" class="tab-pane fade">   
+        
+        <div id="markets">
+        </div> 
     
     </div>
     <!--/////////////////////////////////////////////////////////////-->
     <!--/////////////////////////////////////////////////////////////-->
+
+     
+
+      <!--/////////////////////////////////////////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////-->
+    <div id="mymarket" class="tab-pane fade">   
+        
+        <div id="my-market">
+        </div> 
+    
+    </div>
+    <!--/////////////////////////////////////////////////////////////-->
+    <!--/////////////////////////////////////////////////////////////-->
+
+
+
 
 
      <!--/////////////////////////////////////////////////////////////-->
@@ -436,11 +474,9 @@
             <div class="col-sm-4">
                  <div class="well" style="border: 2px solid skyblue; border-radius: 20px;">
 
-                    <h2>Listado de carpetas:</h2>
-                    <ul id="lista-carpetas"></ul>
-
-                    <h2>Listado de archivos:</h2>
-                    <ul id="lista-archivos"></ul>     
+                    <h4>Te puede interesar:</h4>
+                    <div id="lista-promocionales"></div>
+    
                                          
                                                                  
            
@@ -468,6 +504,7 @@
 let archivos = [];
 let archivos_txt =[];
 
+
  async function listar_archivos_txt() {
     
     try {
@@ -490,9 +527,9 @@ let archivos_txt =[];
            
             if (nombre.endsWith(".txt")) {
                 
-                const listItem = document.createElement("li");
-                listItem.textContent = nombre;
-                listaArchivos.appendChild(listItem);
+                //const listItem = document.createElement("li");
+                //listItem.textContent = nombre;
+                //listaArchivos.appendChild(listItem);
 
                 // Dividir el nombre del archivo en sus partes
                 const partes = nombre.split(",");
@@ -500,6 +537,7 @@ let archivos_txt =[];
                 const departamento = partes[0];
                 departamentosUnicos.add(departamento);
                 archivos_txt.push(nombre);
+
             }
         });
 
@@ -565,8 +603,6 @@ function actualizarUbicaciones() {
     // Aquí puedes realizar otras acciones con la ubicación completa, como enviarla a la plataforma
     console.log('rutaArchivo:', rutaArchivo);
 
-
-
     // Crear una nueva solicitud XMLHttpRequest
     const xhr = new XMLHttpRequest();
 
@@ -578,11 +614,175 @@ function actualizarUbicaciones() {
                 console.log('El archivo se cargó correctamente.');
                 const contenidoJSON = JSON.parse(xhr.responseText);
                 console.log('Contenido del archivo JSON:', contenidoJSON);
+               
+
+
+                const datos_administracion = contenidoJSON.Administracion;
+                actualizar_pantalla_administracion(datos_administracion);
+
+                const datos_deliverys = contenidoJSON.Deliverys;               
+                actualizar_pantalla_deliverys(datos_deliverys);
+
+                const datos_cars = contenidoJSON.Cars;               
+                actualizar_pantalla_cars(datos_cars);
+
+                const datos_markets = contenidoJSON.Markets;               
+                actualizar_pantalla_markets(datos_markets);
+
+                const datos_comida = contenidoJSON.Markets.Comida;  
+                actualizar_pantalla_comidas(datos_comida);
+
+                const datos_servicio = contenidoJSON.Services;  
+                actualizar_pantalla_servicios(datos_servicio);
+
+                listar_promocionales();
+
+
                 // Procesar el contenido JSON
                 //procesarContenidoServicios(contenidoJSON);
             } else {
                 // Hubo un error al cargar el archivo
+
                 console.error('Error al cargar el archivo:', xhr.status);
+
+/*
+                const contenidoJSON = {
+  "Administracion": [
+    {
+      "nombre": "Go! delivery",
+      "tel": "78218224",
+      "coorxy": "951934.3, 65658.98"
+    }
+  ],
+  "Deliverys": {
+    "moto": [
+      {"nombre": "Ernesto Vladimir Valdez", "tel": "78218224"},
+      {"nombre": "Juan Manuel Reyes", "tel": "78218224"}
+    ],
+    "carro": [
+      {"nombre": "Juan Manuel Reyes", "tel": "78218224"}
+    ],
+    "mototaxi": [
+      {"nombre": "Juan Manuel Reyes", "tel": "78218224"}
+    ]
+  },
+  "Cars": {
+    "mototaxi": [
+      {"nombre": "1Ernesto Vladimir Valdez", "descripcion": "Año 91 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "2Ernesto Vladimir Valdez", "descripcion": "Año 911 4 puertas A/C", "tel": "78218224"},
+    ],
+    "moto": [
+      {"nombre": "3Ernesto Vladimir Valdez", "descripcion": "Año 912 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "4Ernesto Vladimir Valdez", "descripcion": "Año 931 4 puertas A/C", "tel": "78218224"}
+    ],
+    "sedan": [
+      {"nombre": "5Ernesto Vladimir Valdez", "descripcion": "Año 941 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "6Ernesto Vladimir Valdez", "descripcion": "Año 491 4 puertas A/C", "tel": "78218224"}
+    ],
+    "pickup": [
+      {"nombre": "7Ernesto Vladimir Valdez", "descripcion": "Año 9r1 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "8Ernesto Vladimir Valdez", "descripcion": "Año 9g1 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "9Ernesto Vladimir Valdez", "descripcion": "Año 91c 4 puertas A/C", "tel": "78218224"}
+    ],
+    "grua": [
+      {"nombre": "10Ernesto Vladimir Valdez", "descripcion": "Año d91 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "11Ernesto Vladimir Valdez", "descripcion": "Año 9cc1 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "12Ernesto Vladimir Valdez", "descripcion": "Año 9cr1 4 puertas A/C", "tel": "78218224"}
+    ],
+    "camion": [
+      {"nombre": "13Ernesto Vladimir Valdez", "descripcion": "Año 9g1 4 puertas A/C", "tel": "78218224"},
+      {"nombre": "14Ernesto Vladimir Valdez", "descripcion": "Año 9c1 4 puertas A/C", "tel": "78218224"}
+    ],
+    "microbus": [
+     {"nombre": "15Ernesto Vladimir Valdez", "descripcion": "Año 91d 4 puertas A/C", "tel": "78218221"},
+     {"nombre": "16Ernesto Vladimir Valdez", "descripcion": "Año 91s 4 puertas A/C", "tel": "78218222"},
+     {"nombre": "17Ernesto Vladimir Valdez", "descripcion": "Año 9s1 4 puertas A/C", "tel": "78218223"},
+     {"nombre": "18Ernesto Vladimir Valdez", "descripcion": "Año 9f1 4 puertas A/C", "tel": "78218224"},
+     {"nombre": "19Ernesto Vladimir Valdez", "descripcion": "Año 91f 4 puertas A/C", "tel": "78218225"}
+    ],
+    "equipo pesado": [
+      {"nombre": "20Ernesto Vladimir Valdez", "descripcion": "Año 9s1 4 puertas A/C", "tel": "78218221"},
+      {"nombre": "21Ernesto Vladimir Valdez", "descripcion": "Año 9w1 4 puertas A/C", "tel": "78218221"}
+
+    ]
+  },
+  "Services": {
+    "abogados": [
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"}
+    ],
+    "pintores": [
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"}
+    ],
+    "plomeros": [
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"},
+      {"nombre": "Ernesto Vladimir Valdez", "especialidad": "casos penales", "tel": "78218224"}
+    ]
+  },
+  
+  "Markets": {
+    
+    "Comida": [
+      {"nombre": "El Patron", "especialidad": "Comida mexicana de la mejor especialidad", "horario": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224", "tipo":"avanzada"},  
+      
+
+      {"nombre": "Tortas el paso", "especialidad": "Tortas y Papas", "horario": "todos los dias hasta llas 10 de la noche", "tel": "78218224","tipo":"simple"},
+
+      {"nombre": "Licuados Fresita", "especialidad": "Licuados de leche", "horario": "atendemos de 10 am a 10 pm", "tel": "78218224","tipo":"simple"}
+
+    ],
+
+    "Salud": [
+      {"nombre": "Farmacia San Nicolas", "especialidad": "Comida mexicana de la mejor especialidad", "horario": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224", "tipo":"avanzada"},
+
+      {"nombre": "Hospital La Fe en Cristo", "especialidad": "De todo para tu salud", "horario": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224","tipo":"avanzada"},
+
+      {"nombre": "Naturista  las plantas", "especialidad": "Ded todo para tu salud", "horario": "todos los dias hasta llas 10 de la noche", "tel": "78218224","tipo":"simple"},
+
+      {"nombre": "Farmacia Nombre de Jesus", "especialidad": "LA mas Barata", "horario": "atendemos de 10 am a 10 pm", "tel": "78218224","tipo":"simple"}
+
+    ],
+
+
+    "Ropa y moda": [
+      {"nombre": "Confecciones y Serigrafia Valdez", "especialidad": "Uniformes de futbol y mucho más", "horario": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224","tipo":"avanzada"},
+
+      {"nombre": "Mega paca", "especialidad": "Uniformes de futbol y mucho más", "horario": "hasta las 7 pm de lunes a sabado, entregamos a domicilio", "tel": "78218224","tipo":"avanzada"},
+
+      {"nombre": "ROPA DE USA", "especialidad": "Uniformes de futbol y mucho más", "horario": "atendemos de lunes a viernes de 8am a 5 pm sin cerrar al medio dia, sabado hasta la 3pm, entregamos a domicilio", "tel": "78218224","tipo":"avanzada"}
+    ]
+  }
+};
+                       
+
+
+
+
+                const datos_administracion = contenidoJSON.Administracion;
+                actualizar_pantalla_administracion(datos_administracion);
+
+                const datos_deliverys = contenidoJSON.Deliverys;               
+                actualizar_pantalla_deliverys(datos_deliverys);
+
+                const datos_cars = contenidoJSON.Cars;               
+                actualizar_pantalla_cars(datos_cars);
+
+                const datos_markets = contenidoJSON.Markets;               
+                actualizar_pantalla_markets(datos_markets);
+
+                const datos_comida = contenidoJSON.Markets.Comida;  
+                actualizar_pantalla_comidas(datos_comida);
+
+                const datos_servicio = contenidoJSON.Services;  
+                actualizar_pantalla_servicios(datos_servicio);
+
+                listar_promocionales();
+*/
+
+
             }
         }
     };
@@ -611,6 +811,9 @@ window.onload = function() {
   listar_archivos_txt();
 };
   
+
+
+
 </script>
 
 
@@ -622,53 +825,1116 @@ window.onload = function() {
 
 <script>
 
- 
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////		
+ function actualizar_pantalla_administracion(datos_administracion) {
+    console.log('Actualizar administracion.', datos_administracion);
+
+    const divBotonesAdministracion = document.getElementById('botones-administracion');
+
+    // Limpiar el contenido actual del div
+    divBotonesAdministracion.innerHTML = '';
+
+    // Iterar sobre los datos de administración
+    datos_administracion.forEach(item => {
+        const nombre = item.nombre;
+        const telefono = item.tel;
+        const coordenadas = item.coorxy;
+
+        // Crear el botón de llamada telefónica
+        const btnLlamar = document.createElement('button');
+        btnLlamar.textContent = 'Llamar';
+        btnLlamar.classList.add('btn-llamar-telefono');
+        btnLlamar.onclick = function() {
+            llamar_telefono(telefono);
+        };
+
+        // Crear el botón de WhatsApp
+        const btnWhatsapp = document.createElement('button');
+        btnWhatsapp.textContent = 'WhatsApp';
+        btnWhatsapp.classList.add('btn-llamar-whatsapp');
+        btnWhatsapp.onclick = function() {
+            enviar_whatsapp(telefono);
+        };
+
+        // Agregar los botones al div
+        divBotonesAdministracion.appendChild(btnLlamar);
+        divBotonesAdministracion.appendChild(btnWhatsapp);
+    });
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+function actualizar_pantalla_deliverys(datos_deliverys) {
+    const divSelectorDeliverys = document.getElementById('selector-deliverys');
+    const divBotonesDeliverys = document.getElementById('botones-deliverys');
+
+    // Limpiar el contenido actual de los elementos
+    divSelectorDeliverys.innerHTML = '';
+    divBotonesDeliverys.innerHTML = '';
+
+    // Crear el select de deliverys
+    const selectDeliverys = document.createElement('select');
+    selectDeliverys.setAttribute('id', 'select-deliverys');
+
+    // Agregar una opción predeterminada
+    const defaultOption = document.createElement('option');
+    defaultOption.textContent = 'Selecciona un delivery';
+    selectDeliverys.appendChild(defaultOption);
+
+
+    //console.log('datos_deliverys.', datos_deliverys);
+    // Iterar sobre los datos de deliverys y agregar opciones al select
+    for (const tipo in datos_deliverys) {
+        if (datos_deliverys.hasOwnProperty(tipo)) {
+            datos_deliverys[tipo].forEach(persona => {
+                const option = document.createElement('option');
+                option.textContent = persona.nombre;
+                option.setAttribute('data-tel', persona.tel); // Guardar el número de teléfono como atributo de datos
+                selectDeliverys.appendChild(option);
+            });
+        }
+    }
+
+    // Agregar el select al div correspondiente
+    divSelectorDeliverys.appendChild(selectDeliverys);
+
+    // Agregar el evento onChange al select
+    selectDeliverys.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const numeroTelefono = selectedOption.getAttribute('data-tel');
+
+        // Crear botones para llamar por teléfono y WhatsApp
+        const btnLlamar = document.createElement('button');
+        btnLlamar.textContent = 'Llamar';
+        btnLlamar.classList.add('btn-llamar-telefono');
+        btnLlamar.onclick = function() {
+            llamar_telefono(numeroTelefono);
+        };
+
+        const btnWhatsapp = document.createElement('button');
+        btnWhatsapp.textContent = 'WhatsApp';
+        btnWhatsapp.classList.add('btn-llamar-whatsapp');
+        btnWhatsapp.onclick = function() {
+            enviar_whatsapp(numeroTelefono);
+        };
+
+        // Limpiar el contenido actual de los botones y agregar los nuevos
+        divBotonesDeliverys.innerHTML = '';
+        divBotonesDeliverys.appendChild(btnLlamar);
+        divBotonesDeliverys.appendChild(btnWhatsapp);
+    });
+}
+
+
+function actualizar_pantalla_cars(datos_cars) {
+    const divSelectorTipoCar = document.getElementById('selector-tipo-car');
+    const divSelectorCars = document.getElementById('selector-cars');
+    const divDescripcion = document.getElementById('Descripcion');
+    const divBotonesCars = document.getElementById('botones-cars');
+    const imagenVehiculo = document.getElementById('imagen-vehiculo');
+
+    // Limpiar el contenido actual de los elementos
+    divSelectorTipoCar.innerHTML = '';
+    divSelectorCars.innerHTML = '';
+    divDescripcion.innerHTML = '';
+    divBotonesCars.innerHTML = '';
+
+    // Crear el select para el tipo de vehículo
+    const selectTipoCar = document.createElement('select');
+    selectTipoCar.setAttribute('id', 'select-tipo-car');
+
+    // Agregar una opción predeterminada
+    const defaultOptionTipoCar = document.createElement('option');
+    defaultOptionTipoCar.textContent = 'Selecciona un tipo de vehículo';
+    selectTipoCar.appendChild(defaultOptionTipoCar);
+
+    // Iterar sobre los tipos de vehículos y agregar opciones al select
+    for (const tipo in datos_cars) {
+        if (datos_cars.hasOwnProperty(tipo)) {
+            const optionTipoCar = document.createElement('option');
+            optionTipoCar.textContent = tipo;
+            selectTipoCar.appendChild(optionTipoCar);
+        }
+    }
+
+    // Agregar el select de tipo de vehículo al div correspondiente
+    divSelectorTipoCar.appendChild(selectTipoCar);
+
+    // Crear el select de cars
+    const selectCars = document.createElement('select');
+    selectCars.setAttribute('id', 'select-cars');
+
+    // Agregar una opción predeterminada
+    const defaultOption = document.createElement('option');
+    defaultOption.textContent = 'Selecciona un vehículo';
+    selectCars.appendChild(defaultOption);
+
+    // Agregar el select de cars al div correspondiente
+    divSelectorCars.appendChild(selectCars);
+
+    // Agregar evento onChange al select de tipo de vehículo
+    selectTipoCar.addEventListener('change', function() {
+        const selectedTipo = this.options[this.selectedIndex].textContent;
+
+        // Limpiar el contenido actual del select de cars
+        selectCars.innerHTML = '';
+
+        // Iterar sobre los vehículos del tipo seleccionado y agregar opciones al select de cars
+        if (selectedTipo && datos_cars[selectedTipo]) {
+            datos_cars[selectedTipo].forEach(vehiculo => {
+                const option = document.createElement('option');
+                option.textContent = vehiculo.nombre;
+                option.setAttribute('data-descripcion', vehiculo.descripcion); // Guardar la descripción como atributo de datos
+                option.setAttribute('data-tel', vehiculo.tel); // Guardar el número de teléfono como atributo de datos
+                selectCars.appendChild(option);
+            });
+        }
+
+        // Cambiar la fuente de la imagen del vehículo
+		// Cambiar la fuente de la imagen del vehículo
+		const tipoVehiculo = selectedTipo.toLowerCase();
+		const nombreArchivo = `${tipoVehiculo}.SVG`;
+		console.log("Nombre del archivo:", nombreArchivo);
+		imagenVehiculo.src = `detogo_app/${nombreArchivo}`;
+		imagenVehiculo.alt = selectedTipo; // Cambiar el atributo alt de la imagen
+
+
+    });
+
+    // Agregar evento onChange al select de cars
+    selectCars.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const descripcion = selectedOption.getAttribute('data-descripcion');
+        const numeroTelefono = selectedOption.getAttribute('data-tel');
+
+        // Mostrar la descripción del vehículo
+        divDescripcion.textContent = 'Descripción: ' + descripcion;
+
+        // Crear botones para llamar por teléfono y WhatsApp
+        const btnLlamar = document.createElement('button');
+        btnLlamar.textContent = 'Llamar';
+        btnLlamar.classList.add('btn-llamar-telefono');
+        btnLlamar.onclick = function() {
+            llamar_telefono(numeroTelefono);
+        };
+
+        const btnWhatsapp = document.createElement('button');
+        btnWhatsapp.textContent = 'WhatsApp';
+        btnWhatsapp.classList.add('btn-llamar-whatsapp');
+        btnWhatsapp.onclick = function() {
+            enviar_whatsapp(numeroTelefono);
+        };
+
+        // Limpiar el contenido actual de los botones y agregar los nuevos
+        divBotonesCars.innerHTML = '';
+        divBotonesCars.appendChild(btnLlamar);
+        divBotonesCars.appendChild(btnWhatsapp);
+    });
+
+    // Agregar evento onChange al select de tipo de vehículo (adicional)
+    selectTipoCar.addEventListener('change', function() {
+        // Simular el evento change en el select de cars para actualizar sus datos
+        const event = new Event('change');
+        selectCars.dispatchEvent(event);
+    });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+function actualizar_pantalla_markets(datos_markets) {
+    //obtenemos la ruta a la carpeta de trabajo 
+    const departamentoSeleccionado = selectDepartamento.value;
+    // Obtener la ubicación seleccionada
+    const ubicacionSeleccionada = selectUbicacion.value;
+    // Concatenar el departamento y la ubicación seleccionados
+    let rutaCarpeta = departamentoSeleccionado + "," + ubicacionSeleccionada;
+    // Aquí puedes realizar otras acciones con la ubicación completa, como enviarla a la plataforma
+    
+    //encuentro la ruta a la carpeta que tiene el mismo nombre del archivo .txt
+    rutaCarpeta = rutaCarpeta.replace(/\.[^/.]+$/, "");
+
+    // Obtener el elemento donde se mostrarán los mercados
+    const marketsDiv = document.getElementById('markets');
+    // Limpiar el contenido actual del elemento
+    marketsDiv.innerHTML = '';
+
+    // Obtener el elemento donde se muestra mi tienda los mercados
+    const mymarketsDiv = document.getElementById('my-market');
+    // Limpiar el contenido actual del elemento
+    mymarketsDiv.innerHTML = '';
+
+
+    // Recorrer cada categoría de mercado
+    for (const categoria in datos_markets) {
+        if (datos_markets.hasOwnProperty(categoria)) {
+            // Crear un elemento de título para la categoría
+            const tituloCategoria = document.createElement('h2');
+            tituloCategoria.textContent = categoria;
+
+            // Agregar un evento de clic para mostrar u ocultar la lista de tiendas
+            tituloCategoria.addEventListener('click', function() {
+                // Mostrar u ocultar la lista de tiendas
+                const listaTiendas = tituloCategoria.nextElementSibling;
+                listaTiendas.style.display = listaTiendas.style.display === 'none' ? 'block' : 'none';
+            });
+
+            // Agregar el título de la categoría al contenedor principal de mercados
+            marketsDiv.appendChild(tituloCategoria);
+
+            // Crear un contenedor para las listas de tiendas de la categoría
+            const listaTiendas = document.createElement('div');
+            listaTiendas.classList.add('lista-tiendas');
+
+            // Recorrer cada tienda de la categoría y agregarla a la lista
+            datos_markets[categoria].forEach(tienda => {
+                
+                // Crear un contenedor para la tienda
+                const contenedorTienda = document.createElement('div');
+                contenedorTienda.style.marginBottom = '35px';
+                contenedorTienda.classList.add('tienda');
+                
+
+                // Contenedor para la imagen de la tienda
+                const contenedorImagen = document.createElement('div');
+                contenedorImagen.classList.add('imagen-tienda');
+                contenedorImagen.style.display = 'inline-block';
+
+
+                // Agregar los botones para llamar y WhatsApp
+                const contenedorBotones = document.createElement('div');
+                contenedorBotones.classList.add('botones-tienda');
+
+
+                // Agregar la imagen de la tienda
+                const imagenTienda = document.createElement('img');                         
+									
+				
+				const ruta_a_tienda = rutaCarpeta+"/"+tienda.nombre;
+				//console.log('rutaCarpeta # :', ruta_a_tienda);
+
+
+               	imagenTienda.src = rutaCarpeta+"/"+tienda.nombre+"/"+"logo_tienda.SVG";
+                
+                //aqui debe crearse un boton para ir a la tienda
+                imagenTienda.onload = function() {
+				     // Verificar si el nombre de la imagen cargada es "logo_tienda"
+				    if (imagenTienda.src.includes("logo_tienda")) {
+				        // La imagen cargada es "logo_tienda", por lo tanto, creamos el botón
+				        
+				        // Botón para ir a la tienda
+				        const btnTienda = document.createElement('a');
+				        btnTienda.textContent = 'Tienda';     
+                btnTienda.href = "#mymarket";
+				        btnTienda.classList.add('btn-tienda');
+				        
+				        // Agregar funcionalidad al botón
+				        btnTienda.onclick = function() {
+				            // Lógica para redirigir al usuario a la tienda
+				            crear_tienda(ruta_a_tienda, tienda.tel);
+                       
+				        };
+				        
+				        // Agregar el botón al contenedor de botones
+				        contenedorBotones.appendChild(btnTienda);
+				    }
+				};
+
+                
+                // Manejar el evento onerror para cargar una imagen alternativa si la principal falla
+				imagenTienda.onerror = function() {
+   						// Cambiar la ruta de la imagen a la alternativa
+    					imagenTienda.src = "detogo_app/gomarket.SVG";
+				};              	    
+
+                imagenTienda.style.width = '75px'; // Establece el ancho de la imagen
+                imagenTienda.style.height = '75px'; // Establece la altura de la imagen
+                imagenTienda.style.display = 'block';
+				imagenTienda.style.margin = 'auto';
+
+				// Dar espacio a la izquierda y a la derecha
+				contenedorImagen.style.paddingLeft = '20px';
+				contenedorImagen.style.paddingRight = '20px';
+                 
+                imagenTienda.alt = tienda.nombre;
+                contenedorImagen.appendChild(imagenTienda);
+
+                // Contenedor para el nombre, especialidad y botones
+                const contenedorInfo = document.createElement('div');
+                contenedorInfo.classList.add('info-tienda');
+                contenedorInfo.style.display = 'inline-block';
+
+                // Agregar el nombre de la tienda
+                const nombreTienda = document.createElement('h3');
+                nombreTienda.textContent = tienda.nombre;
+                nombreTienda.style.marginBottom = '2px';
+                contenedorInfo.appendChild(nombreTienda);
+               
+
+                // Agregar la especialidad de la tienda
+                const especialidadTienda = document.createElement('p');
+                especialidadTienda.textContent = tienda.especialidad;
+                especialidadTienda.style.marginBottom = '2px';
+                contenedorInfo.appendChild(especialidadTienda);
+
+
+                // Agregar los botones para llamar y WhatsApp
+                //const contenedorBotones = document.createElement('div');
+                //contenedorBotones.classList.add('botones-tienda');
+
+
+                // Botón para llamar
+                const btnLlamar = document.createElement('button');
+                btnLlamar.textContent = 'Llamar';
+                btnLlamar.classList.add('btn-llamar');
+
+                btnLlamar.onclick = function() {
+                    window.location.href = 'tel:' + tienda.tel;
+                };
+                contenedorBotones.appendChild(btnLlamar);
+
+                // Botón para WhatsApp
+                const btnWhatsapp = document.createElement('button');
+                btnWhatsapp.textContent = 'WhatsApp';
+                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.onclick = function() {
+                    window.location.href = 'https://wa.me/' + tienda.tel;
+                };
+                contenedorBotones.appendChild(btnWhatsapp);
+
+                // Agregar los botones al contenedor de información
+                contenedorInfo.appendChild(contenedorBotones);
+
+                // Agregar el contenedor de imagen al contenedor de tienda
+                contenedorTienda.appendChild(contenedorImagen);
+                
+                // Agregar el contenedor de información al contenedor de tienda
+                contenedorTienda.appendChild(contenedorInfo);
+
+                // Agregar la tienda al contenedor de lista de tiendas
+                listaTiendas.appendChild(contenedorTienda);
+            });
+
+            // Ocultar la lista de tiendas al principio
+            listaTiendas.style.display = 'none';
+
+            // Agregar la lista de tiendas al contenedor principal de mercados
+            marketsDiv.appendChild(listaTiendas);
+        }
+    }
+}
+
+//#########################################################################
+//#########################################################################
+function actualizar_pantalla_comidas(datos_comida) {
+
+
+    //obtenemos la ruta a la carpeta de trabajo 
+    const departamentoSeleccionado = selectDepartamento.value;
+    // Obtener la ubicación seleccionada
+    const ubicacionSeleccionada = selectUbicacion.value;
+    // Concatenar el departamento y la ubicación seleccionados
+    let rutaCarpeta = departamentoSeleccionado + "," + ubicacionSeleccionada;
+    // Aquí puedes realizar otras acciones con la ubicación completa, como enviarla a la plataforma
+    
+    //encuentro la ruta a la carpeta que tiene el mismo nombre del archivo .txt
+    rutaCarpeta = rutaCarpeta.replace(/\.[^/.]+$/, "");
+
+    console.log('La página se ha cargado correctamente.',datos_comida); 
+
+    // Obtener la referencia al div
+    const soloComidasDiv = document.getElementById("solo-comidas");
+    soloComidasDiv.innerHTML = '';
+
+
+     // Crear un contenedor para las listas de tiendas de la categoría
+            const listaTiendas = document.createElement('div');
+            listaTiendas.classList.add('lista-tiendas');
+
+    // Iterar sobre las tiendas de comida y crear elementos para mostrar la información
+    datos_comida.forEach(tienda => {
+
+               // Crear un contenedor para la tienda
+                const contenedorTienda = document.createElement('div');
+                contenedorTienda.style.marginBottom = '35px';
+                contenedorTienda.classList.add('tienda');
+                
+
+                // Contenedor para la imagen de la tienda
+                const contenedorImagen = document.createElement('div');
+                contenedorImagen.classList.add('imagen-tienda');
+                contenedorImagen.style.display = 'inline-block';
+
+
+                // Agregar los botones para llamar y WhatsApp
+                const contenedorBotones = document.createElement('div');
+                contenedorBotones.classList.add('botones-tienda');
+
+
+                // Agregar la imagen de la tienda
+                const imagenTienda = document.createElement('img');                         
+                  
+        
+        const ruta_a_tienda = rutaCarpeta+"/"+tienda.nombre;
+        //console.log('rutaCarpeta # :', ruta_a_tienda);
+
+
+                imagenTienda.src = rutaCarpeta+"/"+tienda.nombre+"/"+"logo_tienda.SVG";
+                
+                //aqui debe crearse un boton para ir a la tienda
+                imagenTienda.onload = function() {
+             // Verificar si el nombre de la imagen cargada es "logo_tienda"
+            if (imagenTienda.src.includes("logo_tienda")) {
+                // La imagen cargada es "logo_tienda", por lo tanto, creamos el botón
+                
+                // Botón para ir a la tienda
+                const btnTienda = document.createElement('a');
+                btnTienda.textContent = 'Tienda';     
+                btnTienda.href = "#mymarket";
+                btnTienda.classList.add('btn-tienda');
+                
+                // Agregar funcionalidad al botón
+                btnTienda.onclick = function() {
+                    // Lógica para redirigir al usuario a la tienda
+                    crear_tienda(ruta_a_tienda, tienda.tel);
+                       
+                };
+                
+                // Agregar el botón al contenedor de botones
+                contenedorBotones.appendChild(btnTienda);
+            }
+        };
+
+                
+                // Manejar el evento onerror para cargar una imagen alternativa si la principal falla
+        imagenTienda.onerror = function() {
+              // Cambiar la ruta de la imagen a la alternativa
+              imagenTienda.src = "detogo_app/gomarket.SVG";
+        };                    
+
+                imagenTienda.style.width = '75px'; // Establece el ancho de la imagen
+                imagenTienda.style.height = '75px'; // Establece la altura de la imagen
+                imagenTienda.style.display = 'block';
+        imagenTienda.style.margin = 'auto';
+
+        // Dar espacio a la izquierda y a la derecha
+        contenedorImagen.style.paddingLeft = '20px';
+        contenedorImagen.style.paddingRight = '20px';
+                 
+                imagenTienda.alt = tienda.nombre;
+                contenedorImagen.appendChild(imagenTienda);
+
+                // Contenedor para el nombre, especialidad y botones
+                const contenedorInfo = document.createElement('div');
+                contenedorInfo.classList.add('info-tienda');
+                contenedorInfo.style.display = 'inline-block';
+
+                // Agregar el nombre de la tienda
+                const nombreTienda = document.createElement('h3');
+                nombreTienda.textContent = tienda.nombre;
+                nombreTienda.style.marginBottom = '2px';
+                contenedorInfo.appendChild(nombreTienda);
+               
+
+                // Agregar la especialidad de la tienda
+                const especialidadTienda = document.createElement('p');
+                especialidadTienda.textContent = tienda.especialidad;
+                especialidadTienda.style.marginBottom = '2px';
+                contenedorInfo.appendChild(especialidadTienda);
+
+
+                // Agregar los botones para llamar y WhatsApp
+                //const contenedorBotones = document.createElement('div');
+                //contenedorBotones.classList.add('botones-tienda');
+
+
+                // Botón para llamar
+                const btnLlamar = document.createElement('button');
+                btnLlamar.textContent = 'Llamar';
+                btnLlamar.classList.add('btn-llamar');
+
+                btnLlamar.onclick = function() {
+                    window.location.href = 'tel:' + tienda.tel;
+                };
+                contenedorBotones.appendChild(btnLlamar);
+
+                // Botón para WhatsApp
+                const btnWhatsapp = document.createElement('button');
+                btnWhatsapp.textContent = 'WhatsApp';
+                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.onclick = function() {
+                    window.location.href = 'https://wa.me/' + tienda.tel;
+                };
+                contenedorBotones.appendChild(btnWhatsapp);
+
+                // Agregar los botones al contenedor de información
+                contenedorInfo.appendChild(contenedorBotones);
+
+                // Agregar el contenedor de imagen al contenedor de tienda
+                contenedorTienda.appendChild(contenedorImagen);
+                
+                // Agregar el contenedor de información al contenedor de tienda
+                contenedorTienda.appendChild(contenedorInfo);
+
+                // Agregar la tienda al contenedor de lista de tiendas
+                listaTiendas.appendChild(contenedorTienda);
+            });
+
+                    
+                soloComidasDiv.appendChild(listaTiendas); 
+   
+    
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ function actualizar_pantalla_servicios(datos_servicios) {
+    // Obtener el elemento donde se mostrarán los servicios
+    const serviciosDiv = document.getElementById('service');
+    // Limpiar el contenido actual del elemento
+    serviciosDiv.innerHTML = '';
+
+    // Recorrer cada categoría de servicios
+    for (const categoria in datos_servicios) {
+        if (datos_servicios.hasOwnProperty(categoria)) {
+            // Crear un elemento de título para la categoría
+            const tituloCategoria = document.createElement('h2');
+            tituloCategoria.textContent = categoria;
+
+            // Agregar un evento de clic para mostrar u ocultar la lista de servicios
+            tituloCategoria.addEventListener('click', function() {
+                // Mostrar u ocultar la lista de servicios
+                const listaServicios = tituloCategoria.nextElementSibling;
+                listaServicios.style.display = listaServicios.style.display === 'none' ? 'block' : 'none';
+            });
+
+            // Agregar el título de la categoría al contenedor principal de servicios
+            serviciosDiv.appendChild(tituloCategoria);
+
+            // Crear un contenedor para las listas de servicios de la categoría
+            const listaServicios = document.createElement('div');
+            listaServicios.classList.add('lista-servicios');
+
+            // Recorrer cada servicio de la categoría y agregarlo a la lista
+            datos_servicios[categoria].forEach(servicio => {
+                // Crear un div para cada servicio
+                const servicioDiv = document.createElement('div');
+                servicioDiv.classList.add('servicio');
+
+                // Crear un div para la imagen
+                const imagenDiv = document.createElement('div');
+                imagenDiv.classList.add('imagen');
+                // Dar espacio a la izquierda y a la derecha
+                imagenDiv.style.paddingLeft = '20px';
+                imagenDiv.style.paddingRight = '20px';
+                imagenDiv.style.display = 'flex'; // Establece el contenedor como flexible
+                imagenDiv.style.alignItems = 'center'; // Centra verticalmente los elementos dentro del contenedor
+
+                // Crear la imagen
+                const imagenPersona = document.createElement('img');
+                imagenPersona.src = "detogo_app/people.SVG";
+                imagenPersona.style.width = '65px'; // Establece el ancho de la imagen
+                imagenPersona.style.height = '65px'; // Establece la altura de la imagen
+                imagenPersona.alt = "people";
+
+
+                // Agregar la imagen al div de imagen
+                imagenDiv.appendChild(imagenPersona);
+
+                // Crear elementos para mostrar la información del servicio
+                const nombreServicio = document.createElement('h3');
+                nombreServicio.textContent = 'Nombre: ' + servicio.nombre;
+
+                const especialidadServicio = document.createElement('h4');
+                especialidadServicio.textContent = 'Especialidad: ' + servicio.especialidad;
+
+                // Crear el contenedor de botones
+                const contenedorBotones = document.createElement('div');
+                contenedorBotones.classList.add('botones');
+
+                // Botón para llamar
+                const btnLlamar = document.createElement('button');
+                btnLlamar.textContent = 'Llamar';
+                btnLlamar.classList.add('btn-llamar');
+                btnLlamar.onclick = function() {
+                    window.location.href = 'tel:' + servicio.telefono;
+                };
+                contenedorBotones.appendChild(btnLlamar);
+
+                // Botón para WhatsApp
+                const btnWhatsapp = document.createElement('button');
+                btnWhatsapp.textContent = 'WhatsApp';
+                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.onclick = function() {
+                    window.location.href = 'https://wa.me/' + servicio.telefono;
+                };
+                contenedorBotones.appendChild(btnWhatsapp);
+
+                // Agregar elementos al div del servicio
+                servicioDiv.appendChild(nombreServicio);
+                servicioDiv.appendChild(especialidadServicio);
+                servicioDiv.appendChild(contenedorBotones);
+
+                // Agregar el contenedor de imagen y el contenedor de servicio al contenedor principal
+                const fichaPersonalDiv = document.createElement('div');
+                fichaPersonalDiv.classList.add('ficha-personal');
+                fichaPersonalDiv.style.display = 'flex'; // Alinea los elementos horizontalmente
+                fichaPersonalDiv.appendChild(imagenDiv);
+                fichaPersonalDiv.appendChild(servicioDiv);
+
+                // Agregar la ficha personal al div de servicios
+                listaServicios.appendChild(fichaPersonalDiv);
+            });
+
+            // Ocultar la lista de servicios al principio
+            listaServicios.style.display = 'none';
+
+            // Agregar la lista de servicios al contenedor principal de servicios
+            serviciosDiv.appendChild(listaServicios);
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+async function listar_promocionales() {
+
+    // Mostrar los nombres de los archivos PNG en la lista
+        const listaPromocionalesElement = document.getElementById("lista-promocionales");          
+        listaPromocionalesElement.innerHTML = '';
+
+    //obtenemos la ruta a la carpeta de trabajo 
+    const departamentoSeleccionado = selectDepartamento.value;
+    // Obtener la ubicación seleccionada
+    let ubicacionSeleccionada = selectUbicacion.value;
+
+    //encuentro la ruta a la carpeta que tiene el mismo nombre del archivo .txt
+    ubicacionSeleccionada = ubicacionSeleccionada.replace(/\.[^/.]+$/, "");
+
+    // Concatenar el departamento y la ubicación seleccionados
+    let rutaCarpetaPromocional = departamentoSeleccionado + "," + ubicacionSeleccionada+"/"+"Promocionales";
+    // Aquí puedes realizar otras acciones con la ubicación completa, como enviarla a la plataforma
+
+    console.log('Ruta :', rutaCarpetaPromocional);
+    
+    
+    try {
+        // Realizar una solicitud al servidor para obtener la lista de archivos PNG en la carpeta de la tienda
+        const username = 'detogo';
+        const repo = 'detogo.github.io';
+
+        // console.log('rutaCarpeta # :', ruta_a_tienda);
+
+        const ruta_completa_imagenes = `https://api.github.com/repos/${username}/${repo}/contents/${rutaCarpetaPromocional}`;
+        
+        const response = await fetch( ruta_completa_imagenes );      
+        const data = await response.json();
+        
+        console.log('data :', data);
+
+        // Obtener los nombres de los archivos PNG en la carpeta de la tienda
+        const archivos_png = data.filter(file => file.name.toLowerCase().endsWith(".png"));
+        
+        
+
+        archivos_png.forEach(archivo => {  
+
+            console.log('archivo.name :', archivo.name);     
+          
+            const ruta_a_la_imagen = rutaCarpetaPromocional + "/" + archivo.name;  
+            console.log('ruta_a_la_imagen :', ruta_a_la_imagen);     
+
+            const partesNombre = archivo.name.split(",");
+            
+            const nombrePromocional = partesNombre[0]; // Quita la extensión
+            const lugarPromocional = partesNombre[1]; // Quita la extensión
+            const fechaPromocional = partesNombre[2]; // Quita la extensión
+            const telefonoPromocional = partesNombre[3].replace(/\.[^/.]+$/, "");//Quita la extensión      
+                  
+           console.log('telefonoPromocional :', telefonoPromocional); 
+
+          const contenedor_promocional = document.createElement("div");
+contenedor_promocional.style.borderRadius = "20px";
+contenedor_promocional.style.borderWidth = "1px";
+contenedor_promocional.style.borderColor = "gray";
+contenedor_promocional.style.borderStyle = "solid";
+contenedor_promocional.style.paddingBottom = "10px";
+contenedor_promocional.style.width = "100%"; // Ocupa todo el ancho posible
+contenedor_promocional.style.marginBottom = "20px"; // Espacio de 20px en la parte inferior
+
+
+
+            const listPromocionales = document.createElement("div");
+            listPromocionales.style.borderRadius = "10px"; // Establece el radio de borde para hacerlo redondeado
+            listPromocionales.style.marginBottom = "40px"; // Agrega un espacio inferior de 20px              
+
+          
+            // Crear el logo de la tienda
+            const logoDetogo = document.createElement('img');
+            logoDetogo.src = "detogo_app/detogo_logo.svg"; // Ajusta la ruta según sea necesario
+            
+            logoDetogo.style.top = "10px"; // Posiciona el logo en la esquina superior izquierda
+            logoDetogo.style.left = "10px";
+            logoDetogo.style.width = "65px"; // Tamaño del logo, ajusta según sea necesario
+            logoDetogo.style.height = "65px";
+            logoDetogo.style.borderRadius = "50%"; // Para hacerlo redondo
+            logoDetogo.alt = 'Logo de tienda';  
+            logoDetogo.style.display = 'inline-block';           
+
+
+            const nombrePromocionalElemento = document.createElement("h3");
+            nombrePromocionalElemento.textContent = nombrePromocional;   
+            nombrePromocionalElemento.style.display = 'inline-block';  
+            nombrePromocionalElemento.style.paddingLeft = "10px";      
+
+
+
+            const datosDescriptivoelemento = document.createElement("div");
+            datosDescriptivoelemento.style.paddingLeft = "20px";
+                    
+              const lugarPromocionalElemento = document.createElement("h4");
+              lugarPromocionalElemento.textContent = lugarPromocional;           
+
+              const fechaPromocionalElemento = document.createElement("h5");
+              fechaPromocionalElemento.textContent = fechaPromocional;  
+                          
+            datosDescriptivoelemento.appendChild(lugarPromocionalElemento);
+            datosDescriptivoelemento.appendChild(fechaPromocionalElemento);
+            
+
+
+
+            // Agregar el nombre del producto al elemento de la lista
+            // Agregar el logo de la tienda al contenedor
+            listPromocionales.appendChild(logoDetogo);
+            listPromocionales.appendChild(nombrePromocionalElemento);
+            listPromocionales.appendChild(datosDescriptivoelemento);        
+
+
+
+
+            // Crear un contenedor para la imagen 
+            const contenedorImagen = document.createElement('div');
+            contenedorImagen.style.position = "relative";
+            contenedorImagen.style.overflow = "hidden";
+            contenedorImagen.style.borderRadius = "10px"; // Borde redondeado
+            contenedorImagen.style.paddingBottom = "10px";
+            contenedorImagen.style.display = "flex"; // Usar flexbox para centrar elementos
+            
+
+            // Crear la imagen
+            const imagen = document.createElement('img');
+            imagen.src = ruta_a_la_imagen;
+            imagen.style.width = "100%";
+            imagen.alt = 'Imagen de tienda';
+
+            // Agregar la imagen al contenedor
+            contenedorImagen.appendChild(imagen);   
+
+        
+
+// Agregar los botones para llamar y WhatsApp
+                const contenedorBotones = document.createElement('div');                
+                contenedorBotones.style.paddingBottom = "5px";
+                contenedorBotones.style.paddingLeft = "30px";
+             
+ // Botón para llamar
+                const btnLlamar = document.createElement('button');
+                btnLlamar.textContent = 'Llamar';
+                btnLlamar.classList.add('btn-llamar');
+
+
+                btnLlamar.onclick = function() {
+                    window.location.href = 'tel:' + telefonoPromocional;
+                };
+                contenedorBotones.appendChild(btnLlamar);
+
+                // Botón para WhatsApp
+                const btnWhatsapp = document.createElement('button');
+                btnWhatsapp.textContent = 'WhatsApp';
+                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.onclick = function() {
+                    window.location.href = 'https://wa.me/' + telefonoPromocional;
+                };
+                contenedorBotones.appendChild(btnWhatsapp);
+
+                // Agregar los botones al contenedor de información
+               
+
+
+
+            // Agregar el contenedor de imagen y logo a la lista
+            contenedor_promocional.appendChild(listPromocionales);
+            contenedor_promocional.appendChild(contenedorImagen);
+            contenedor_promocional.appendChild(contenedorBotones);
+
+            listaPromocionalesElement.appendChild(contenedor_promocional);
+
+
+
+
+
+
+
+
+
+        });
+
+
+    } catch (error) {
+        console.error('Error al obtener el listado de archivos promocionales PNG:', error);
+    }
+}
+
+
+
+
+
+
+//#########################################################################
+//#########################################################################
+function crear_tienda(ruta_a_tienda,tienda_telefono) {
+    // Obtener el div donde se mostrarán las imágenes de la tienda
+    const marketDiv = document.getElementById('my-market');
+    // Limpiar el contenido actual del div
+    marketDiv.innerHTML = '';
+    // Hacer una solicitud para obtener la lista de archivos en la carpeta de la tienda
+    // Esto depende de cómo esté implementado tu backend o servidor
+    // Supongamos que obtienes una lista de nombres de archivo en formato JSON
+    const listaArchivos = listar_archivos_png(ruta_a_tienda,tienda_telefono); // Función ficticia, reemplázala con tu lógica real
+
+    // Recorrer la lista de archivos y crear elementos de imagen para cada uno
+    
+
+}
+
+async function listar_archivos_png(ruta_a_tienda,tienda_telefono) {
+
+    console.log('datos tienda 1 # :', ruta_a_tienda);
+    console.log('datos tienda 2 # :', tienda_telefono);
+    // Dividir la ruta en sus partes usando el carácter de separación correcto
+    const partesRuta = ruta_a_tienda.split("/");
+    // Tomar la última parte que corresponde al nombre de la tienda
+    const nombreTienda = partesRuta[partesRuta.length - 1];
+    console.log('datos tienda 3 # :', nombreTienda);
+    
+    try {
+        // Realizar una solicitud al servidor para obtener la lista de archivos PNG en la carpeta de la tienda
+        const username = 'detogo';
+        const repo = 'detogo.github.io';
+
+        // console.log('rutaCarpeta # :', ruta_a_tienda);
+
+        const ruta_completa_imagenes = `https://api.github.com/repos/${username}/${repo}/contents/${ruta_a_tienda}`;
+        
+        const response = await fetch( ruta_completa_imagenes );      
+        const data = await response.json();
+        
+        // Obtener los nombres de los archivos PNG en la carpeta de la tienda
+        const archivos_png = data.filter(file => file.name.toLowerCase().endsWith(".png"));
+        
+        // Mostrar los nombres de los archivos PNG en la lista
+        const listaArchivos = document.getElementById("my-market");             
+       
+
+
+
+
+        archivos_png.forEach(archivo => {       
+          
+            const ruta_a_la_imagen = ruta_a_tienda + "/" + archivo.name;    
+
+            const partesNombre = archivo.name.split(",");
+            const nombreProducto = partesNombre[0]; // Quita la extensión
+            const descripcionProducto = partesNombre[1]; // Quita la extensión
+            const precioProducto = partesNombre[2].replace(/\.[^/.]+$/, "");//Quita la extensión      
+            
+
+const contenedor_publicacion = document.createElement("div");
+contenedor_publicacion.style.borderRadius = "20px";
+contenedor_publicacion.style.borderWidth = "1px";
+contenedor_publicacion.style.borderColor = "gray";
+contenedor_publicacion.style.borderStyle = "solid";
+contenedor_publicacion.style.paddingBottom = "10px";
+contenedor_publicacion.style.width = "100%"; // Ocupa todo el ancho posible
+contenedor_publicacion.style.marginBottom = "20px"; // Espacio de 20px en la parte inferior
+
+
+
+            const listItem = document.createElement("div");
+            listItem.style.borderRadius = "10px"; // Establece el radio de borde para hacerlo redondeado
+            listItem.style.marginBottom = "40px"; // Agrega un espacio inferior de 20px              
+
+          
+            // Crear el logo de la tienda
+            const logoTienda = document.createElement('img');
+            logoTienda.src = ruta_a_tienda + "/logo_tienda.svg"; // Ajusta la ruta según sea necesario
+            
+            logoTienda.style.top = "10px"; // Posiciona el logo en la esquina superior izquierda
+            logoTienda.style.left = "10px";
+            logoTienda.style.width = "65px"; // Tamaño del logo, ajusta según sea necesario
+            logoTienda.style.height = "65px";
+            logoTienda.style.borderRadius = "50%"; // Para hacerlo redondo
+            logoTienda.alt = 'Logo de tienda';  
+            logoTienda.style.display = 'inline-block';           
+
+
+            const nombreTiendaElemento = document.createElement("h3");
+            nombreTiendaElemento.textContent = nombreTienda;   
+            nombreTiendaElemento.style.display = 'inline-block';  
+            nombreTiendaElemento.style.paddingLeft = "10px";      
+
+
+
+            const nombreDescriptivoelement = document.createElement("div");
+            nombreDescriptivoelement.style.paddingLeft = "20px";
+                    
+              const nombreProductoElemento = document.createElement("h4");
+              nombreProductoElemento.textContent = nombreProducto;           
+
+              const descripcionProductoElemento = document.createElement("h5");
+              descripcionProductoElemento.textContent = descripcionProducto;  
+                          
+            nombreDescriptivoelement.appendChild(nombreProductoElemento);
+            nombreDescriptivoelement.appendChild(descripcionProductoElemento);
+            
+
+
+
+            // Agregar el nombre del producto al elemento de la lista
+            // Agregar el logo de la tienda al contenedor
+            listItem.appendChild(logoTienda);
+            listItem.appendChild(nombreTiendaElemento);
+            listItem.appendChild(nombreDescriptivoelement);        
+
+
+
+
+            // Crear un contenedor para la imagen 
+            const contenedorImagen = document.createElement('div');
+            contenedorImagen.style.position = "relative";
+            contenedorImagen.style.overflow = "hidden";
+            contenedorImagen.style.borderRadius = "10px"; // Borde redondeado
+            contenedorImagen.style.paddingBottom = "10px";
+            contenedorImagen.style.display = "flex"; // Usar flexbox para centrar elementos
+            
+
+            // Crear la imagen
+            const imagen = document.createElement('img');
+            imagen.src = ruta_a_la_imagen;
+            imagen.style.width = "100%";
+            imagen.alt = 'Imagen de tienda';
+
+            // Agregar la imagen al contenedor
+            contenedorImagen.appendChild(imagen);   
+
+
+            // Crear el círculo blanco
+const circuloBlanco = document.createElement('div');
+circuloBlanco.style.position = "absolute";
+circuloBlanco.style.top = "10pt";
+circuloBlanco.style.right = "10pt";
+circuloBlanco.style.backgroundColor = "black";
+circuloBlanco.style.borderRadius = "50%";
+circuloBlanco.style.width = "70px";
+circuloBlanco.style.height = "70px";
+circuloBlanco.style.display = "flex";
+circuloBlanco.style.justifyContent = "margin-top";
+circuloBlanco.style.alignItems = "center";
+
+// Crear el elemento span para mostrar el precioProducto
+const precioProductoElemento = document.createElement('span');
+precioProductoElemento.textContent = precioProducto;
+
+precioProductoElemento.style.textAlign = "center";
+precioProductoElemento.style.color = "white";
+// Establecer el tamaño de la fuente del texto
+precioProductoElemento.style.fontSize = "20px";
+// Establecer la altura del contenedor del texto para centrarlo verticalmente
+precioProductoElemento.style.lineHeight = "50px"; // Ajusta el valor según sea necesario
+precioProductoElemento.style.linewidth = "50px"; // Ajusta el valor según sea necesario
+
+// Agregar el precioProducto al círculo blanco
+circuloBlanco.appendChild(precioProductoElemento);
+
+// Agregar el círculo blanco al contenedor de la imagen
+contenedorImagen.appendChild(circuloBlanco);    
+
+
+
+
+// Agregar los botones para llamar y WhatsApp
+                const contenedorBotones = document.createElement('div');                
+                contenedorBotones.style.paddingBottom = "5px";
+                contenedorBotones.style.paddingLeft = "30px";
+             
+ // Botón para llamar
+                const btnLlamar = document.createElement('button');
+                btnLlamar.textContent = 'Llamar';
+                btnLlamar.classList.add('btn-llamar');
+
+
+                btnLlamar.onclick = function() {
+                    window.location.href = 'tel:' + tienda_telefono;
+                };
+                contenedorBotones.appendChild(btnLlamar);
+
+                // Botón para WhatsApp
+                const btnWhatsapp = document.createElement('button');
+                btnWhatsapp.textContent = 'WhatsApp';
+                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.onclick = function() {
+                    window.location.href = 'https://wa.me/' + tienda_telefono;
+                };
+                contenedorBotones.appendChild(btnWhatsapp);
+
+                // Agregar los botones al contenedor de información
+               
+
+
+
+
+
+
+
+            // Agregar el contenedor de imagen y logo a la lista
+            contenedor_publicacion.appendChild(listItem);
+            contenedor_publicacion.appendChild(contenedorImagen);
+            contenedor_publicacion.appendChild(contenedorBotones);
+
+            listaArchivos.appendChild(contenedor_publicacion);           
+           
+        });
+
+
+    } catch (error) {
+        console.error('Error al obtener el listado de archivos PNG:', error);
+    }
+}
+
+
+
+
+
+   
+function llamar_telefono(numero) {
+    window.location.href = "tel:" + numero;
+}
+
+function enviar_whatsapp(numero) {
+    window.location.href = "https://wa.me/" + numero;
+}
 
 </script>  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-    function llamar_telefono_callcenter() {
-      var numero_telefono = "78218224"; // Aquí se puede cambiar por el número de teléfono deseado
-      window.location.href = "tel:" + numero_telefono;
-    }
-
-     function enviar_whatsapp_callcenter() {
-      var numero_whatsapp = "78218224"; // Aquí se puede cambiar por el número de WhatsApp deseado
-      window.location.href = "https://wa.me/" + numero_whatsapp;
-    }
-</script>
-
-
-
 
 
 
@@ -705,276 +1971,6 @@ slider.addEventListener('mousemove', e => {
 
 
 
-
-  <script>
-    // Acceder al elemento select
-    const selectNombre = document.getElementById('select-nombre-car');
-
-    // Añadir un evento para capturar la selección del usuario
-    selectNombre.addEventListener('change', function() {
-      // Obtener el valor seleccionado
-      const seleccion = selectNombre.value.split(', ');
-      const nombreSeleccionado = seleccion[0];
-      const tipoVehiculo = seleccion[1];
-      const telefono = seleccion[2] || 'Número no disponible';
-      
-      // Mostrar el nombre, tipo de vehículo y número de teléfono seleccionado en la consola
-      console.log("Nombre seleccionado:", nombreSeleccionado);
-      console.log("Tipo de vehículo:", tipoVehiculo);
-      console.log("Número de teléfono:", telefono);
-    });
-  </script>
-
-<script>
-    // Función para llamar al número de teléfono seleccionado en el <select>
-    function llamar_telefono_delivery() {
-      // Obtener el número de teléfono seleccionado
-      const seleccion = document.getElementById('select-nombre-delivery').value.split(', ');
-      const numero_telefono = seleccion[2] || ''; // Si no se selecciona un número, será una cadena vacía
-      // Llamar al número de teléfono
-      if (numero_telefono !== '') {
-        window.location.href = "tel:" + numero_telefono;
-      } else {
-        console.error('No se ha seleccionado un número de teléfono.');
-      }
-    }
-
-    // Función para enviar un mensaje de WhatsApp al número seleccionado en el <select>
-    function enviar_whatsapp_delivery() {
-      // Obtener el número de teléfono seleccionado
-      const seleccion = document.getElementById('select-nombre-delivery').value.split(', ');
-      const numero_whatsapp = seleccion[2] || ''; // Si no se selecciona un número, será una cadena vacía
-      // Enviar mensaje de WhatsApp al número
-      if (numero_whatsapp !== '') {
-        window.location.href = "https://wa.me/" + numero_whatsapp;
-      } else {
-        console.error('No se ha seleccionado un número de teléfono.');
-      }
-    }
-
-    function llamar_telefono_car() {
-      // Obtener el número de teléfono seleccionado
-      const seleccion = document.getElementById('select-nombre-car').value.split(', ');
-      const numero_telefono = seleccion[2] || ''; // Si no se selecciona un número, será una cadena vacía
-      // Llamar al número de teléfono
-      if (numero_telefono !== '') {
-        window.location.href = "tel:" + numero_telefono;
-      } else {
-        console.error('No se ha seleccionado un número de teléfono.');
-      }
-    }
-
-    // Función para enviar un mensaje de WhatsApp al número seleccionado en el <select>
-    function enviar_whatsapp_car() {
-      // Obtener el número de teléfono seleccionado
-      const seleccion = document.getElementById('select-nombre-car').value.split(', ');
-      const numero_whatsapp = seleccion[2] || ''; // Si no se selecciona un número, será una cadena vacía
-      // Enviar mensaje de WhatsApp al número
-      if (numero_whatsapp !== '') {
-        window.location.href = "https://wa.me/" + numero_whatsapp;
-      } else {
-        console.error('No se ha seleccionado un número de teléfono.');
-      }
-    }
-  </script>
-
-    <script>
-    // Función para cambiar la imagen del vehículo según el tipo seleccionado
-    function cambiarImagenVehiculo() {
-      // Obtener el valor seleccionado
-      const seleccion = document.getElementById('select-nombre-car').value.split(', ');
-      const tipoVehiculo = seleccion[1];
-
-      // Obtener la imagen del vehículo
-      const imagenVehiculo = document.getElementById('imagen-vehiculo');
-
-      // Cambiar la imagen según el tipo de vehículo seleccionado
-      if (tipoVehiculo === 'Sedan') {
-        imagenVehiculo.src = 'detogo_app/carro.SVG'; // Cambia 'ruta/imagen_sedan.jpg' por la ruta de tu imagen de sedan
-      } else if (tipoVehiculo === 'Pickup') {
-        imagenVehiculo.src = 'detogo_app/pickup.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
-      } else if (tipoVehiculo === 'Pickup 4x4') {
-        imagenVehiculo.src = 'detogo_app/pickup4x4.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
-      } else if (tipoVehiculo === 'Microbus') {
-        imagenVehiculo.src = 'detogo_app/microbus.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
-      } else if (tipoVehiculo === 'Camion') {
-        imagenVehiculo.src = 'detogo_app/camion.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
-      } else if (tipoVehiculo === 'Grua') {
-        imagenVehiculo.src = 'detogo_app/grua.SVG'; // Cambia 'ruta/imagen_pickup.jpg' por la ruta de tu imagen de pickup
-
-      } else {
-        // Si no se selecciona ningún tipo válido, puedes mostrar una imagen por defecto o dejar la actual
-      }
-    }
-
-    // Añadir un evento para capturar la selección del usuario y cambiar la imagen del vehículo
-    document.getElementById('select-nombre-car').addEventListener('change', cambiarImagenVehiculo);
-
-    // Llamar a la función una vez al cargar la página para mostrar la imagen predeterminada
-    cambiarImagenVehiculo();
-  </script>
-
-
-
-  <script>
-     // Función para procesar el contenido del archivo de servicios
-    function procesarContenidoServicios(contenido) {
-  console.log('Procesando contenido de servicios...');
-  // Dividir el contenido en líneas
-  const lineas = contenido.split('\n');
-  console.log('Líneas del contenido:', lineas);
-
-  // Obtener el elemento donde se mostrarán los servicios
-  const servicioDiv = document.getElementById('service');
-  console.log('Elemento de servicio:', servicioDiv);
-
-  // Recorrer cada línea del archivo
-  let servicioActual = '';
-  let fichaServicio;
-  lineas.forEach(linea => {
-    // Eliminar espacios en blanco al principio y al final de la línea
-    linea = linea.trim();
-
-    // Si la línea está vacía, continuar con la siguiente línea
-    if (linea === '') {
-      console.log('Línea vacía, saltando...');
-      return;
-    }
-
-    // Si la línea termina con ':' es un tipo de servicio
-    if (linea.endsWith(':')) {
-      console.log('Tipo de servicio encontrado:', linea);
-      // Guardar el nombre del servicio
-      servicioActual = linea.slice(0, -1); // Eliminar el ':' al final de la línea
-      console.log('Nombre del servicio:', servicioActual);
-      // Crear un elemento de título para el tipo de servicio
-      const tituloServicio = document.createElement('h2');
-      tituloServicio.textContent = servicioActual;
-      // Agregar un evento de clic para mostrar u ocultar la lista de nombres
-      tituloServicio.addEventListener('touchstart', function() {
-        // Mostrar u ocultar la lista de nombres
-        const listaNombres = tituloServicio.nextElementSibling;
-        listaNombres.style.display = listaNombres.style.display === 'none' ? 'block' : 'none';
-      });
-      servicioDiv.appendChild(tituloServicio);
-      // Crear un contenedor para las listas de nombres de servicio
-      const listaNombres = document.createElement('ul');
-      listaNombres.classList.add('lista-nombres');
-      servicioDiv.appendChild(listaNombres);
-      // Asignar el contenedor a la variable de ficha de servicio
-      fichaServicio = listaNombres;
-    } else {
-      // Crear elemento de lista para el nombre y el número de teléfono
-      
-// Separar el nombre y el número de teléfono
-
-// Crear la ficha de servicio
-const fichaElemento = document.createElement('div');
-fichaElemento.classList.add('ficha-servicio');
-fichaElemento.style.marginBottom = '45px'; // Agregar margen inferior para crear espacio entre las fichas
-fichaElemento.classList.add('ficha-servicio');
-
-
-const [nombre, telefono] = linea.split(',');
-console.log('Nombre:', nombre.trim());
-console.log('Teléfono:', telefono.trim());
-
-// Crear contenedor para la información
-const contenedorInfo = document.createElement('div');
-contenedorInfo.classList.add('info-servicio');
-contenedorInfo.style.marginBottom = '5px'; 
-fichaElemento.appendChild(contenedorInfo);
-
-// Agregar el nombre del servicio
-const nombreElemento = document.createElement('h6');
-nombreElemento.textContent = nombre.trim();
-contenedorInfo.appendChild(nombreElemento);
-
-// Crear contenedor para los botones
-const contenedorBotones = document.createElement('div');
-contenedorBotones.classList.add('botones-servicio');
-contenedorInfo.appendChild(contenedorBotones);
-
-// Agregar la imagen fija redonda
-const imagen = document.createElement('img');
-imagen.src = "detogo_app/people.SVG"; // Cambia 'detogo_logo.svg' por la ruta de tu imagen
-imagen.alt = 'People';
-imagen.style.width = '50px'; // Establece el ancho de la imagen
-imagen.style.height = '50px'; // Establece la altura de la imagen
-imagen.classList.add('servicio-img');
-contenedorBotones.appendChild(imagen);
-
-
-// Agregar botón de llamar por teléfono
-const btnLlamar = document.createElement('button');
-btnLlamar.textContent = 'Llamar';
-btnLlamar.classList.add('btn-llamar');
-btnLlamar.onclick = function() {
-    // Lógica para llamar por teléfono
-    window.location.href = "tel:" + telefono.trim();
-    console.log('Llamar al número de teléfono:', telefono.trim());
-};
-contenedorBotones.appendChild(btnLlamar);
-
-// Agregar botón de WhatsApp
-const btnWhatsapp = document.createElement('button');
-btnWhatsapp.textContent = 'WhatsApp';
-btnWhatsapp.classList.add('btn-whatsapp');
-btnWhatsapp.onclick = function() {
-    // Lógica para usar WhatsApp
-    window.location.href = "https://wa.me/" + telefono.trim();
-    console.log('Enviar mensaje por WhatsApp al número de teléfono:', telefono.trim());
-};
-contenedorBotones.appendChild(btnWhatsapp);
-
-// Agregar la ficha de servicio al contenedor principal
-fichaServicio.appendChild(fichaElemento);
-    }
-  });
-}
-
-   // Función para cargar y procesar el contenido del archivo de servicios
-function leerArchivoServicios() {
-  console.log('Iniciando la carga del archivo de servicios...');
-
-  // Ruta del archivo de servicios
-  const rutaArchivo = 'servicios.txt';
-
-  // Crear una nueva solicitud XMLHttpRequest
-  const xhr = new XMLHttpRequest();
-
-  // Configurar la solicitud
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        // El archivo se cargó correctamente
-        console.log('El archivo se cargó correctamente.');
-        const contenido = xhr.responseText;
-        console.log('Contenido del archivo:', contenido);
-        // Procesar el contenido
-        procesarContenidoServicios(contenido);
-
-      } else {
-        // Hubo un error al cargar el archivo
-        console.error('Error al cargar el archivo:', xhr.status);
-      }
-    }
-  };
-
-  // Abrir y enviar la solicitud
-  xhr.open('GET', rutaArchivo, true);
-  xhr.send();
-}
-
-// Llamar a la función para leer el archivo de servicios al cargar la página
-
-
-  
-  
-</script>
-
-
-  
 
 
 <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
