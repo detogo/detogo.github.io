@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="28mm" height="28mm" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 28 28">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#1F1A17;stroke-width:0.0762}
+    .fil0 {fill:#0A0B0C}
+    .fil1 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Capa_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0 str0" x="2.54916" y="1.0625" width="22.8358" height="3.01853" rx="1.2508" ry="1.2508"/>
+  <path class="fil0 str0" d="M3.3744 5.3121l21.0919 0.0157c0.5053,0.0003 0.9187,0.5638 0.9187,1.2527l0 0.9106 1.8142 5.0013c0.2777,0.8661 -1.4057,1.5907 -1.8142,0.5066l0 12.7374c0,0.6889 -0.4134,1.2527 -0.9187,1.2527l-20.8672 0c-0.5051,0 -0.9089,-0.5638 -0.9187,-1.2527l-0.1798 -12.4546c-0.7398,0.5333 -1.7795,0.242 -1.6973,-0.7558l1.7826 -5.0459 -0.0062 -0.9186c-0.0047,-0.689 0.2894,-1.2497 0.7947,-1.2494z"/>
+  <rect class="fil1 str0" x="5.56769" y="16.6801" width="8.39938" height="7.21822"/>
+  <rect class="fil1 str0" x="17.2481" y="16.6145" width="4.98713" height="9.9537"/>
+  <path class="fil1 str0" d="M3.9392 8.3952l2.5557 0.0185 -0.9377 4.5928c-0.6649,1.4818 -2.4388,1.3218 -2.8768,-0.3689l1.2588 -4.2424z"/>
+  <path class="fil1 str0" d="M8.2967 8.3583l2.5557 0.0185 -0.3677 4.5559c-0.6649,1.4818 -2.4572,1.4325 -2.8951,-0.2582l0.7071 -4.3162z"/>
+  <path class="fil1 str0" d="M12.6834 8.3646l2.5557 0.0185 0.1632 4.4967c-0.4516,1.3589 -2.2145,1.612 -2.8465,0.0024l0.1276 -4.5176z"/>
+  <path class="fil1 str0" d="M23.9777 8.432l-2.5557 0.0185 0.9377 4.5929c0.6649,1.4817 2.4389,1.3217 2.8768,-0.369l-1.2588 -4.2424z"/>
+  <path class="fil1 str0" d="M19.6202 8.3951l-2.5557 0.0185 0.3677 4.5559c0.6649,1.4818 2.4572,1.4325 2.8952,-0.2582l-0.7072 -4.3162z"/>
+ </g>
+</svg>
