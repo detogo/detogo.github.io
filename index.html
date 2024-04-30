@@ -669,8 +669,8 @@ function actualizarUbicaciones() {
                 // Hubo un error al cargar el archivo
 
                 console.error('Error al cargar el archivo:', xhr.status);
-/*
 
+/*
                 const contenidoJSON = {
   "Administracion": [
     {
@@ -805,8 +805,8 @@ function actualizarUbicaciones() {
                 actualizar_pantalla_servicios(datos_servicio);
 
                 listar_promocionales();
-*/
 
+*/
 
             }
         }
@@ -2044,62 +2044,75 @@ slider.addEventListener('mousemove', e => {
 
 
 <script>
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const minSwipeDistance = 150; // Umbral mínimo de desplazamiento en píxeles
+let touchStartX = 0;
+let touchEndX = 0;
+const minSwipeDistance = 150; // Umbral mínimo de desplazamiento en píxeles
+let recentSwipe = false;
+
+const tabContent = document.querySelector('.tab-content');
+
+tabContent.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    recentSwipe = true; // Reiniciar la bandera de desplazamiento reciente
+});
+
+tabContent.addEventListener('touchmove', (e) => {
+
+    touchEndX = e.touches[0].clientX;
+    recentSwipe = false; // Establecer la bandera de desplazamiento reciente
+});
 
 
+tabContent.addEventListener('touchend', () => {
+    const difference = touchStartX - touchEndX;
+    if (Math.abs(difference) > minSwipeDistance) { // Umbral de desplazamiento
+        console.log('difference', difference);
 
-    const tabContent = document.querySelector('.tab-content');
 
-    tabContent.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-    });
-
-    tabContent.addEventListener('touchmove', (e) => {
-        touchEndX = e.touches[0].clientX;
-    });
-
-    tabContent.addEventListener('touchend', () => {
-        const difference = touchStartX - touchEndX;
-        if (Math.abs(difference) > minSwipeDistance) { // Umbral de desplazamiento
-            if (difference > 0) {
-                // Desplazarse a la izquierda
-                console.log('Desplazamiento hacia la izquierda');
-                simularClickSiguiente();
-            } else {
-                // Desplazarse a la derecha
-                console.log('Desplazamiento hacia la derecha');
-                simularClickAnterior();
-            }
+        if (difference > 0) {
+            // Desplazarse a la izquierda
+            console.log('Desplazamiento hacia la izquierdaa');
+            simularClickSiguiente();
+        } else {
+            // Desplazarse a la derecha
+            console.log('Desplazamiento hacia la derechaa');
+            simularClickAnterior();
         }
-        touchStartX = 0;
-        touchEndX = 0;
-    });
+    }
 
-    function simularClickSiguiente() {
-    const currentTab = document.querySelector('.tab-pane.active');
-    const nextTab = currentTab.nextElementSibling;
-    if (nextTab) {
-        const nextTabLink = document.querySelector(`[href="#${nextTab.id}"]`);
-        if (nextTabLink) {
-            console.log('Simulando clic en la pestaña siguiente:', nextTab.id);
-            nextTabLink.click();
+    touchStartX = 0;
+    touchEndX = 0;
+});
+
+function simularClickSiguiente() {
+    if (!recentSwipe) {
+        const currentTab = document.querySelector('.tab-pane.active');
+        const nextTab = currentTab.nextElementSibling;
+        if (nextTab) {
+            const nextTabLink = document.querySelector(`[href="#${nextTab.id}"]`);
+            if (nextTabLink) {
+                console.log('Simulando clic en la pestaña siguiente:', nextTab.id);
+                nextTabLink.click();
+            }
         }
     }
 }
 
 function simularClickAnterior() {
-    const currentTab = document.querySelector('.tab-pane.active');
-    const prevTab = currentTab.previousElementSibling;
-    if (prevTab) {
-        const prevTabLink = document.querySelector(`[href="#${prevTab.id}"]`);
-        if (prevTabLink) {
-            console.log('Simulando clic en la pestaña anterior:', prevTab.id);
-            prevTabLink.click();
+    if (!recentSwipe) {
+        const currentTab = document.querySelector('.tab-pane.active');
+        const prevTab = currentTab.previousElementSibling;
+        if (prevTab) {
+            const prevTabLink = document.querySelector(`[href="#${prevTab.id}"]`);
+            if (prevTabLink) {
+                console.log('Simulando clic en la pestaña anterior:', prevTab.id);
+                prevTabLink.click();
+            }
         }
     }
 }
+
+
    
 </script>
 
