@@ -7,6 +7,24 @@
     <title>detogo.app</title>
 
      <style>
+    .tab-content {
+        display: flex;
+        overflow-x: hidden; /* Para ocultar el desbordamiento horizontal */
+        transition: transform 0.3s ease-in-out; /* Transición suave entre pantallas */
+    }
+
+    .tab-pane {
+        flex: 0 0 100%; /* Hace que cada pantalla ocupe el 100% del ancho */
+        padding: 20px;
+    }
+</style>
+
+
+
+
+
+
+     <style>
       html, body {
           margin: 0;
           padding: 0;
@@ -285,7 +303,7 @@
        <a data-toggle="tab" href="#gocars" style=" margin-left: 15px;">  <img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="45"> </a>
        <a data-toggle="tab" href="#gofood" style=" margin-left: 15px;">  <img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="45"> </a>
        <a data-toggle="tab" href="#gomarkets" style=" margin-left: 15px;">  <img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="45"> </a>
-
+                                   
        <a data-toggle="tab" href="#mymarket" style=" margin-left: 15px;">  <img  id="image-mymarket" src="detogo_app/mymarket.SVG" alt="mymarket" width="45"> </a>
 
        <a data-toggle="tab" href="#goservice" style=" margin-left: 15px;">  <img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="45"> </a>
@@ -455,6 +473,8 @@
 
           <div id="service" >
           </div> 
+
+
     
     </div>
     <!--/////////////////////////////////////////////////////////////-->
@@ -467,7 +487,6 @@
      
                 </div>
             </div>
-
 
 
 
@@ -613,6 +632,8 @@ function actualizarUbicaciones() {
                 // El archivo se cargó correctamente
                 console.log('El archivo se cargó correctamente.');
                 const contenidoJSON = JSON.parse(xhr.responseText);
+                
+
                 console.log('Contenido del archivo JSON:', contenidoJSON);
                
 
@@ -1067,6 +1088,8 @@ function actualizar_pantalla_markets(datos_markets) {
     mymarketsDiv.innerHTML = '';
 
 
+ 
+
     // Recorrer cada categoría de mercado
     for (const categoria in datos_markets) {
         if (datos_markets.hasOwnProperty(categoria)) {
@@ -1123,22 +1146,45 @@ function actualizar_pantalla_markets(datos_markets) {
 				     // Verificar si el nombre de la imagen cargada es "logo_tienda"
 				    if (imagenTienda.src.includes("logo_tienda")) {
 				        // La imagen cargada es "logo_tienda", por lo tanto, creamos el botón
-				        
+
 				        // Botón para ir a la tienda
-				        const btnTienda = document.createElement('a');
-				        btnTienda.textContent = 'Tienda';     
-                btnTienda.href = "#mymarket";
+				        const btnTienda = document.createElement('button');
+				        btnTienda.textContent = 'Tienda';                     
 				        btnTienda.classList.add('btn-tienda');
+
+                contenedorBotones.appendChild(btnTienda);
+
+             
+
+
 				        
 				        // Agregar funcionalidad al botón
 				        btnTienda.onclick = function() {
-				            // Lógica para redirigir al usuario a la tienda
-				            crear_tienda(ruta_a_tienda, tienda.tel);
-                       
+
+                   
+                    // Obtener el enlace de la pestaña mymarket
+                    const enlaceMymarket = document.querySelector('a[href="#mymarket"]');
+                    // Verificar si se encontró el enlace
+                    if (enlaceMymarket) {
+                          // Simular un clic en el enlace de la pestaña mymarket
+                          enlaceMymarket.click();
+                          // Lógica para creasr el menu de la tienda
+                          crear_tienda(ruta_a_tienda, tienda.tel);    
+
+
+
+                    } else {
+                          // Si el enlace no se encontró, muestra un mensaje de error
+                          console.error('No se encontró el enlace a la pestaña mymarket.');
+                    }
+                    
+
+
+				                             
 				        };
 				        
 				        // Agregar el botón al contenedor de botones
-				        contenedorBotones.appendChild(btnTienda);
+				        
 				    }
 				};
 
@@ -1222,6 +1268,7 @@ function actualizar_pantalla_markets(datos_markets) {
 
             // Agregar la lista de tiendas al contenedor principal de mercados
             marketsDiv.appendChild(listaTiendas);
+            
         }
     }
 }
@@ -1292,18 +1339,34 @@ function actualizar_pantalla_comidas(datos_comida) {
                 // Botón para ir a la tienda
                 const btnTienda = document.createElement('a');
                 btnTienda.textContent = 'Tienda';     
-                btnTienda.href = "#mymarket";
+                
                 btnTienda.classList.add('btn-tienda');
+
+                // Agregar el botón al contenedor de botones
+                contenedorBotones.appendChild(btnTienda);
                 
                 // Agregar funcionalidad al botón
                 btnTienda.onclick = function() {
-                    // Lógica para redirigir al usuario a la tienda
-                    crear_tienda(ruta_a_tienda, tienda.tel);
+                     
+                    // Obtener el enlace de la pestaña mymarket
+                    const enlaceMymarket = document.querySelector('a[href="#mymarket"]'); 
+                    
+                    // Verificar si se encontró el enlace
+                    if (enlaceMymarket) {
+                          // Simular un clic en el enlace de la pestaña mymarket
+                          enlaceMymarket.click();
+                           // Lógica para redirigir al usuario a la tienda                    
+                          crear_tienda(ruta_a_tienda, tienda.tel);                           
+
+
+                    } else {
+                          // Si el enlace no se encontró, muestra un mensaje de error
+                          console.error('No se encontró el enlace a la pestaña mymarket.');
+                    }
                        
                 };
                 
-                // Agregar el botón al contenedor de botones
-                contenedorBotones.appendChild(btnTienda);
+                
             }
         };
 
@@ -1968,6 +2031,45 @@ slider.addEventListener('mousemove', e => {
   slider.scrollLeft = scrollLeft - walk;
 });
 </script> 
+
+
+
+
+
+
+
+
+<script>
+    //para mover la pantalla de izquierda y de derecha
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const tabContent = document.querySelector('.tab-content');
+
+    tabContent.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+
+    tabContent.addEventListener('touchmove', (e) => {
+        touchEndX = e.touches[0].clientX;
+    });
+
+    tabContent.addEventListener('touchend', () => {
+        const difference = touchStartX - touchEndX;
+        if (Math.abs(difference) > 50) { // Umbral de desplazamiento
+            if (difference > 0) {
+                // Desplazarse a la izquierda
+                tabContent.scrollLeft += Math.min(window.innerWidth, difference);
+            } else {
+                // Desplazarse a la derecha
+                tabContent.scrollLeft -= Math.min(window.innerWidth, -difference);
+            }
+        }
+        touchStartX = 0;
+        touchEndX = 0;
+    });
+
+</script>
 
 
 
