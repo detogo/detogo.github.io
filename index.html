@@ -669,8 +669,8 @@ function actualizarUbicaciones() {
                 // Hubo un error al cargar el archivo
 
                 console.error('Error al cargar el archivo:', xhr.status);
-
 /*
+
                 const contenidoJSON = {
   "Administracion": [
     {
@@ -1220,6 +1220,7 @@ function actualizar_pantalla_markets(datos_markets) {
                 const nombreTienda = document.createElement('h4');
                 nombreTienda.textContent = tienda.nombre;
                 nombreTienda.style.marginBottom = '2px';
+                nombreTienda.style.overflowWrap = 'break-word'; // Permite que el texto se rompa en palabras
                 contenedorInfo.appendChild(nombreTienda);
                
 
@@ -1227,6 +1228,7 @@ function actualizar_pantalla_markets(datos_markets) {
                 const especialidadTienda = document.createElement('h5');
                 especialidadTienda.textContent = tienda.especialidad;
                 especialidadTienda.style.marginBottom = '2px';
+                especialidadTienda.style.overflowWrap = 'break-word'; // Permite que el texto se rompa en palabras
                 contenedorInfo.appendChild(especialidadTienda);
 
 
@@ -1254,14 +1256,17 @@ function actualizar_pantalla_markets(datos_markets) {
                 };
                 contenedorBotones.appendChild(btnWhatsapp);
 
-                // Agregar los botones al contenedor de información
-                contenedorInfo.appendChild(contenedorBotones);
 
                 // Agregar el contenedor de imagen al contenedor de tienda
                 contenedorTienda.appendChild(contenedorImagen);
                 
                 // Agregar el contenedor de información al contenedor de tienda
                 contenedorTienda.appendChild(contenedorInfo);
+
+                // Agregar los botones al contenedor de información
+                contenedorTienda.appendChild(contenedorBotones);
+
+              
 
                 // Agregar la tienda al contenedor de lista de tiendas
                 listaTiendas.appendChild(contenedorTienda);
@@ -1402,6 +1407,7 @@ function actualizar_pantalla_comidas(datos_comida) {
                 const nombreTienda = document.createElement('h4');
                 nombreTienda.textContent = tienda.nombre;
                 nombreTienda.style.marginBottom = '2px';
+                nombreTienda.style.overflowWrap = 'break-word'; // Permite que el texto se rompa en palabras
                 contenedorInfo.appendChild(nombreTienda);
                
 
@@ -1409,6 +1415,7 @@ function actualizar_pantalla_comidas(datos_comida) {
                 const especialidadTienda = document.createElement('h5');
                 especialidadTienda.textContent = tienda.especialidad;
                 especialidadTienda.style.marginBottom = '2px';
+                especialidadTienda.style.overflowWrap = 'break-word'; // Permite que el texto se rompa en palabras
                 contenedorInfo.appendChild(especialidadTienda);
 
 
@@ -1436,14 +1443,25 @@ function actualizar_pantalla_comidas(datos_comida) {
                 };
                 contenedorBotones.appendChild(btnWhatsapp);
 
-                // Agregar los botones al contenedor de información
-                contenedorInfo.appendChild(contenedorBotones);
+
+
+         
 
                 // Agregar el contenedor de imagen al contenedor de tienda
                 contenedorTienda.appendChild(contenedorImagen);
-                
-                // Agregar el contenedor de información al contenedor de tienda
+                 // Agregar el contenedor de información al contenedor de tienda
                 contenedorTienda.appendChild(contenedorInfo);
+
+                // Agregar los botones al contenedor de información
+                contenedorTienda.appendChild(contenedorBotones);
+
+                
+                
+               
+
+
+
+
 
                 // Agregar la tienda al contenedor de lista de tiendas
                 listaTiendas.appendChild(contenedorTienda);
@@ -2046,7 +2064,7 @@ slider.addEventListener('mousemove', e => {
 <script>
 let touchStartX = 0;
 let touchEndX = 0;
-const minSwipeDistance = 150; // Umbral mínimo de desplazamiento en píxeles
+const minSwipeDistance = 50; // Umbral mínimo de desplazamiento en píxeles
 let recentSwipe = false;
 
 const tabContent = document.querySelector('.tab-content');
