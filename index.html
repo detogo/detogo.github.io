@@ -6,16 +6,18 @@
 
     <title>detogo.app</title>
 
-     <style>
+    <style>
     .tab-content {
         display: flex;
-        overflow-x: hidden; /* Para ocultar el desbordamiento horizontal */
+        overflow-x: hidden; /* Ocultar el desplazamiento horizontal */
+        width: 100%; /* Ajustar el ancho según el número de pantallas */
         transition: transform 0.3s ease-in-out; /* Transición suave entre pantallas */
     }
 
     .tab-pane {
-        flex: 0 0 100%; /* Hace que cada pantalla ocupe el 100% del ancho */
+        flex: 0 0 100%; /* Hacer que cada pantalla ocupe 100% del ancho */
         padding: 20px;
+        box-sizing: border-box; /* Incluir el relleno en el ancho */
     }
 </style>
 
@@ -292,8 +294,10 @@
 </style>
 
 
-	
-	
+
+
+
+
 
 
 <ul class="gallery_toolbar">     
@@ -665,8 +669,8 @@ function actualizarUbicaciones() {
                 // Hubo un error al cargar el archivo
 
                 console.error('Error al cargar el archivo:', xhr.status);
-
 /*
+
                 const contenidoJSON = {
   "Administracion": [
     {
@@ -1195,14 +1199,14 @@ function actualizar_pantalla_markets(datos_markets) {
     					imagenTienda.src = "detogo_app/gomarket.SVG";
 				};              	    
 
-                imagenTienda.style.width = '75px'; // Establece el ancho de la imagen
-                imagenTienda.style.height = '75px'; // Establece la altura de la imagen
+                imagenTienda.style.width = '50px'; // Establece el ancho de la imagen
+                imagenTienda.style.height = '50px'; // Establece la altura de la imagen
                 imagenTienda.style.display = 'block';
 				imagenTienda.style.margin = 'auto';
 
 				// Dar espacio a la izquierda y a la derecha
-				contenedorImagen.style.paddingLeft = '20px';
-				contenedorImagen.style.paddingRight = '20px';
+				contenedorImagen.style.paddingLeft = '5px';
+				contenedorImagen.style.paddingRight = '5px';
                  
                 imagenTienda.alt = tienda.nombre;
                 contenedorImagen.appendChild(imagenTienda);
@@ -1213,14 +1217,14 @@ function actualizar_pantalla_markets(datos_markets) {
                 contenedorInfo.style.display = 'inline-block';
 
                 // Agregar el nombre de la tienda
-                const nombreTienda = document.createElement('h3');
+                const nombreTienda = document.createElement('h4');
                 nombreTienda.textContent = tienda.nombre;
                 nombreTienda.style.marginBottom = '2px';
                 contenedorInfo.appendChild(nombreTienda);
                
 
                 // Agregar la especialidad de la tienda
-                const especialidadTienda = document.createElement('p');
+                const especialidadTienda = document.createElement('h5');
                 especialidadTienda.textContent = tienda.especialidad;
                 especialidadTienda.style.marginBottom = '2px';
                 contenedorInfo.appendChild(especialidadTienda);
@@ -1377,14 +1381,14 @@ function actualizar_pantalla_comidas(datos_comida) {
               imagenTienda.src = "detogo_app/gomarket.SVG";
         };                    
 
-                imagenTienda.style.width = '75px'; // Establece el ancho de la imagen
-                imagenTienda.style.height = '75px'; // Establece la altura de la imagen
+                imagenTienda.style.width = '50px'; // Establece el ancho de la imagen
+                imagenTienda.style.height = '50px'; // Establece la altura de la imagen
                 imagenTienda.style.display = 'block';
         imagenTienda.style.margin = 'auto';
 
         // Dar espacio a la izquierda y a la derecha
-        contenedorImagen.style.paddingLeft = '20px';
-        contenedorImagen.style.paddingRight = '20px';
+        contenedorImagen.style.paddingLeft = '5px';
+        contenedorImagen.style.paddingRight = '5px';
                  
                 imagenTienda.alt = tienda.nombre;
                 contenedorImagen.appendChild(imagenTienda);
@@ -1395,14 +1399,14 @@ function actualizar_pantalla_comidas(datos_comida) {
                 contenedorInfo.style.display = 'inline-block';
 
                 // Agregar el nombre de la tienda
-                const nombreTienda = document.createElement('h3');
+                const nombreTienda = document.createElement('h4');
                 nombreTienda.textContent = tienda.nombre;
                 nombreTienda.style.marginBottom = '2px';
                 contenedorInfo.appendChild(nombreTienda);
                
 
                 // Agregar la especialidad de la tienda
-                const especialidadTienda = document.createElement('p');
+                const especialidadTienda = document.createElement('h5');
                 especialidadTienda.textContent = tienda.especialidad;
                 especialidadTienda.style.marginBottom = '2px';
                 contenedorInfo.appendChild(especialidadTienda);
@@ -1497,16 +1501,16 @@ function actualizar_pantalla_comidas(datos_comida) {
                 const imagenDiv = document.createElement('div');
                 imagenDiv.classList.add('imagen');
                 // Dar espacio a la izquierda y a la derecha
-                imagenDiv.style.paddingLeft = '20px';
-                imagenDiv.style.paddingRight = '20px';
+                imagenDiv.style.paddingLeft = '5px';
+                imagenDiv.style.paddingRight = '5px';
                 imagenDiv.style.display = 'flex'; // Establece el contenedor como flexible
                 imagenDiv.style.alignItems = 'center'; // Centra verticalmente los elementos dentro del contenedor
 
                 // Crear la imagen
                 const imagenPersona = document.createElement('img');
                 imagenPersona.src = "detogo_app/people.SVG";
-                imagenPersona.style.width = '65px'; // Establece el ancho de la imagen
-                imagenPersona.style.height = '65px'; // Establece la altura de la imagen
+                imagenPersona.style.width = '50px'; // Establece el ancho de la imagen
+                imagenPersona.style.height = '50px'; // Establece la altura de la imagen
                 imagenPersona.alt = "people";
 
 
@@ -1514,10 +1518,10 @@ function actualizar_pantalla_comidas(datos_comida) {
                 imagenDiv.appendChild(imagenPersona);
 
                 // Crear elementos para mostrar la información del servicio
-                const nombreServicio = document.createElement('h3');
-                nombreServicio.textContent = 'Nombre: ' + servicio.nombre;
+                const nombreServicio = document.createElement('h4');
+                nombreServicio.textContent = servicio.nombre;
 
-                const especialidadServicio = document.createElement('h4');
+                const especialidadServicio = document.createElement('h5');
                 especialidadServicio.textContent = 'Especialidad: ' + servicio.especialidad;
 
                 // Crear el contenedor de botones
@@ -2040,7 +2044,6 @@ slider.addEventListener('mousemove', e => {
 
 
 <script>
-    //para mover la pantalla de izquierda y de derecha
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -2059,17 +2062,47 @@ slider.addEventListener('mousemove', e => {
         if (Math.abs(difference) > 50) { // Umbral de desplazamiento
             if (difference > 0) {
                 // Desplazarse a la izquierda
-                tabContent.scrollLeft += Math.min(window.innerWidth, difference);
+                console.log('Desplazamiento hacia la izquierda');
+                simularClickSiguiente();
             } else {
                 // Desplazarse a la derecha
-                tabContent.scrollLeft -= Math.min(window.innerWidth, -difference);
+                console.log('Desplazamiento hacia la derecha');
+                simularClickAnterior();
             }
         }
         touchStartX = 0;
         touchEndX = 0;
     });
 
+    function simularClickSiguiente() {
+    const currentTab = document.querySelector('.tab-pane.active');
+    const nextTab = currentTab.nextElementSibling;
+    if (nextTab) {
+        const nextTabLink = document.querySelector(`[href="#${nextTab.id}"]`);
+        if (nextTabLink) {
+            console.log('Simulando clic en la pestaña siguiente:', nextTab.id);
+            nextTabLink.click();
+        }
+    }
+}
+
+function simularClickAnterior() {
+    const currentTab = document.querySelector('.tab-pane.active');
+    const prevTab = currentTab.previousElementSibling;
+    if (prevTab) {
+        const prevTabLink = document.querySelector(`[href="#${prevTab.id}"]`);
+        if (prevTabLink) {
+            console.log('Simulando clic en la pestaña anterior:', prevTab.id);
+            prevTabLink.click();
+        }
+    }
+}
+   
 </script>
+
+
+
+
 
 
 
