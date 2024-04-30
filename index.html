@@ -338,7 +338,7 @@
              <br>
           
               <center><h4>  <p><i>
-              Plataforma lider en servicio delivery, Solicitá el mejor viaje, lo que quieras, mira nuestras tiendas en linea y mucho más</i> 
+              El mejor servicio delivery, Solicitá un viaje, lo que quieras, mira nuestras tiendas en linea y mucho más</i> 
             </p></h4>   </center> 
 
 
@@ -2046,6 +2046,9 @@ slider.addEventListener('mousemove', e => {
 <script>
     let touchStartX = 0;
     let touchEndX = 0;
+    const minSwipeDistance = 150; // Umbral mínimo de desplazamiento en píxeles
+
+
 
     const tabContent = document.querySelector('.tab-content');
 
@@ -2059,7 +2062,7 @@ slider.addEventListener('mousemove', e => {
 
     tabContent.addEventListener('touchend', () => {
         const difference = touchStartX - touchEndX;
-        if (Math.abs(difference) > 50) { // Umbral de desplazamiento
+        if (Math.abs(difference) > minSwipeDistance) { // Umbral de desplazamiento
             if (difference > 0) {
                 // Desplazarse a la izquierda
                 console.log('Desplazamiento hacia la izquierda');
