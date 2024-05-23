@@ -8,16 +8,10 @@
   ],
   "Deliverys": {
     "moto": [
-      {"nombre": "Ernesto Vladimir Valdez", "tel": "78218224"}
-      
-    ],
-    "carro": [
-      {"nombre": "Marvin Saldaña", "tel": "78081611"},
       {"nombre": "Ernesto Valdez", "tel": "78218224"}
-    ],
-    "mototaxi": [
-      {"nombre": "Oto Giron", "tel": "77448710"}
+     
     ]
+   
   },
   "Cars": {
     "mototaxi": [
