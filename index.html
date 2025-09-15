@@ -219,19 +219,31 @@
                      
                    </select>
 
-                   <a data-toggle="tab" href="#gofood" style=" margin-left: 10px;margin-right: 10px; display: flex; align-items: center;">  <img  id="image-food" src="detogo_app/detogo_logo.svg" alt="ubicacion" width="50"> </a>
-
-                   
-                 
-                 
-
+                   <a data-toggle="tab" href="#gofood" style=" margin-left: 10px;margin-right: 10px; display: flex; align-items: center;">  <img  id="image-food" src="detogo_app/detogo_logo.svg" alt="ubicacion" width="50"> </a>                 
+                                
                </div>
              
 
  </div>  
 
      
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px;">
+  <!-- Imagen -->
+  <img id="image-perfil" 
+       src="detogo_app/detogo_logo.svg" 
+       alt="My svg_logo" 
+       width="60" 
+       class="img-circle">
 
+  <!-- Texto -->
+  <h1 style="margin: 0; color: black; font-style: italic;">detogo.app</h1>
+
+  <!-- Botones -->
+  <div id="botones-administracion">
+    <!-- Aquí van los botones -->
+    
+  </div>
+</div>
 
 
 
@@ -325,8 +337,6 @@
 
              <br>
              
-
-
              <center>
                     
                     <div id= "botones-administracion">
@@ -620,8 +630,11 @@ function actualizarUbicaciones() {
     // Crear nuevas opciones basadas en los nombres filtrados
     nombresFiltrados.forEach(nombre => {
         const partes = nombre.split(",");
-        const municipioNombre = partes[1] + "," + partes[2];
+        const municipioNombre = partes[1] + "," + partes[2].replace(".txt", "");
+       
+        
         console.log('Municipio y nombre de delivery:', municipioNombre);
+
         const option = document.createElement("option");
         option.textContent = municipioNombre;
         selectUbicacion.appendChild(option);
