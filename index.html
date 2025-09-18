@@ -531,6 +531,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+    const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.setWebViewString === "function");
+
 
     function pedirUbicacion() {
         if (isAppInventor) {
