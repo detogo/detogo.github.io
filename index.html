@@ -521,39 +521,68 @@
 ##############################################################################################
 ##############################################################################################-->
 <script>
-// Detectar si estamos dentro de WebViewer de App Inventor
-const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.setWebViewString === "function");
-
-// Función auxiliar para pedir ubicación
-function pedirUbicacion() {
-    if (isAppInventor) {
-        // Estamos dentro de App Inventor → mandar señal al WebViewer
-        console.log("Solicitando ubicación a App Inventor...");
-        AppInventor.setWebViewString("Ubicacion");
+document.addEventListener("DOMContentLoaded", () => {
+    const coords = obtenerCoordenadasGuardadas();
+    if (coords) {
+        console.log("Coordenadas guardadas al iniciar:", coords.lat, coords.lng);
+        alert("Latitud: " + coords.lat + " - Longitud: " + coords.lng);
     } else {
-        // Estamos en navegador normal → usar HTML5 Geolocation API
-        console.log("Solicitando ubicación al navegador...");
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    recibirCoordenadas(pos.coords.latitude, pos.coords.longitude);
-                },
-                (err) => {
-                    console.error("Error al obtener ubicación:", err);
-                    alert("No se pudo obtener ubicación: " + err.message);
-                }
-            );
+        console.log("No hay coordenadas guardadas al iniciar.");
+    }
+});
+
+<script>
+    function pedirUbicacion() {
+        if (isAppInventor) {
+            console.log("Solicitando ubicación a App Inventor...");
+            AppInventor.setWebViewString("Ubicacion");
         } else {
-            alert("Tu navegador no soporta geolocalización.");
+            // Revisar si ya hay coordenadas guardadas
+            const coords = obtenerCoordenadasGuardadas();
+            if (coords) {
+                console.log("Usando coordenadas guardadas:", coords.lat, coords.lng);
+                alert("Latitud: " + coords.lat + " - Longitud: " + coords.lng);
+            } else {
+                // Obtener nueva ubicación
+                console.log("Solicitando ubicación al navegador...");
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(
+                        (pos) => {
+                            recibirCoordenadas(pos.coords.latitude, pos.coords.longitude);
+                        },
+                        (err) => {
+                            console.error("Error al obtener ubicación:", err);
+                            alert("No se pudo obtener ubicación: " + err.message);
+                        }
+                    );
+                } else {
+                    alert("Tu navegador no soporta geolocalización.");
+                }
+            }
         }
     }
-}
 
-// Función para recibir coordenadas (App Inventor ejecuta esto con RunJavaScript)
-function recibirCoordenadas(lat, lng) {
-    console.log("Ubicación recibida:", lat, lng);
-    alert("Latitud: " + lat + " - Longitud: " + lng);
-}
+    // Función para recibir coordenadas y guardarlas en localStorage
+    function recibirCoordenadas(lat, lng) {
+        console.log("Ubicación recibida:", lat, lng);
+        alert("Latitud: " + lat + " - Longitud: " + lng);
+
+        localStorage.setItem("miLatitud", lat);
+        localStorage.setItem("miLongitud", lng);
+    }
+
+    // Función para recuperar coordenadas guardadas
+    function obtenerCoordenadasGuardadas() {
+        const lat = localStorage.getItem("miLatitud");
+        const lng = localStorage.getItem("miLongitud");
+
+        if (lat && lng) {
+            return { lat: parseFloat(lat), lng: parseFloat(lng) };
+            alert("Latitud inicial: " + lat + " - Longitud inicial: " + lng);
+        } else {
+            return null;
+        }
+    }
 </script>
 
 
