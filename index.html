@@ -211,10 +211,10 @@
                    </select>
 
                    <a href="javascript:void(0)" 
-                       style="margin-left: 10px; margin-right: 10px; display: flex; align-items: center;"
-                       onclick="AppInventor.setWebViewString('Ubicacion')">
-                       <img id="image-food" src="detogo_app/gps.SVG" alt="ubicacion" width="50">
-                    </a>  
+   style="margin-left: 10px; margin-right: 10px; display: flex; align-items: center;"
+   onclick="pedirUbicacion()">
+   <img id="image-food" src="detogo_app/gps.SVG" alt="ubicacion" width="50">
+</a>
 
                    <a data-toggle="tab" href="#gofood" style=" margin-left: 10px;margin-right: 10px; display: flex; align-items: center;">  <img  id="image-food" src="detogo_app/menu.SVG" alt="ubicacion" width="50"> </a>                
                                 
@@ -520,12 +520,41 @@
 <!-- #########################################################################################
 ##############################################################################################
 ##############################################################################################-->
-
 <script>
-function recibirCoordenadas(lat, lng) {
-   alert("Latitud: " + lat + " - Longitud: " + lng);
+// Detectar si estamos dentro de WebViewer de App Inventor
+const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.setWebViewString === "function");
+
+// Función auxiliar para pedir ubicación
+function pedirUbicacion() {
+    if (isAppInventor) {
+        // Estamos dentro de App Inventor → mandar señal al WebViewer
+        console.log("Solicitando ubicación a App Inventor...");
+        AppInventor.setWebViewString("Ubicacion");
+    } else {
+        // Estamos en navegador normal → usar HTML5 Geolocation API
+        console.log("Solicitando ubicación al navegador...");
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    recibirCoordenadas(pos.coords.latitude, pos.coords.longitude);
+                },
+                (err) => {
+                    console.error("Error al obtener ubicación:", err);
+                    alert("No se pudo obtener ubicación: " + err.message);
+                }
+            );
+        } else {
+            alert("Tu navegador no soporta geolocalización.");
+        }
+    }
 }
-</script> 
+
+// Función para recibir coordenadas (App Inventor ejecuta esto con RunJavaScript)
+function recibirCoordenadas(lat, lng) {
+    console.log("Ubicación recibida:", lat, lng);
+    alert("Latitud: " + lat + " - Longitud: " + lng);
+}
+</script>
 
 
 
