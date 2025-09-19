@@ -531,6 +531,7 @@ const selectUbicacion = document.getElementById("select-ubicacion");
 // Al cargar la página, revisamos si ya hay coordenadas guardadas
 document.addEventListener("DOMContentLoaded", async () => {
 
+    console.log("Listar archivos TXT."); 
     listar_archivos_txt();
     const coords = obtenerCoordenadasGuardadas();
    
@@ -562,11 +563,7 @@ async function listar_archivos_txt() {
         archivos.forEach(nombre => {
            
             if (nombre.endsWith(".txt")) {
-                
-                //const listItem = document.createElement("li");
-                //listItem.textContent = nombre;
-                //listaArchivos.appendChild(listItem);
-
+                                
                 // Dividir el nombre del archivo en sus partes
                 const partes = nombre.split(",");
                 // Agregar el departamento al conjunto de departamentos únicos
@@ -576,7 +573,7 @@ async function listar_archivos_txt() {
 
             }
         });
-
+         console.log("Lista departamentos.", departamentosUnicos ); 
         // Agregar cada departamento único como opción en el select
         const selectDepartamento = document.getElementById("select-departamento");
         departamentosUnicos.forEach(departamento => {
