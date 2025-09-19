@@ -527,12 +527,16 @@ const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.
 const selectDepartamento = document.getElementById("select-departamento");
 const selectUbicacion = document.getElementById("select-ubicacion");
 
+ // Variable global para almacenar la lista de archivos
+let archivos = [];
+let archivos_txt =[];
+
 // Al iniciar la página
 // Al cargar la página, revisamos si ya hay coordenadas guardadas
 document.addEventListener("DOMContentLoaded", async () => {
 
     console.log("Listar archivos TXT."); 
-    listar_archivos_txt();
+    await listar_archivos_txt(); // <-- importante el awaitlistar_archivos_txt();
     const coords = obtenerCoordenadasGuardadas();
    
     if (coords) {
@@ -575,7 +579,7 @@ async function listar_archivos_txt() {
         });
          console.log("Lista departamentos.", departamentosUnicos ); 
         // Agregar cada departamento único como opción en el select
-        const selectDepartamento = document.getElementById("select-departamento");
+      
         departamentosUnicos.forEach(departamento => {
             const option = document.createElement("option");
             option.value = departamento;
@@ -587,7 +591,6 @@ async function listar_archivos_txt() {
         console.error('Error al obtener el listado:', error);
     }
 }
-
 
 
 
@@ -629,8 +632,9 @@ async function listar_archivos_txt() {
         const lng = localStorage.getItem("miLongitud");
 
         if (lat && lng) {
-            return { lat: parseFloat(lat), lng: parseFloat(lng) };
             alert("Latitud inicial: " + lat + " - Longitud inicial: " + lng);
+            return { lat: parseFloat(lat), lng: parseFloat(lng) };
+           
         } else {
             return null;
         }
@@ -714,9 +718,7 @@ async function actualizarSegunUbicacion(coords) {
         const departamento = partes[0];
         const ubicacion = partes.slice(1).join(",");
        
-        const selectDepartamento = document.getElementById("select-departamento");
-        const selectUbicacion = document.getElementById("select-ubicacion");      
-
+       
         // Seteamos los selects
         selectDepartamento.value = departamento;
         await actualizarUbicaciones(); 
@@ -742,61 +744,18 @@ function recibirCoordenadas(lat, lng) {
 }
 
 
-
-
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script>
  
- // Variable global para almacenar la lista de archivos
-let archivos = [];
-let archivos_txt =[];
+
 
 
 function actualizarUbicaciones() {
     // Obtener el departamento seleccionado
 
-    const selectDepartamento = document.getElementById("select-departamento");
-    const selectUbicacion = document.getElementById("select-ubicacion");      
-
+   
     const departamentoSeleccionado = selectDepartamento.value;
     console.log('Departamento seleccionado:', departamentoSeleccionado);
 
