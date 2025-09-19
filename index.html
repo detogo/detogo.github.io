@@ -599,12 +599,7 @@ async function listar_archivos_txt() {
             console.log("Solicitando ubicación a App Inventor...");
             AppInventor.setWebViewString("Ubicacion");
         } else {
-            // Revisar si ya hay coordenadas guardadas
-            const coords = obtenerCoordenadasGuardadas();
-            if (coords) {
-                console.log("Usando coordenadas guardadas:", coords.lat, coords.lng);
-                alert("Latitud: " + coords.lat + " - Longitud: " + coords.lng);
-            } else {
+            
                 // Obtener nueva ubicación
                 console.log("Solicitando ubicación al navegador...");
                 if ("geolocation" in navigator) {
@@ -621,7 +616,7 @@ async function listar_archivos_txt() {
                     alert("Tu navegador no soporta geolocalización.");
                 }
             }
-        }
+        
     }
 
 
@@ -734,6 +729,7 @@ async function actualizarSegunUbicacion(coords) {
 // Función que llama cuando se obtiene nueva ubicación del GPS
 function recibirCoordenadas(lat, lng) {
     console.log("Ubicación recibida:", lat, lng);
+    alert("Latitud gps: " + lat + " - Longitud gps: " + lng);
 
     // Guardar coordenadas en localStorage
     localStorage.setItem("miLatitud", lat);
