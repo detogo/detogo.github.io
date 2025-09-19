@@ -522,7 +522,76 @@
 ##############################################################################################-->
 <script>
     
-    const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.setWebViewString === "function");
+const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.setWebViewString === "function");
+// Obtener el elemento select para el departamento
+const selectDepartamento = document.getElementById("select-departamento");
+const selectUbicacion = document.getElementById("select-ubicacion");
+
+// Al iniciar la página
+// Al cargar la página, revisamos si ya hay coordenadas guardadas
+document.addEventListener("DOMContentLoaded", async () => {
+
+    listar_archivos_txt();
+    const coords = obtenerCoordenadasGuardadas();
+   
+    if (coords) {
+        actualizarSegunUbicacion(coords);
+    } else {
+        console.log("No hay coordenadas guardadas al iniciar.");
+    }
+}); 
+
+async function listar_archivos_txt() {
+    
+    try {
+        const username = 'detogo';
+        const repo = 'detogo.github.io';
+
+        // Realizar una solicitud al servidor para obtener la lista de archivos del repositorio
+        const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
+        const data = await response.json();
+
+        // Obtener los nombres de los archivos del repositorio
+        archivos = data.map(file => file.name);
+
+        // Crear un conjunto para almacenar los nombres de los departamentos únicos
+        const departamentosUnicos = new Set();
+
+        // Mostrar los nombres de los archivos en la lista
+        const listaArchivos = document.getElementById("lista-archivos");
+        archivos.forEach(nombre => {
+           
+            if (nombre.endsWith(".txt")) {
+                
+                //const listItem = document.createElement("li");
+                //listItem.textContent = nombre;
+                //listaArchivos.appendChild(listItem);
+
+                // Dividir el nombre del archivo en sus partes
+                const partes = nombre.split(",");
+                // Agregar el departamento al conjunto de departamentos únicos
+                const departamento = partes[0];
+                departamentosUnicos.add(departamento);
+                archivos_txt.push(nombre);
+
+            }
+        });
+
+        // Agregar cada departamento único como opción en el select
+        const selectDepartamento = document.getElementById("select-departamento");
+        departamentosUnicos.forEach(departamento => {
+            const option = document.createElement("option");
+            option.value = departamento;
+            option.textContent = departamento;
+            selectDepartamento.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error('Error al obtener el listado:', error);
+    }
+}
+
+
 
 
     function pedirUbicacion() {
@@ -626,16 +695,7 @@ async function encontrarUbicacionMasCercana(coords) {
 
 
 
-// Al iniciar la página
-// Al cargar la página, revisamos si ya hay coordenadas guardadas
-document.addEventListener("DOMContentLoaded", async () => {
-    const coords = obtenerCoordenadasGuardadas();
-    if (coords) {
-        actualizarSegunUbicacion(coords);
-    } else {
-        console.log("No hay coordenadas guardadas al iniciar.");
-    }
-});
+
 
 
 // Función principal que busca la ubicación más cercana y actualiza todo
@@ -656,6 +716,9 @@ async function actualizarSegunUbicacion(coords) {
         const partes = masCercano.archivo.replace(".txt", "").split(",");
         const departamento = partes[0];
         const ubicacion = partes.slice(1).join(",");
+       
+        const selectDepartamento = document.getElementById("select-departamento");
+        const selectUbicacion = document.getElementById("select-ubicacion");      
 
         // Seteamos los selects
         selectDepartamento.value = departamento;
@@ -733,6 +796,10 @@ let archivos_txt =[];
 
 function actualizarUbicaciones() {
     // Obtener el departamento seleccionado
+
+    const selectDepartamento = document.getElementById("select-departamento");
+    const selectUbicacion = document.getElementById("select-ubicacion");      
+
     const departamentoSeleccionado = selectDepartamento.value;
     console.log('Departamento seleccionado:', departamentoSeleccionado);
 
@@ -842,15 +909,6 @@ function actualizarUbicaciones() {
 selectDepartamento.addEventListener("change", actualizarUbicaciones);
 selectDepartamento.addEventListener("change", actualizar_plataforma);
 selectUbicacion.addEventListener("change", actualizar_plataforma);
-
-
-
-window.onload = function() {
-  console.log('La página se ha cargado correctamente.');
-  listar_archivos_txt();
-};
-  
-
 
 
 </script>
