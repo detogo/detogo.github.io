@@ -2070,7 +2070,17 @@ contenedorImagen.appendChild(circuloBlanco);
 
 
 function enviar_whatsapp(numero) {
-    window.location.href = "https://wa.me/" + numero;
+    if (isAppInventor) {
+
+            console.log("Solicitando whatsapp...");
+            AppInventor.setWebViewString("WhatsApp,"+numero_telefono);
+        
+        } else {
+
+             window.location.href = "https://wa.me/" + numero_telefono;
+            
+        }
+    
 }
 
 
@@ -2079,7 +2089,7 @@ function enviar_whatsapp(numero) {
         if (isAppInventor) {
 
             console.log("Solicitando llamar...");
-            AppInventor.setWebViewString("Llamar "+numero_telefono);
+            AppInventor.setWebViewString("Llamar,"+numero_telefono);
         
         } else {
 
