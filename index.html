@@ -42,24 +42,29 @@
       }
 
       .btn-llamar-telefono {
-            background-color: dodgerblue ;
+            background-color: dodgerblue;
             color: black;
             border: 2px dodgerblue;
             border-radius: 20px;
             padding: 5px 10px;
             font-size: 24px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            display:inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
             margin-left: 10px;
         }
 
         .btn-llamar-telefono:hover {
             background-color: blue;
             border-color: blue;
-            display:inline-block;
-
         }
+
+        /* 👇 efecto al presionar */
+        .btn-llamar-telefono:active {
+            transform: scale(1.2); /* crece un 20% */
+        }
+
+        /* ------------------------- */
 
         .btn-llamar-whatsapp {
             background-color: lime;
@@ -69,21 +74,21 @@
             padding: 5px 10px;
             font-size: 24px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            display:inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
             margin-left: 10px;
         }
 
         .btn-llamar-whatsapp:hover {
             background-color: green;
             border-color: green;
-            display:inline-block;
-
         }
 
-           
-     
-  
+        /* 👇 efecto al presionar */
+        .btn-llamar-whatsapp:active {
+            transform: scale(1.2); /* crece un 20% */
+        }
+ 
     </style>
 
     <style>
@@ -140,7 +145,7 @@
     }
 
     /* Estilo para los botones */
-    .btn-llamar, .btn-whatsapp, .btn-tienda  {
+    .btn-tienda  {
       display: inline-block;
       padding: 10px 20px;
       margin-top: 10px;
@@ -151,14 +156,7 @@
       cursor: pointer;
     }
 
-    .btn-whatsapp {
-      background-color: green;
-      margin-left: 10px;
-    }
-
-    .btn-tienda {
-      background-color: white;
-      margin-left: 10px;
+   
     }
 
 
@@ -1272,24 +1270,28 @@ btnTienda.appendChild(imgBtnTienda);
                 // Agregar los botones para llamar y WhatsApp
                 //const contenedorBotones = document.createElement('div');
                 //contenedorBotones.classList.add('botones-tienda');
-
+                 // Crear botones para llamar por teléfono y WhatsApp
+     
+ 
 
                 // Botón para llamar
                 const btnLlamar = document.createElement('button');
                 btnLlamar.textContent = 'Llamar';
-                btnLlamar.classList.add('btn-llamar');
+                btnLlamar.classList.add('btn-llamar-telefono');
 
                 btnLlamar.onclick = function() {
-                    window.location.href = 'tel:' + tienda.tel;
+                    
+                    llamar_telefono(tienda.tel);
                 };
                 contenedorBotones.appendChild(btnLlamar);
 
                 // Botón para WhatsApp
                 const btnWhatsapp = document.createElement('button');
                 btnWhatsapp.textContent = 'WhatsApp';
-                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.classList.add('btn-llamar-whatsapp');
                 btnWhatsapp.onclick = function() {
-                    window.location.href = 'https://wa.me/' + tienda.tel;
+                   
+                    enviar_whatsapp(tienda.tel);
                 };
                 contenedorBotones.appendChild(btnWhatsapp);
 
@@ -1476,24 +1478,26 @@ btnTienda.appendChild(imgBtnTienda);
                 // Agregar los botones para llamar y WhatsApp
                 //const contenedorBotones = document.createElement('div');
                 //contenedorBotones.classList.add('botones-tienda');
-
+                
 
                 // Botón para llamar
                 const btnLlamar = document.createElement('button');
                 btnLlamar.textContent = 'Llamar';
-                btnLlamar.classList.add('btn-llamar');
+                btnLlamar.classList.add('btn-llamar-telefono');
 
                 btnLlamar.onclick = function() {
-                    window.location.href = 'tel:' + tienda.tel;
+                    
+                    llamar_telefono(tienda.tel);
                 };
                 contenedorBotones.appendChild(btnLlamar);
 
                 // Botón para WhatsApp
                 const btnWhatsapp = document.createElement('button');
                 btnWhatsapp.textContent = 'WhatsApp';
-                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.classList.add('btn-llamar-whatsapp');
                 btnWhatsapp.onclick = function() {
-                    window.location.href = 'https://wa.me/' + tienda.tel;
+                   
+                    enviar_whatsapp(tienda.tel);
                 };
                 contenedorBotones.appendChild(btnWhatsapp);
 
@@ -1600,21 +1604,25 @@ btnTienda.appendChild(imgBtnTienda);
                 const contenedorBotones = document.createElement('div');
                 contenedorBotones.classList.add('botones');
 
+              
                 // Botón para llamar
                 const btnLlamar = document.createElement('button');
                 btnLlamar.textContent = 'Llamar';
-                btnLlamar.classList.add('btn-llamar');
+                btnLlamar.classList.add('btn-llamar-telefono');
+
                 btnLlamar.onclick = function() {
-                    window.location.href = 'tel:' + servicio.telefono;
+                    
+                    llamar_telefono(servicio.telefono);
                 };
                 contenedorBotones.appendChild(btnLlamar);
 
                 // Botón para WhatsApp
                 const btnWhatsapp = document.createElement('button');
                 btnWhatsapp.textContent = 'WhatsApp';
-                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.classList.add('btn-llamar-whatsapp');
                 btnWhatsapp.onclick = function() {
-                    window.location.href = 'https://wa.me/' + servicio.telefono;
+                   
+                    enviar_whatsapp(servicio.telefono);
                 };
                 contenedorBotones.appendChild(btnWhatsapp);
 
@@ -1788,25 +1796,30 @@ contenedor_promocional.style.marginBottom = "20px"; // Espacio de 20px en la par
                 contenedorBotones.style.paddingBottom = "5px";
                 contenedorBotones.style.paddingLeft = "30px";
              
- // Botón para llamar
+ 
+                 // Botón para llamar
                 const btnLlamar = document.createElement('button');
                 btnLlamar.textContent = 'Llamar';
-                btnLlamar.classList.add('btn-llamar');
-
+                btnLlamar.classList.add('btn-llamar-telefono');
 
                 btnLlamar.onclick = function() {
-                    window.location.href = 'tel:' + telefonoPromocional;
+                    
+                    llamar_telefono(telefonoPromocional);
                 };
                 contenedorBotones.appendChild(btnLlamar);
 
                 // Botón para WhatsApp
                 const btnWhatsapp = document.createElement('button');
                 btnWhatsapp.textContent = 'WhatsApp';
-                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.classList.add('btn-llamar-whatsapp');
                 btnWhatsapp.onclick = function() {
-                    window.location.href = 'https://wa.me/' + telefonoPromocional;
+                   
+                    enviar_whatsapp(telefonoPromocional);
                 };
                 contenedorBotones.appendChild(btnWhatsapp);
+
+
+
 
                 // Agregar los botones al contenedor de información
                
@@ -2017,26 +2030,33 @@ contenedorImagen.appendChild(circuloBlanco);
                 const contenedorBotones = document.createElement('div');                
                 contenedorBotones.style.paddingBottom = "5px";
                 contenedorBotones.style.paddingLeft = "30px";
-             
- // Botón para llamar
+          
+
+
+
+                 // Botón para llamar
                 const btnLlamar = document.createElement('button');
                 btnLlamar.textContent = 'Llamar';
-                btnLlamar.classList.add('btn-llamar');
-
+                btnLlamar.classList.add('btn-llamar-telefono');
 
                 btnLlamar.onclick = function() {
-                    window.location.href = 'tel:' + tienda_telefono;
+                    
+                    llamar_telefono(tienda_telefono);
                 };
                 contenedorBotones.appendChild(btnLlamar);
 
                 // Botón para WhatsApp
                 const btnWhatsapp = document.createElement('button');
                 btnWhatsapp.textContent = 'WhatsApp';
-                btnWhatsapp.classList.add('btn-whatsapp');
+                btnWhatsapp.classList.add('btn-llamar-whatsapp');
                 btnWhatsapp.onclick = function() {
-                    window.location.href = 'https://wa.me/' + tienda_telefono;
+                   
+                    enviar_whatsapp(tienda_telefono);
                 };
                 contenedorBotones.appendChild(btnWhatsapp);
+
+
+
 
                 // Agregar los botones al contenedor de información
                
@@ -2061,9 +2081,6 @@ contenedorImagen.appendChild(circuloBlanco);
         console.error('Error al obtener el listado de archivos PNG:', error);
     }
 }
-
-
-
 
 
    
