@@ -22,13 +22,25 @@
       { "nombre": "Martir Alirio Sorto", "descripcion": "IZUZU Año 1991 Sencillo", "tel": "77566489" }
     ],
     "microbus": [
-      { "nombre": "Carlos Villatoro", "descripcion": "Año 2022 4 puertas A/C", "tel": "10615173" }
+      { "nombre": "Carlos Villatoro", "descripcion": "Año 2022 4 puertas A/C", "tel": "10615173" },
+     
     ]
   },
   "Services": {
     "Ing Electricista": [
       { "nombre": "Ernesto Vladimir Valdez", "especialidad": "Instalaciones Electricas", "tel": "78218224" }
+    ],
+
+    "Reparaciones Electronicas": [
+      { "nombre": "Luis Antonio Ibañez", "especialidad": "Reparacion de TV Led y electrodomesticos", "tel": "78561048" },
+
+      { "nombre": "Jaime Orellana", "especialidad": "Reparacion Electrodomesticos", "tel": "79322142" }
     ]
+
+
+
+
+
   },
   "Markets": {
     "Comida": [
