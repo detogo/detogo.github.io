@@ -22,7 +22,7 @@
       { "nombre": "Martir Alirio Sorto", "descripcion": "IZUZU Año 1991 Sencillo", "tel": "77566489" }
     ],
     "microbus": [
-      { "nombre": "Carlos Villatoro", "descripcion": "Año 2022 4 puertas A/C", "tel": "10615173" }
+      { "nombre": "Carlos Villatoro", "descripcion": "Año 2022 4 puertas A/C", "tel": "70615173" }
      
     ]
   },
