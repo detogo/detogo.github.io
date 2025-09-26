@@ -986,11 +986,39 @@ function recibirCoordenadas(lat, lng) {
 <script>
  
 
-
-
-function actualizarUbicaciones() {
+async function actualizarUbicaciones() {
     // Obtener el departamento seleccionado
+    const departamentoSeleccionado = selectDepartamento.value;
+    console.log('Departamento seleccionado:', departamentoSeleccionado);
 
+    // Limpiar las opciones actuales del select de ubicación
+    selectUbicacion.innerHTML = "";
+
+    // Filtrar las carpetas según el departamento seleccionado
+    const carpetasFiltradas = carpetas.filter(nombreCarpeta => {
+        // Ignorar carpetas especiales
+        if (nombreCarpeta === ".git" || nombreCarpeta === "detogo_app") return false;
+        const partes = nombreCarpeta.split(",");
+        return partes[0] === departamentoSeleccionado;
+    });
+
+    console.log('Carpetas filtradas:', carpetasFiltradas);
+
+    // Crear nuevas opciones basadas en los nombres filtrados
+    carpetasFiltradas.forEach(nombreCarpeta => {
+        const partes = nombreCarpeta.split(",");
+        const municipioNombre = partes.slice(1).join(","); // todo lo que queda después del departamento
+        console.log('Municipio:', municipioNombre);
+
+        const option = document.createElement("option");
+        option.value = municipioNombre;
+        option.textContent = municipioNombre;
+        selectUbicacion.appendChild(option);
+    });
+}
+
+function actualizarUbicaciones2() {
+    // Obtener el departamento seleccionado
    
     const departamentoSeleccionado = selectDepartamento.value;
     console.log('Departamento seleccionado:', departamentoSeleccionado);
@@ -1044,13 +1072,10 @@ function actualizarUbicaciones() {
             if (xhr.status === 200) {
                 // El archivo se cargó correctamente
                 console.log('El archivo se cargó correctamente.');
-                const contenidoJSON = JSON.parse(xhr.responseText);
-                
+                const contenidoJSON = JSON.parse(xhr.responseText);                
 
                 console.log('Contenido del archivo JSON:', contenidoJSON);
                
-
-
                 const datos_administracion = contenidoJSON.Administracion;
                 actualizar_pantalla_administracion(datos_administracion);
 
