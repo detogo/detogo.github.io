@@ -712,51 +712,6 @@ async function listar_carpetas() {
 
 
 
-async function listar_archivos_txt() {
-    
-    try {
-        const username = 'detogo';
-        const repo = 'detogo.github.io';
-
-        // Realizar una solicitud al servidor para obtener la lista de archivos del repositorio
-        const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
-        const data = await response.json();
-
-        // Obtener los nombres de los archivos del repositorio
-        archivos = data.map(file => file.name);
-
-        // Crear un conjunto para almacenar los nombres de los departamentos únicos
-        const departamentosUnicos = new Set();
-
-        // Mostrar los nombres de los archivos en la lista
-        const listaArchivos = document.getElementById("lista-archivos");
-        archivos.forEach(nombre => {
-           
-            if (nombre.endsWith(".txt")) {
-                                
-                // Dividir el nombre del archivo en sus partes
-                const partes = nombre.split(",");
-                // Agregar el departamento al conjunto de departamentos únicos
-                const departamento = partes[0];
-                departamentosUnicos.add(departamento);
-                archivos_txt.push(nombre);
-
-            }
-        });
-         console.log("Lista departamentos.", departamentosUnicos ); 
-        // Agregar cada departamento único como opción en el select
-      
-        departamentosUnicos.forEach(departamento => {
-            const option = document.createElement("option");
-            option.value = departamento;
-            option.textContent = departamento;
-            selectDepartamento.appendChild(option);
-        });
-
-    } catch (error) {
-        console.error('Error al obtener el listado:', error);
-    }
-}
 
 
 
@@ -819,41 +774,6 @@ function calcularDistancia(lat1, lng1, lat2, lng2) {
     return R * c; // distancia en km
 }
 
-// Encuentra la ubicación más cercana
-async function encontrarUbicacionMasCercana2(coords) {
-    let mejor = null;
-    let menorDistancia = Infinity;
-
-    for (const archivo of archivos_txt) {
-        try {
-            const resp = await fetch(archivo);
-            if (!resp.ok) continue;
-            const data = await resp.json();
-
-            // Tomamos la primera administración
-            if (data.Administracion && data.Administracion.length > 0) {
-                const coorxy = data.Administracion[0].coorxy;
-                const partes = coorxy.split(",");
-                const lat = parseFloat(partes[0]);
-                const lng = parseFloat(partes[1]);
-
-                const distancia = calcularDistancia(
-                    coords.lat, coords.lng,
-                    lat, lng
-                );
-
-                if (distancia < menorDistancia) {
-                    menorDistancia = distancia;
-                    mejor = { archivo, data, distancia };
-                }
-            }
-        } catch (e) {
-            console.error("Error leyendo archivo", archivo, e);
-        }
-    }
-
-    return mejor;
-}
 
 
 // Encuentra la ubicación más cercana
@@ -903,37 +823,6 @@ async function encontrarUbicacionMasCercana(coords) {
 
 
 
-// Función principal que busca la ubicación más cercana y actualiza todo
-async function actualizarSegunUbicacion2(coords) {
-    if (!coords) {
-        console.log("No hay coordenadas para buscar.");
-        return;
-    }
-
-    console.log("Buscando ubicación más cercana a:", coords);
-
-    const masCercano = await encontrarUbicacionMasCercana(coords);
-
-    if (masCercano) {
-        console.log("Ubicación más cercana:", masCercano);
-
-        // Sacamos depto y municipio desde el nombre del archivo
-        const partes = masCercano.archivo.replace(".txt", "").split(",");
-        const departamento = partes[0];
-        const ubicacion = partes.slice(1).join(",");
-       
-       
-        // Seteamos los selects
-        selectDepartamento.value = departamento;
-        await actualizarUbicaciones(); 
-        selectUbicacion.value = ubicacion;
-
-        // Ejecutar tu función principal
-        actualizar_plataforma();
-    } else {
-        console.log("No se encontró ubicación cercana.");
-    }
-}
 
 
 // Función principal que busca la ubicación más cercana y actualiza todo
@@ -1018,41 +907,11 @@ async function actualizarUbicaciones() {
     });
 }
 
-function actualizarUbicaciones2() {
-    // Obtener el departamento seleccionado
-   
-    const departamentoSeleccionado = selectDepartamento.value;
-    console.log('Departamento seleccionado:', departamentoSeleccionado);
 
-    // Limpiar las opciones actuales del select de ubicación
-    selectUbicacion.innerHTML = "";
 
-  
-    // Filtrar los nombres de archivos según el departamento seleccionado
-    const nombresFiltrados = archivos_txt.filter(nombre => {
-        const partes = nombre.split(",");        
-        return partes[0] === departamentoSeleccionado;
-    });
-    
 
-    console.log('nombresFiltrados:',nombresFiltrados );
-   
 
-    // Crear nuevas opciones basadas en los nombres filtrados
-    nombresFiltrados.forEach(nombre => {
-        const partes = nombre.split(",");
-        const municipioNombre = partes[1] + "," + partes[2].replace(".txt", "");
-       
-        
-        console.log('Municipio y nombre de delivery:', municipioNombre);
 
-        const option = document.createElement("option");
-        option.textContent = municipioNombre;
-        selectUbicacion.appendChild(option);
-    });
-
-    
-}
 
  function actualizar_plataforma() {
     // Obtener el departamento seleccionado
@@ -1060,9 +919,13 @@ function actualizarUbicaciones2() {
     // Obtener la ubicación seleccionada
     const ubicacionSeleccionada = selectUbicacion.value;
     // Concatenar el departamento y la ubicación seleccionados
-    const rutaArchivo = departamentoSeleccionado + "," + ubicacionSeleccionada+".txt";
+
+    console.log("xxxxxxx",departamentoSeleccionado,ubicacionSeleccionada);
+    
+
+    const rutaArchivo = departamentoSeleccionado + "," + ubicacionSeleccionada+"/json_perfiles.txt";
     // Aquí puedes realizar otras acciones con la ubicación completa, como enviarla a la plataforma
-    console.log('rutaArchivo:', rutaArchivo);
+    console.log('rutaArchivo json:', rutaArchivo);
 
     // Crear una nueva solicitud XMLHttpRequest
     const xhr = new XMLHttpRequest();
