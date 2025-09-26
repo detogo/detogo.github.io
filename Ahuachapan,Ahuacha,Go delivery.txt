@@ -112,7 +112,9 @@
     
     "Ropa y moda": [
     
-      {"nombre": "Confecciones y Serigrafia Valdez", "especialidad": "Uniformes de fútbol y mucho más", "horario": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224", "tipo": "avanzada"}
+      {"nombre": "Confecciones y Serigrafia Valdez", "especialidad": "Uniformes de fútbol y mucho más", "horario": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224", "tipo": "avanzada"},
+
+      {"nombre": "Little Caesars", "especialidad": "Pizzas", "horario": "atendemos de 7 am a 7 pm, entregamos a domicilio", "tel": "78218224", "tipo": "avanzada"}
      
 
     ]
