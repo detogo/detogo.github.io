@@ -651,7 +651,9 @@ let archivos_txt =[];
 document.addEventListener("DOMContentLoaded", async () => {
 
     console.log("Listar archivos TXT."); 
-    await listar_archivos_txt(); // <-- importante el awaitlistar_archivos_txt();
+    //await listar_archivos_txt(); // <-- importante el awaitlistar_archivos_txt();
+    await listar_carpetas();
+
     const coords = obtenerCoordenadasGuardadas();
    
     if (coords) {
@@ -660,6 +662,52 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("No hay coordenadas guardadas al iniciar.");
     }
 }); 
+
+
+async function listar_carpetas() {
+    try {
+        const username = 'detogo';
+        const repo = 'detogo.github.io';
+
+        // Obtener la lista de elementos en el repo
+        const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
+        const data = await response.json();
+
+        const departamentosUnicos = new Set();
+
+        data.forEach(item => {
+            if (item.type === "dir") {
+                // Ignorar carpetas especiales
+                if (item.name === ".git" || item.name === "detogo_app") {
+                    return; 
+                }
+
+                // El nombre de la carpeta corresponde al "departamento"
+                const partes = item.name.split(",");
+                const departamento = partes[0];
+                departamentosUnicos.add(departamento);
+            }
+        });
+
+        console.log("Lista departamentos:", departamentosUnicos);
+
+        // Agregar cada departamento al select
+        const selectDepartamento = document.getElementById("selectDepartamento");
+        departamentosUnicos.forEach(departamento => {
+            const option = document.createElement("option");
+            option.value = departamento;
+            option.textContent = departamento;
+            selectDepartamento.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error('Error al obtener carpetas:', error);
+    }
+}
+
+
+
+
 
 async function listar_archivos_txt() {
     
@@ -769,7 +817,7 @@ function calcularDistancia(lat1, lng1, lat2, lng2) {
 }
 
 // Encuentra la ubicación más cercana
-async function encontrarUbicacionMasCercana(coords) {
+async function encontrarUbicacionMasCercana2(coords) {
     let mejor = null;
     let menorDistancia = Infinity;
 
@@ -805,12 +853,55 @@ async function encontrarUbicacionMasCercana(coords) {
 }
 
 
+// Encuentra la ubicación más cercana
+async function encontrarUbicacionMasCercana(coords) {
+    let mejor = null;
+    let menorDistancia = Infinity;
 
+    for (const carpeta of carpetas) {   // 🔹 ahora iteras sobre carpetas
+        try {
+            const username = 'detogo';
+            const repo = 'detogo.github.io';
+            const rutaArchivo = `${carpeta}/json_perfiles.txt`;
+
+            // Llamada a la API de GitHub para obtener contenido del archivo
+            const resp = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${rutaArchivo}`);
+            if (!resp.ok) continue;
+
+            const dataGitHub = await resp.json();
+            // El contenido viene en base64 → decodificar
+            const contenido = atob(dataGitHub.content);
+            const data = JSON.parse(contenido);
+
+            // Tomamos la primera administración
+            if (data.Administracion && data.Administracion.length > 0) {
+                const coorxy = data.Administracion[0].coorxy;
+                const partes = coorxy.split(",");
+                const lat = parseFloat(partes[0]);
+                const lng = parseFloat(partes[1]);
+
+                const distancia = calcularDistancia(
+                    coords.lat, coords.lng,
+                    lat, lng
+                );
+
+                if (distancia < menorDistancia) {
+                    menorDistancia = distancia;
+                    mejor = { carpeta, data, distancia };
+                }
+            }
+        } catch (e) {
+            console.error("Error leyendo carpeta", carpeta, e);
+        }
+    }
+
+    return mejor;
+}
 
 
 
 // Función principal que busca la ubicación más cercana y actualiza todo
-async function actualizarSegunUbicacion(coords) {
+async function actualizarSegunUbicacion2(coords) {
     if (!coords) {
         console.log("No hay coordenadas para buscar.");
         return;
@@ -829,6 +920,38 @@ async function actualizarSegunUbicacion(coords) {
         const ubicacion = partes.slice(1).join(",");
        
        
+        // Seteamos los selects
+        selectDepartamento.value = departamento;
+        await actualizarUbicaciones(); 
+        selectUbicacion.value = ubicacion;
+
+        // Ejecutar tu función principal
+        actualizar_plataforma();
+    } else {
+        console.log("No se encontró ubicación cercana.");
+    }
+}
+
+
+// Función principal que busca la ubicación más cercana y actualiza todo
+async function actualizarSegunUbicacion(coords) {
+    if (!coords) {
+        console.log("No hay coordenadas para buscar.");
+        return;
+    }
+
+    console.log("Buscando ubicación más cercana a:", coords);
+
+    const masCercano = await encontrarUbicacionMasCercana(coords);
+
+    if (masCercano) {
+        console.log("Ubicación más cercana:", masCercano);
+
+        // Sacamos depto y municipio desde el nombre de la carpeta
+        const partes = masCercano.carpeta.split(",");
+        const departamento = partes[0];
+        const ubicacion = partes.slice(1).join(",");
+
         // Seteamos los selects
         selectDepartamento.value = departamento;
         await actualizarUbicaciones(); 
@@ -1282,7 +1405,7 @@ function actualizar_pantalla_markets(datos_markets) {
 				//console.log('rutaCarpeta # :', ruta_a_tienda);
 
 
-                const extensiones = ["svg", "png", "jpg", "jpeg"];
+               const extensiones = ["svg", "png", "jpg", "jpeg"];
                 let encontrada = false;
 
                 for (let ext of extensiones) {
