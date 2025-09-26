@@ -844,7 +844,7 @@ async function actualizarSegunUbicacion(coords) {
 // Función que llama cuando se obtiene nueva ubicación del GPS
 function recibirCoordenadas(lat, lng) {
     console.log("Ubicación recibida:", lat, lng);
-    alert("Latitud gps: " + lat + " - Longitud gps: " + lng);
+    alert("Latitud solicitada: " + lat + " - Longitud solicitada: " + lng);
 
     // Guardar coordenadas en localStorage
     localStorage.setItem("miLatitud", lat);
@@ -1282,7 +1282,25 @@ function actualizar_pantalla_markets(datos_markets) {
 				//console.log('rutaCarpeta # :', ruta_a_tienda);
 
 
-               	imagenTienda.src = rutaCarpeta+"/"+tienda.nombre+"/"+"logo_tienda.SVG";
+                const extensiones = ["svg", "png", "jpg", "jpeg"];
+                let encontrada = false;
+
+                for (let ext of extensiones) {
+                    const ruta = `${rutaCarpeta}/${tienda.nombre}/logo_tienda.${ext}`;
+                    const img = new Image();
+                    img.src = ruta;
+
+                    img.onload = function() {
+                        imagenTienda.src = ruta;
+                        encontrada = true;
+                    };
+
+                    img.onerror = function() {
+                        if (!encontrada) {
+                            console.log(`No se encontró: ${ruta}`);
+                        }
+                    };
+                }
                 
                 //aqui debe crearse un boton para ir a la tienda
                 imagenTienda.onload = function() {
