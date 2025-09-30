@@ -836,6 +836,7 @@ function encontrarMasCercano(coords) {
 // ----------------- CUANDO CAMBIO SELECT -----------------
 selectDepartamento.addEventListener("change", actualizarMunicipios);
 selectMunicipio.addEventListener("change", actualizarServicios);
+selectServicio.addEventListener("change", actualizar_plataforma);
 
 // ----------------- INICIO -----------------
 document.addEventListener("DOMContentLoaded", listarEstructura);
@@ -1074,13 +1075,13 @@ async function actualizarUbicaciones() {
     // Obtener el departamento seleccionado
     const departamentoSeleccionado = selectDepartamento.value;
     // Obtener la ubicación seleccionada
-    const ubicacionSeleccionada = selectUbicacion.value;
+    const municipioSeleccionado = selectMunicipio.value;
     // Concatenar el departamento y la ubicación seleccionados
-
+    const servicioSeleccionado = selectServicio.value;
     console.log("xxxxxxx",departamentoSeleccionado,ubicacionSeleccionada);
     
 
-    const rutaArchivo = departamentoSeleccionado + "," + ubicacionSeleccionada+"/json_perfiles.txt";
+    const rutaArchivo = departamentoSeleccionado + "/" + municipioSeleccionado + "/" + servicioSeleccionado + "/administrador.txt";
     // Aquí puedes realizar otras acciones con la ubicación completa, como enviarla a la plataforma
     console.log('rutaArchivo json:', rutaArchivo);
 
