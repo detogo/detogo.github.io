@@ -275,21 +275,15 @@
                             <center><h3><p> Detogo.app<p></p></center>
                             <center><h5><p> Aqui encontraras de todo, cerca de ti y sin intermediarios </p></h5> </center> 
                       
-                    </li> 
-  
-
-                                                     
+                    </li>   
+                                                    
                     
-
-                        <li><a href="https://api.detogo.app">api.detogo </a>
-                          
+                       <li><a href="https://api.detogo.app">api.detogo </a>
+                       
                        </li>
-
                       
                       <!-- Copiar clave -->
                      
-
-
                       <li>
                           
                           <button class="btn-llamar-whatsapp"  onclick="cambiar_apidetogo(0)" style="display: inline-block; margin-left: 15px; margin-top: 5px;">api.detogo</button>
@@ -314,14 +308,22 @@
               
                 <div style="display: flex; align-items: center;  padding: 5px;">
                   <select id="select-departamento">
-                        <option value="Ahuachapan" >Seleccione departamento</option>
+                        
                      
                    </select>
 
-                    <select id="select-ubicacion">
-                        <option value="Ahuachapan, Go! delivery" >Seleccione Ubicacion</option>
+                    <select id="select-municipio">
+                        
                      
                    </select>
+
+                     <select id="select-servicio">
+                      
+                     
+                   </select>
+
+
+
 
                    <a href="javascript:void(0)" 
    style="margin-left: 10px; margin-right: 10px; display: flex; align-items: center;"
@@ -642,15 +644,17 @@ const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.
 const selectDepartamento = document.getElementById("select-departamento");
 const selectUbicacion = document.getElementById("select-ubicacion");
 
- // Variable global para almacenar la lista de archivos
-let archivos = [];
-let archivos_txt =[];
+const selectDepartamento = document.getElementById("select-departamento");
+const selectMunicipio = document.getElementById("select-municipio");
+const selectServicio = document.getElementById("select-servicio");
 
-let carpetas =[];
+let estructura = []; // Aquí guardaremos toda la estructura depto/municipio/servicio
+const username = "detogo";
+const repo = "detogo.github.io";
 
 // Al iniciar la página
 // Al cargar la página, revisamos si ya hay coordenadas guardadas
-document.addEventListener("DOMContentLoaded", async () => {
+/*document.addEventListener("DOMContentLoaded", async () => {
 
     console.log("Listar archivos TXT."); 
     //await listar_archivos_txt(); // <-- importante el awaitlistar_archivos_txt();
@@ -663,50 +667,190 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
         console.log("No hay coordenadas guardadas al iniciar.");
     }
-}); 
+});*/ 
 
 
-async function listar_carpetas() {
+
+
+
+// ----------------- FUNCION PARA LISTAR CARPETAS -----------------
+async function listarEstructura() {
     try {
-        const username = 'detogo';
-        const repo = 'detogo.github.io';
-
-        // Obtener la lista de elementos en el repo
         const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents`);
-        const data = await response.json();
+        const departamentos = await response.json();
 
-        const departamentosUnicos = new Set();
+        for (const dep of departamentos) {
+            if (dep.type === "dir" && dep.name !== ".git" && dep.name !== "detogo_app") {
+                let objDep = { nombre: dep.name, municipios: [] };
 
-        data.forEach(item => {
-            if (item.type === "dir") {
-                // Ignorar carpetas especiales
-                if (item.name === ".git" || item.name === "detogo_app") {
-                    return; 
+                // Municipios
+                const respMun = await fetch(dep.url);
+                const municipios = await respMun.json();
+
+                for (const mun of municipios) {
+                    if (mun.type === "dir") {
+                        let objMun = { nombre: mun.name, servicios: [] };
+
+                        // Servicios
+                        const respServ = await fetch(mun.url);
+                        const servicios = await respServ.json();
+
+                        for (const serv of servicios) {
+                            if (serv.type === "dir") {
+                                let objServ = { nombre: serv.name, data: null };
+
+                                // Buscar administracion.py
+                                const respAdmin = await fetch(serv.url);
+                                const archivos = await respAdmin.json();
+
+                                const adminFile = archivos.find(f => f.name === "administracion.py");
+                                if (adminFile) {
+                                    const adminResp = await fetch(adminFile.download_url);
+                                    const contenido = await adminResp.text();
+
+                                    try {
+                                        objServ.data = JSON.parse(contenido);
+                                    } catch {
+                                        console.warn("Error parseando JSON en", adminFile.path);
+                                    }
+                                }
+
+                                objMun.servicios.push(objServ);
+                            }
+                        }
+
+                        objDep.municipios.push(objMun);
+                    }
                 }
 
-                // El nombre de la carpeta corresponde al "departamento"
-                const partes = item.name.split(",");
-                const departamento = partes[0];
-                departamentosUnicos.add(departamento);
-                carpetas.push(item.name);
+                estructura.push(objDep);
             }
-        });
+        }
 
-        console.log("Lista departamentos:", departamentosUnicos);
-
-        // Agregar cada departamento al select
-        
-        departamentosUnicos.forEach(departamento => {
-            const option = document.createElement("option");
-            option.value = departamento;
-            option.textContent = departamento;
+        // Llenar select de departamentos
+        estructura.forEach(dep => {
+            let option = document.createElement("option");
+            option.value = dep.nombre;
+            option.textContent = dep.nombre;
             selectDepartamento.appendChild(option);
         });
 
-    } catch (error) {
-        console.error('Error al obtener carpetas:', error);
+        console.log("Estructura cargada:", estructura);
+
+    } catch (err) {
+        console.error("Error listando estructura:", err);
     }
 }
+
+// ----------------- ACTUALIZAR MUNICIPIOS -----------------
+function actualizarMunicipios() {
+    selectMunicipio.innerHTML = "<option>Seleccione Municipio</option>";
+    selectServicio.innerHTML = "<option>Seleccione Servicio</option>";
+
+    const dep = estructura.find(d => d.nombre === selectDepartamento.value);
+    if (dep) {
+        dep.municipios.forEach(mun => {
+            let option = document.createElement("option");
+            option.value = mun.nombre;
+            option.textContent = mun.nombre;
+            selectMunicipio.appendChild(option);
+        });
+    }
+}
+
+// ----------------- ACTUALIZAR SERVICIOS -----------------
+function actualizarServicios() {
+    selectServicio.innerHTML = "<option>Seleccione Servicio</option>";
+
+    const dep = estructura.find(d => d.nombre === selectDepartamento.value);
+    if (!dep) return;
+
+    const mun = dep.municipios.find(m => m.nombre === selectMunicipio.value);
+    if (mun) {
+        mun.servicios.forEach(serv => {
+            let option = document.createElement("option");
+            option.value = serv.nombre;
+            option.textContent = serv.nombre;
+            selectServicio.appendChild(option);
+        });
+    }
+}
+
+// ----------------- FUNCION DISTANCIA -----------------
+function calcularDistancia(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a =
+        Math.sin(dLat/2) ** 2 +
+        Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
+        Math.sin(dLon/2) ** 2;
+    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)));
+}
+
+// ----------------- ENCONTRAR MAS CERCANO -----------------
+function encontrarMasCercano(coords) {
+    let mejor = null;
+    let menorDistancia = Infinity;
+
+    estructura.forEach(dep => {
+        dep.municipios.forEach(mun => {
+            mun.servicios.forEach(serv => {
+                if (serv.data && serv.data.Administracion) {
+                    serv.data.Administracion.forEach(admin => {
+                        const [lat, lon] = admin.coorxy.split(",").map(Number);
+                        const dist = calcularDistancia(coords.lat, coords.lng, lat, lon);
+
+                        if (dist < menorDistancia) {
+                            menorDistancia = dist;
+                            mejor = {
+                                departamento: dep.nombre,
+                                municipio: mun.nombre,
+                                servicio: serv.nombre,
+                                data: admin,
+                                distancia: dist
+                            };
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    return mejor;
+}
+
+// ----------------- CUANDO CAMBIO SELECT -----------------
+selectDepartamento.addEventListener("change", actualizarMunicipios);
+selectMunicipio.addEventListener("change", actualizarServicios);
+
+// ----------------- INICIO -----------------
+document.addEventListener("DOMContentLoaded", listarEstructura);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -755,12 +899,12 @@ async function listar_carpetas() {
             return null;
         }
     }
-</script>
 
 
 
 
-<script>
+
+
 // Función para calcular distancia Haversine
 function calcularDistancia(lat1, lng1, lat2, lng2) {
     const R = 6371; // radio de la tierra en km
@@ -2120,8 +2264,6 @@ contenedor_publicacion.style.marginBottom = "20px"; // Espacio de 20px en la par
             listItem.appendChild(nombreDescriptivoelement);        
 
 
-
-
             // Crear un contenedor para la imagen 
             const contenedorImagen = document.createElement('div');
             contenedorImagen.style.position = "relative";
@@ -2204,17 +2346,8 @@ contenedorImagen.appendChild(circuloBlanco);
                 };
                 contenedorBotones.appendChild(btnWhatsapp);
 
-
-
-
                 // Agregar los botones al contenedor de información
                
-
-
-
-
-
-
 
             // Agregar el contenedor de imagen y logo a la lista
             contenedor_publicacion.appendChild(listItem);
