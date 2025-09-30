@@ -660,6 +660,10 @@ let estructura = []; // Aquí guardaremos toda la estructura depto/municipio/ser
 const username = "detogo";
 const repo = "detogo.github.io";
 
+
+
+document.addEventListener("DOMContentLoaded", listarEstructura);
+
 // Al iniciar la página
 // Al cargar la página, revisamos si ya hay coordenadas guardadas
 /*document.addEventListener("DOMContentLoaded", async () => {
@@ -1141,9 +1145,13 @@ selectMunicipio.addEventListener("change", actualizarServicios);
 selectServicio.addEventListener("change", actualizar_plataforma);
 
 // ----------------- INICIO -----------------
-document.addEventListener("DOMContentLoaded", listarEstructura);
 
 
+
+// Agregar un evento change al select de departamento para actualizar las ubicaciones
+//selectDepartamento.addEventListener("change", actualizarUbicaciones);
+//selectDepartamento.addEventListener("change", actualizar_plataforma);
+//selectUbicacion.addEventListener("change", actualizar_plataforma);
 
 
 </script>
