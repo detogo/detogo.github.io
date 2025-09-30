@@ -833,13 +833,6 @@ function encontrarMasCercano(coords) {
     return mejor;
 }
 
-// ----------------- CUANDO CAMBIO SELECT -----------------
-selectDepartamento.addEventListener("change", actualizarMunicipios);
-selectMunicipio.addEventListener("change", actualizarServicios);
-selectServicio.addEventListener("change", actualizar_plataforma);
-
-// ----------------- INICIO -----------------
-document.addEventListener("DOMContentLoaded", listarEstructura);
 
 
 
@@ -1142,12 +1135,15 @@ async function actualizarUbicaciones() {
 
 }
 
+// ----------------- CUANDO CAMBIO SELECT -----------------
+selectDepartamento.addEventListener("change", actualizarMunicipios);
+selectMunicipio.addEventListener("change", actualizarServicios);
+selectServicio.addEventListener("change", actualizar_plataforma);
+
+// ----------------- INICIO -----------------
+document.addEventListener("DOMContentLoaded", listarEstructura);
 
 
-// Agregar un evento change al select de departamento para actualizar las ubicaciones
-//selectDepartamento.addEventListener("change", actualizarUbicaciones);
-//selectDepartamento.addEventListener("change", actualizar_plataforma);
-//selectUbicacion.addEventListener("change", actualizar_plataforma);
 
 
 </script>
