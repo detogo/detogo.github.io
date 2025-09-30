@@ -734,7 +734,7 @@ async function listarEstructura() {
 
         // Llenar select de departamentos
         estructura.forEach(dep => {
-            let option = document.createElement("option");
+            const option = document.createElement("option");
             option.value = dep.nombre;
             option.textContent = dep.nombre;
             selectDepartamento.appendChild(option);
@@ -755,7 +755,7 @@ function actualizarMunicipios() {
     const dep = estructura.find(d => d.nombre === selectDepartamento.value);
     if (dep) {
         dep.municipios.forEach(mun => {
-            let option = document.createElement("option");
+            const option = document.createElement("option");
             option.value = mun.nombre;
             option.textContent = mun.nombre;
             selectMunicipio.appendChild(option);
@@ -773,7 +773,7 @@ function actualizarServicios() {
     const mun = dep.municipios.find(m => m.nombre === selectMunicipio.value);
     if (mun) {
         mun.servicios.forEach(serv => {
-            let option = document.createElement("option");
+            const option = document.createElement("option");
             option.value = serv.nombre;
             option.textContent = serv.nombre;
             selectServicio.appendChild(option);
