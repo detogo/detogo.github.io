@@ -275,7 +275,21 @@
                             <center><h3><p> Detogo.app<p></p></center>
                             <center><h5><p> Aqui encontraras de todo, cerca de ti y sin intermediarios </p></h5> </center> 
                       
-                    </li>   
+                    </li>  
+
+                     <li> 
+                              <select id="select-departamento"></select>
+                      </li>                        
+
+                        <li> 
+                              <select id="select-municipio"></select>
+                        </li> 
+                               
+                        <li>        
+                               <select id="select-servicio"></select>
+
+                       </li> 
+
                                                     
                     
                        <li><a href="https://api.detogo.app">api.detogo </a>
@@ -307,20 +321,7 @@
  <div class="well" style="border: none; border-radius: 20px; background:black; padding: 0px;">
               
                 <div style="display: flex; align-items: center;  padding: 5px;">
-                  <select id="select-departamento">
-                        
-                     
-                   </select>
-
-                    <select id="select-municipio">
-                        
-                     
-                   </select>
-
-                     <select id="select-servicio">
-                      
-                     
-                   </select>
+                 
 
 
 
@@ -1129,9 +1130,9 @@ async function actualizarUbicaciones() {
 
 
 // Agregar un evento change al select de departamento para actualizar las ubicaciones
-selectDepartamento.addEventListener("change", actualizarUbicaciones);
-selectDepartamento.addEventListener("change", actualizar_plataforma);
-selectUbicacion.addEventListener("change", actualizar_plataforma);
+//selectDepartamento.addEventListener("change", actualizarUbicaciones);
+//selectDepartamento.addEventListener("change", actualizar_plataforma);
+//selectUbicacion.addEventListener("change", actualizar_plataforma);
 
 
 </script>
