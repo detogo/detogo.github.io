@@ -730,7 +730,7 @@ async function listarEstructura() {
                                 const respAdmin = await fetch(serv.url);
                                 const archivos = await respAdmin.json();
 
-                                const adminFile = archivos.find(f => f.name === "administracion.py");
+                                const adminFile = archivos.find(f => f.name === "administracion.txt");
                                 if (adminFile) {
                                     const adminResp = await fetch(adminFile.download_url);
                                     const contenido = await adminResp.text();
@@ -868,6 +868,8 @@ function encontrarMasCercano(coords) {
             mun.servicios.forEach(serv => {
                 if (serv.data && serv.data.Administracion) {
                     serv.data.Administracion.forEach(admin => {
+                        
+
                         const [lat, lon] = admin.coorxy.split(",").map(Number);
                         console.log("lat long encontrada:",coords.lat, coords.lng, lat, lon );
                         const dist = calcularDistancia(coords.lat, coords.lng, lat, lon);
