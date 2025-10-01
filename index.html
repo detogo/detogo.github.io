@@ -861,6 +861,8 @@ function encontrarMasCercano(coords) {
     let mejor = null;
     let menorDistancia = Infinity;
 
+    console.log("Estructura :",estructura );
+
     estructura.forEach(dep => {
         dep.municipios.forEach(mun => {
             mun.servicios.forEach(serv => {
