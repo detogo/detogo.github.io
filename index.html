@@ -929,141 +929,6 @@ function setearSelects(masCercano) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-   
-
-
-
-
-
-
-
-
-// Encuentra la ubicación más cercana
-async function encontrarUbicacionMasCercana(coords) {
-    let mejor = null;
-    let menorDistancia = Infinity;
-
-    for (const carpeta of carpetas) {   // 🔹 ahora iteras sobre carpetas
-        try {
-            const username = 'detogo';
-            const repo = 'detogo.github.io';
-            const rutaArchivo = `${carpeta}/json_perfiles.txt`;
-
-            // Llamada a la API de GitHub para obtener contenido del archivo
-            const resp = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${rutaArchivo}`);
-            if (!resp.ok) continue;
-
-            const dataGitHub = await resp.json();
-            // El contenido viene en base64 → decodificar
-            const contenido = atob(dataGitHub.content);
-            const data = JSON.parse(contenido);
-
-            // Tomamos la primera administración
-            if (data.Administracion && data.Administracion.length > 0) {
-                const coorxy = data.Administracion[0].coorxy;
-                const partes = coorxy.split(",");
-                const lat = parseFloat(partes[0]);
-                const lng = parseFloat(partes[1]);
-
-                const distancia = calcularDistancia(
-                    coords.lat, coords.lng,
-                    lat, lng
-                );
-
-                if (distancia < menorDistancia) {
-                    menorDistancia = distancia;
-                    mejor = { carpeta, data, distancia };
-                }
-            }
-        } catch (e) {
-            console.error("Error leyendo carpeta", carpeta, e);
-        }
-    }
-
-    return mejor;
-}
-
-
-
-
-
-// Función principal que busca la ubicación más cercana y actualiza todo
-async function actualizarSegunUbicacion(coords) {
-    if (!coords) {
-        console.log("No hay coordenadas para buscar.");
-        return;
-    }
-
-    console.log("Buscando ubicación más cercana a:", coords);
-
-    const masCercano = await encontrarUbicacionMasCercana(coords);
-
-    if (masCercano) {
-        console.log("Ubicación más cercana:", masCercano);
-
-        // Sacamos depto y municipio desde el nombre de la carpeta
-        const partes = masCercano.carpeta.split(",");
-        const departamento = partes[0];
-        const ubicacion = partes.slice(1).join(",");
-
-        // Seteamos los selects
-        selectDepartamento.value = departamento;
-        await actualizarUbicaciones(); 
-        selectUbicacion.value = ubicacion;
-
-        // Ejecutar tu función principal
-        actualizar_plataforma();
-    } else {
-        console.log("No se encontró ubicación cercana.");
-    }
-}
-
-// Función que llama cuando se obtiene nueva ubicación del GPS
-function recibirCoordenadas(lat, lng) {
-    console.log("Ubicación recibida:", lat, lng);
-    alert("Latitud solicitada: " + lat + " - Longitud solicitada: " + lng);
-
-    // Guardar coordenadas en localStorage
-    localStorage.setItem("miLatitud", lat);
-    localStorage.setItem("miLongitud", lng);
-
-    // Llamar a la función única para actualizar todo
-    actualizarSegunUbicacion({ lat: parseFloat(lat), lng: parseFloat(lng) });
-}
-
-
 </script>
 
 
@@ -1098,6 +963,8 @@ async function actualizarUbicaciones() {
         option.value = municipioNombre;
         option.textContent = municipioNombre;
         selectUbicacion.appendChild(option);
+
+        actualizar_plataforma();
     });
 }
 
@@ -1186,12 +1053,6 @@ selectServicio.addEventListener("change", actualizar_plataforma);
 
 // ----------------- INICIO -----------------
 
-
-
-// Agregar un evento change al select de departamento para actualizar las ubicaciones
-//selectDepartamento.addEventListener("change", actualizarUbicaciones);
-//selectDepartamento.addEventListener("change", actualizar_plataforma);
-//selectUbicacion.addEventListener("change", actualizar_plataforma);
 
 
 </script>
