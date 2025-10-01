@@ -923,6 +923,10 @@ function setearSelects(masCercano) {
                 selectServicio.appendChild(option);
             });
             selectServicio.value = masCercano.servicio;
+
+             // 🔹 Disparar el evento 'change' para que se ejecute actualizar_plataforma
+             const event = new Event("change");
+             selectServicio.dispatchEvent(event);
         }
     }
 }
