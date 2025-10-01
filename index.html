@@ -667,15 +667,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         const coords = await obtenerUbicacionGPS(); // GPS
-        console.log("Coordenadas:", coords);
+        console.log("Coordenadas del GPS:", coords);
 
         // Guardar como respaldo
-        localStorage.setItem("miLatitud", coords.lat);
-        localStorage.setItem("miLongitud", coords.lng);
+        localStorage.setItem("miLatitudGPS", coords.lat);
+        localStorage.setItem("miLongitudGPS", coords.lng);
 
         const masCercano = encontrarMasCercano(coords);
         setearSelects(masCercano);
         console.log("Más cercano:", masCercano);
+
+
+
 
     } catch (err) {
         console.error(err);
@@ -864,6 +867,7 @@ function encontrarMasCercano(coords) {
                 if (serv.data && serv.data.Administracion) {
                     serv.data.Administracion.forEach(admin => {
                         const [lat, lon] = admin.coorxy.split(",").map(Number);
+                        console.log("lat long encontrada:",coords.lat, coords.lng, lat, lon );
                         const dist = calcularDistancia(coords.lat, coords.lng, lat, lon);
 
                         if (dist < menorDistancia) {
