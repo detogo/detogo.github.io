@@ -662,24 +662,36 @@ const repo = "detogo.github.io";
 
 
 
-document.addEventListener("DOMContentLoaded", listarEstructura);
+document.addEventListener("DOMContentLoaded", async () => {
+    await listarEstructura();
 
-// Al iniciar la página
-// Al cargar la página, revisamos si ya hay coordenadas guardadas
-/*document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const coords = await obtenerUbicacionGPS(); // GPS
+        console.log("Coordenadas:", coords);
 
-    console.log("Listar archivos TXT."); 
-    //await listar_archivos_txt(); // <-- importante el awaitlistar_archivos_txt();
-    await listar_carpetas();
+        // Guardar como respaldo
+        localStorage.setItem("miLatitud", coords.lat);
+        localStorage.setItem("miLongitud", coords.lng);
 
-    const coords = obtenerCoordenadasGuardadas();
-   
-    if (coords) {
-        actualizarSegunUbicacion(coords);
-    } else {
-        console.log("No hay coordenadas guardadas al iniciar.");
+        const masCercano = encontrarMasCercano(coords);
+        setearSelects(masCercano);
+        console.log("Más cercano:", masCercano);
+
+    } catch (err) {
+        console.error(err);
+        console.log("No se obtuvieron coordenadas del GPS.");
+
+        const coords = obtenerCoordenadasGuardadas();
+        if (coords) {
+            const masCercano = encontrarMasCercano(coords);
+            setearSelects(masCercano);
+            console.log("Más cercano:", masCercano);
+        } else {
+            console.log("No hay coordenadas guardadas.");
+        }
+
     }
-});*/ 
+});
 
 
 
@@ -789,6 +801,42 @@ function actualizarServicios() {
 }
 
 
+function obtenerUbicacionGPS() {
+    return new Promise((resolve, reject) => {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    resolve({
+                        lat: pos.coords.latitude,
+                        lng: pos.coords.longitude
+                    });
+                },
+                (err) => {
+                    reject("No se pudo obtener ubicación: " + err.message);
+                }
+            );
+        } else {
+            reject("Tu navegador no soporta geolocalización.");
+        }
+    });
+}
+
+
+
+
+// Función para recuperar coordenadas guardadas
+function obtenerCoordenadasGuardadas() {
+        const lat = localStorage.getItem("miLatitud");
+        const lng = localStorage.getItem("miLongitud");
+
+        if (lat && lng) {
+            alert("Latitud inicial: " + lat + " - Longitud inicial: " + lng);
+            return { lat: parseFloat(lat), lng: parseFloat(lng) };
+           
+        } else {
+            return null;
+        }
+}
 
 
 
@@ -838,96 +886,79 @@ function encontrarMasCercano(coords) {
 }
 
 
+function setearSelects(masCercano) {
+    if (!masCercano) return;
 
+    // Departamento
+    selectDepartamento.value = masCercano.departamento;
 
+    // Municipios de ese departamento
+    const dep = estructura.find(d => d.nombre === masCercano.departamento);
+    if (dep) {
+        selectMunicipio.innerHTML = "";
+        dep.municipios.forEach(mun => {
+            const option = document.createElement("option");
+            option.value = mun.nombre;
+            option.textContent = mun.nombre;
+            selectMunicipio.appendChild(option);
+        });
+        selectMunicipio.value = masCercano.municipio;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function pedirUbicacion() {
-        if (isAppInventor) {
-            console.log("Solicitando ubicación a App Inventor...");
-            AppInventor.setWebViewString("Ubicacion");
-        } else {
-            
-                // Obtener nueva ubicación
-                console.log("Solicitando ubicación al navegador...");
-                if ("geolocation" in navigator) {
-                    navigator.geolocation.getCurrentPosition(
-                        (pos) => {
-                            recibirCoordenadas(pos.coords.latitude, pos.coords.longitude);
-                        },
-                        (err) => {
-                            console.error("Error al obtener ubicación:", err);
-                            alert("No se pudo obtener ubicación: " + err.message);
-                        }
-                    );
-                } else {
-                    alert("Tu navegador no soporta geolocalización.");
-                }
-            }
-        
-    }
-
-
-
-    // Función para recuperar coordenadas guardadas
-    function obtenerCoordenadasGuardadas() {
-        const lat = localStorage.getItem("miLatitud");
-        const lng = localStorage.getItem("miLongitud");
-
-        if (lat && lng) {
-            alert("Latitud inicial: " + lat + " - Longitud inicial: " + lng);
-            return { lat: parseFloat(lat), lng: parseFloat(lng) };
-           
-        } else {
-            return null;
+        // Servicios de ese municipio
+        const mun = dep.municipios.find(m => m.nombre === masCercano.municipio);
+        if (mun) {
+            selectServicio.innerHTML = "";
+            mun.servicios.forEach(serv => {
+                const option = document.createElement("option");
+                option.value = serv.nombre;
+                option.textContent = serv.nombre;
+                selectServicio.appendChild(option);
+            });
+            selectServicio.value = masCercano.servicio;
         }
     }
-
-
-
-
-
-
-// Función para calcular distancia Haversine
-function calcularDistancia(lat1, lng1, lat2, lng2) {
-    const R = 6371; // radio de la tierra en km
-    const dLat = (lat2 - lat1) * Math.PI / 180;
-    const dLng = (lng2 - lng1) * Math.PI / 180;
-    const a =
-        Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(lat1 * Math.PI/180) * Math.cos(lat2 * Math.PI/180) *
-        Math.sin(dLng/2) * Math.sin(dLng/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    return R * c; // distancia en km
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+   
+
+
+
+
+
 
 
 
