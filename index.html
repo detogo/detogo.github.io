@@ -190,7 +190,7 @@
         }
 
         .menu ul li a {
-            color: white;
+            color: dodgerblue;
             text-decoration: none;
         }
 
@@ -277,6 +277,28 @@
                       
                     </li>  
 
+
+
+                    <li> 
+                              <select id="select-departamento">
+                                 <option value="Ahuachapan" >Seleccione departamento</option>
+                              </select>
+                      </li>                        
+
+                        <li> 
+                              <select id="select-municipio">
+                                 <option value="Ahuachapan" >Seleccione Municipio</option>
+                              </select>
+                        </li> 
+                               
+                        <li>        
+                               <select id="select-servicio">
+                                  <option value="Ahuachapan" >Seleccione Servicio</option>
+                               </select>
+
+                       </li> 
+
+
                     
 
                                                     
@@ -312,34 +334,21 @@
                 <div style="display: flex; align-items: center;  padding: 5px;">
 
 
-                   <li> 
-                              <select id="select-departamento">
-                                 <option value="Ahuachapan" >Seleccione departamento</option>
-                              </select>
-                      </li>                        
-
-                        <li> 
-                              <select id="select-municipio">
-                                 <option value="Ahuachapan" >Seleccione Municipio</option>
-                              </select>
-                        </li> 
-                               
-                        <li>        
-                               <select id="select-servicio">
-                                  <option value="Ahuachapan" >Seleccione Servicio</option>
-                               </select>
-
-                       </li> 
+                   
+                    <input type="text" id="imput_buscar" placeholder="Que buscas hoy?"
+                       style="border: 2px solid black; border-radius: 20px; height: 40px; flex: 1;">
+                    
                  
-
-
+                   <a data-toggle="tab" href="" style="margin-left: 15px;">
+                       <img id="image-home" src="images/buscar_icon.SVG" alt="home" width="35">
+                   </a>  
 
 
                    <a href="javascript:void(0)" 
-   style="margin-left: 10px; margin-right: 10px; display: flex; align-items: center;"
-   onclick="pedirUbicacion()">
-   <img id="image-food" src="detogo_app/gps.SVG" alt="ubicacion" width="50">
-</a>
+                         style="margin-left: 10px; margin-right: 10px; display: flex; align-items: center;"
+                         onclick="pedirUbicacion()">
+                         <img id="image-food" src="detogo_app/gps.SVG" alt="ubicacion" width="50">
+                   </a>
 
                    <a id="menuBtn"  style=" margin-left: 10px;margin-right: 10px; display: flex; align-items: center;">  <img  id="image-food" src="detogo_app/menu.SVG" alt="ubicacion" width="50"> </a>          
 
