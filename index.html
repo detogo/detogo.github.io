@@ -1271,6 +1271,107 @@ selectServicio.addEventListener("change", actualizar_plataforma);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
+async function actualizar_tiendas2() {
+    const departamento = selectDepartamento.value;
+    const municipio = selectMunicipio.value;
+    const servicio = selectServicio.value;
+
+    // Ruta base donde estarán las imágenes
+    const basePath = `https://raw.githubusercontent.com/${username}/${repo}/main/${departamento}/${municipio}/${servicio}`;
+
+    // Limpiar el contenedor antes de llenarlo
+    const homeDiv = document.getElementById("home");
+    homeDiv.innerHTML = "";
+
+    // Carpetas a recorrer: "tiendas" y "comida"
+    const carpetas = ["tiendas", "comida"];
+
+    for (const carpeta of carpetas) {
+        try {
+            // Obtener lista de archivos en la carpeta
+            const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${departamento}/${municipio}/${servicio}/${carpeta}`);
+            const archivos = await response.json();
+
+            for (const file of archivos) {
+                if (file.type === "file" && (file.name.endsWith(".jpg") || file.name.endsWith(".png") || file.name.endsWith(".jpeg"))) {
+                    const nombreImagen = file.name.split(".")[0]; // nombre sin extensión
+                    const imageUrl = file.download_url;
+
+                    // Crear fila
+                    const fila = document.createElement("div");
+                    fila.style.display = "flex";
+                    fila.style.alignItems = "center";
+                    fila.style.marginBottom = "20px"; // espacio entre filas
+                    fila.style.gap = "15px"; // espacio entre imagen y texto
+
+                    // Crear imagen
+                    const img = document.createElement("img");
+                    img.src = imageUrl;
+                    img.alt = nombreImagen;
+                    img.style.width = "100px"; 
+                    img.style.objectFit = "cover";
+                    img.style.borderRadius = "10px";
+
+                    // Crear contenedor de texto + botones
+                    const infoDiv = document.createElement("div");
+                    infoDiv.style.display = "flex";
+                    infoDiv.style.flexDirection = "column";
+                    infoDiv.style.justifyContent = "center";
+
+                    // Nombre de la imagen
+                    const nombre = document.createElement("h3");
+                    nombre.textContent = nombreImagen;
+                    nombre.style.margin = "0 0 10px 0";
+                    nombre.style.color = "dodgerblue";
+
+                    // Botones
+                    const btnLlamar = document.createElement("button");
+                    btnLlamar.textContent = "Llamar";
+                    btnLlamar.style.marginRight = "10px";
+                    btnLlamar.style.padding = "8px 16px";
+                    btnLlamar.style.background = "dodgerblue";
+                    btnLlamar.style.color = "white";
+                    btnLlamar.style.border = "none";
+                    btnLlamar.style.borderRadius = "8px";
+                    btnLlamar.style.cursor = "pointer";
+
+                    const btnWhatsapp = document.createElement("button");
+                    btnWhatsapp.textContent = "Whatsapp";
+                    btnWhatsapp.style.padding = "8px 16px";
+                    btnWhatsapp.style.background = "green";
+                    btnWhatsapp.style.color = "white";
+                    btnWhatsapp.style.border = "none";
+                    btnWhatsapp.style.borderRadius = "8px";
+                    btnWhatsapp.style.cursor = "pointer";
+
+                    // Agregar botones dentro de un contenedor
+                    const botonesDiv = document.createElement("div");
+                    botonesDiv.style.display = "flex";
+                    botonesDiv.appendChild(btnLlamar);
+                    botonesDiv.appendChild(btnWhatsapp);
+
+                    // Agregar nombre + botones al contenedor info
+                    infoDiv.appendChild(nombre);
+                    infoDiv.appendChild(botonesDiv);
+
+                    // Agregar imagen + info a la fila
+                    fila.appendChild(img);
+                    fila.appendChild(infoDiv);
+
+                    // Agregar fila al contenedor principal
+                    homeDiv.appendChild(fila);
+                }
+            }
+        } catch (error) {
+            console.error("Error al listar carpeta:", carpeta, error);
+        }
+    }
+}
+
+
+
+
+
 async function actualizar_tiendas() {
     const departamento = selectDepartamento.value;
     const municipio = selectMunicipio.value;
@@ -1365,12 +1466,6 @@ async function crearFila(file, container) {
 
     container.appendChild(fila);
 }
-
-
-
-
-
-
 
 
 
