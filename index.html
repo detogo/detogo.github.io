@@ -1271,7 +1271,7 @@ selectServicio.addEventListener("change", actualizar_plataforma);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
-async function actualizar_tiendas2() {
+async function actualizar_tiendas() {
     const departamento = selectDepartamento.value;
     const municipio = selectMunicipio.value;
     const servicio = selectServicio.value;
@@ -1372,100 +1372,7 @@ async function actualizar_tiendas2() {
 
 
 
-async function actualizar_tiendas() {
-    const departamento = selectDepartamento.value;
-    const municipio = selectMunicipio.value;
-    const servicio = selectServicio.value;
 
-    const homeDiv = document.getElementById("home");
-    homeDiv.innerHTML = "";
-
-    const carpetaTiendas = "tiendas";
-
-    try {
-        // Archivos dentro de tiendas
-        const responseTiendas = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${departamento}/${municipio}/${servicio}/${carpetaTiendas}`);
-        const archivosTiendas = await responseTiendas.json();
-
-        for (const file of archivosTiendas) {
-            if (file.type === "file" && (file.name.endsWith(".jpg") || file.name.endsWith(".png") || file.name.endsWith(".jpeg") || file.name.endsWith(".svg"))) {
-                await crearFila(file, homeDiv);
-            } else if (file.type === "dir" && file.name === "comida") {
-                // Subcarpeta comida
-                const respComida = await fetch(file.url);
-                const archivosComida = await respComida.json();
-                for (const comidaFile of archivosComida) {
-                    if (comidaFile.type === "file" && (comidaFile.name.endsWith(".jpg") || comidaFile.name.endsWith(".png") || comidaFile.name.endsWith(".jpeg") || comidaFile.name.endsWith(".svg"))) {
-                        await crearFila(comidaFile, homeDiv);
-                    }
-                }
-            }
-        }
-    } catch (error) {
-        console.error("Error al listar carpeta tiendas:", error);
-    }
-}
-
-// Función auxiliar para crear la fila
-async function crearFila(file, container) {
-    const nombreImagen = file.name.split(".")[0];
-    const imageUrl = file.download_url;
-
-    const fila = document.createElement("div");
-    fila.style.display = "flex";
-    fila.style.alignItems = "center";
-    fila.style.marginBottom = "20px";
-    fila.style.gap = "15px";
-
-    const img = document.createElement("img");
-    img.src = imageUrl;
-    img.alt = nombreImagen;
-    img.style.width = "100px";
-    img.style.objectFit = "cover";
-    img.style.borderRadius = "10px";
-
-    const infoDiv = document.createElement("div");
-    infoDiv.style.display = "flex";
-    infoDiv.style.flexDirection = "column";
-    infoDiv.style.justifyContent = "center";
-
-    const nombre = document.createElement("h3");
-    nombre.textContent = nombreImagen;
-    nombre.style.margin = "0 0 10px 0";
-    nombre.style.color = "dodgerblue";
-
-    const btnLlamar = document.createElement("button");
-    btnLlamar.textContent = "Llamar";
-    btnLlamar.style.marginRight = "10px";
-    btnLlamar.style.padding = "8px 16px";
-    btnLlamar.style.background = "dodgerblue";
-    btnLlamar.style.color = "white";
-    btnLlamar.style.border = "none";
-    btnLlamar.style.borderRadius = "8px";
-    btnLlamar.style.cursor = "pointer";
-
-    const btnWhatsapp = document.createElement("button");
-    btnWhatsapp.textContent = "Whatsapp";
-    btnWhatsapp.style.padding = "8px 16px";
-    btnWhatsapp.style.background = "green";
-    btnWhatsapp.style.color = "white";
-    btnWhatsapp.style.border = "none";
-    btnWhatsapp.style.borderRadius = "8px";
-    btnWhatsapp.style.cursor = "pointer";
-
-    const botonesDiv = document.createElement("div");
-    botonesDiv.style.display = "flex";
-    botonesDiv.appendChild(btnLlamar);
-    botonesDiv.appendChild(btnWhatsapp);
-
-    infoDiv.appendChild(nombre);
-    infoDiv.appendChild(botonesDiv);
-
-    fila.appendChild(img);
-    fila.appendChild(infoDiv);
-
-    container.appendChild(fila);
-}
 
 
 
