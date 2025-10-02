@@ -1159,81 +1159,49 @@ async function actualizarUbicaciones() {
 
 
  async function actualizar_plataforma() {
-    // Obtener el departamento seleccionado
     const departamentoSeleccionado = selectDepartamento.value;
-    // Obtener la ubicación seleccionada
     const municipioSeleccionado = selectMunicipio.value;
-    // Concatenar el departamento y la ubicación seleccionados
     const servicioSeleccionado = selectServicio.value;
-   
-    //console.log("xxxxxxx",departamentoSeleccionado,municipioSeleccionado,);
+
     document.getElementById("municipio").textContent = municipioSeleccionado;
     document.getElementById("servicio").textContent = servicioSeleccionado;
-    
 
-    const rutaArchivo = departamentoSeleccionado + "/" + municipioSeleccionado + "/" + servicioSeleccionado + "/administracion.txt";
-    // Aquí puedes realizar otras acciones con la ubicación completa, como enviarla a la plataforma
-    console.log('rutaArchivo json:', rutaArchivo);
+    // Buscar el objeto del servicio en estructura
+    const dep = estructura.find(d => d.nombre === departamentoSeleccionado);
+    if (!dep) return;
+    const mun = dep.municipios.find(m => m.nombre === municipioSeleccionado);
+    if (!mun) return;
+    const serv = mun.servicios.find(s => s.nombre === servicioSeleccionado);
+    if (!serv || !serv.data) {
+        console.error("No se encontró administracion.txt para este servicio");
+        return;
+    }
 
-    // Crear una nueva solicitud XMLHttpRequest
-    const xhr = new XMLHttpRequest();
+    const contenidoJSON = serv.data;
+    console.log("Contenido del archivo JSON:", contenidoJSON);
 
-    // Configurar la solicitud
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // El archivo se cargó correctamente
-                console.log('El archivo se cargó correctamente.');
-                const contenidoJSON = JSON.parse(xhr.responseText);                
+    // Actualizar secciones
+    const datos_administracion = contenidoJSON.Administracion;
+    actualizar_pantalla_administracion(datos_administracion);
 
-                console.log('Contenido del archivo JSON:', contenidoJSON);
-               
-                const datos_administracion = contenidoJSON.Administracion;
-                actualizar_pantalla_administracion(datos_administracion);
+    await actualizar_tiendas(); // Si actualizar_tiendas es async y quieres esperar a que termine
 
+    const datos_deliverys = contenidoJSON.Deliverys;               
+    actualizar_pantalla_deliverys(datos_deliverys);
 
-                actualizar_tiendas();
+    const datos_cars = contenidoJSON.Cars;               
+    actualizar_pantalla_cars(datos_cars);
 
+    const datos_markets = contenidoJSON.Markets;               
+    actualizar_pantalla_markets(datos_markets);
 
-                const datos_deliverys = contenidoJSON.Deliverys;               
-                actualizar_pantalla_deliverys(datos_deliverys);
+    const datos_comida = contenidoJSON.Markets?.Comida;  
+    actualizar_pantalla_comidas(datos_comida);
 
-                const datos_cars = contenidoJSON.Cars;               
-                actualizar_pantalla_cars(datos_cars);
+    const datos_servicio = contenidoJSON.Services;  
+    actualizar_pantalla_servicios(datos_servicio);
 
-                const datos_markets = contenidoJSON.Markets;               
-                actualizar_pantalla_markets(datos_markets);
-
-                const datos_comida = contenidoJSON.Markets.Comida;  
-                actualizar_pantalla_comidas(datos_comida);
-
-                const datos_servicio = contenidoJSON.Services;  
-                actualizar_pantalla_servicios(datos_servicio);
-
-                listar_promocionales();
-
-
-                // Procesar el contenido JSON
-                //procesarContenidoServicios(contenidoJSON);
-            } else {
-                // Hubo un error al cargar el archivo
-
-                console.error('Error al cargar el archivo:', xhr.status);
-
-
-
-            }
-        }
-    };
-
-    // Abrir y enviar la solicitud
-    xhr.open('GET', rutaArchivo, true);
-    xhr.send();
-
-
-
-
-
+    listar_promocionales();
 }
 
 // ----------------- CUANDO CAMBIO SELECT -----------------
