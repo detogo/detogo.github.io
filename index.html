@@ -24,10 +24,10 @@
 <style>
 .spinner {
   border: 5px solid rgba(0, 0, 0, 0.1);
-  border-left: 5px solid var(--fondo); /* Amarillo */
+  border-left: 5px solid lime; /* Amarillo */
   border-radius: 50%;
-  width: 75px;
-  height: 75px;
+  width: 100px;
+  height: 100px;
   animation: spin 1s linear infinite;
 }
 
@@ -293,24 +293,24 @@
 
 
 
-                    <li> 
+                     
                               <select id="select-departamento">
                                  <option value="Ahuachapan" >Seleccione departamento</option>
                               </select>
-                      </li>                        
+                                              
 
-                        <li> 
+                         
                               <select id="select-municipio">
                                  <option value="Ahuachapan" >Seleccione Municipio</option>
                               </select>
-                        </li> 
+                         
                                
-                        <li>        
+                                
                                <select id="select-servicio">
                                   <option value="Ahuachapan" >Seleccione Servicio</option>
                                </select>
 
-                       </li> 
+                        
 
 
                     
@@ -403,9 +403,9 @@
 
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 5px; margin-bottom: : 5px">
- <h5><p id="municipio"></p></h5>
-  <h4><p id="servicio"></p></h4>
-   <h3><p id="administrador"></p></h3>
+<h5 id="municipio" style="color: white;"></h5>
+<h4 id="servicio" style="color: white;"></h4>
+
 
 </div>
 
@@ -1172,7 +1172,7 @@ async function actualizarUbicaciones() {
     //console.log("xxxxxxx",departamentoSeleccionado,municipioSeleccionado,);
     document.getElementById("municipio").textContent = municipioSeleccionado;
     document.getElementById("servicio").textContent = servicioSeleccionado;
-    document.getElementById("administrador").textContent = departamentoSeleccionado;
+    
 
     const rutaArchivo = departamentoSeleccionado + "/" + municipioSeleccionado + "/" + servicioSeleccionado + "/administracion.txt";
     // Aquí puedes realizar otras acciones con la ubicación completa, como enviarla a la plataforma
