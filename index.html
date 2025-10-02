@@ -1158,7 +1158,7 @@ async function actualizarUbicaciones() {
 
 
 
- function actualizar_plataforma() {
+ async function actualizar_plataforma() {
     // Obtener el departamento seleccionado
     const departamentoSeleccionado = selectDepartamento.value;
     // Obtener la ubicación seleccionada
@@ -1192,8 +1192,8 @@ async function actualizarUbicaciones() {
                 actualizar_pantalla_administracion(datos_administracion);
 
 
-                async function actualizar_tiendas();
-                 
+               await actualizar_tiendas();
+
 
                 const datos_deliverys = contenidoJSON.Deliverys;               
                 actualizar_pantalla_deliverys(datos_deliverys);
