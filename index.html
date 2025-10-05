@@ -1294,11 +1294,11 @@ async function actualizar_tiendas() {
 
             for (const file of archivos) {
                 if (file.type === "file" && (file.name.endsWith(".jpg") || file.name.endsWith(".png") || file.name.endsWith(".jpeg"))) {
-                    const nombreImagen = file.name.split(".")[0]; // nombre sin extensión
-                    const imageUrl = file.download_url;
+                    //const nombreImagen = file.name.split(".")[0]; // nombre sin extensión
+                    //const imageUrl = file.download_url;
 
 
-                    await crearFila(imageUrl, homeDiv);
+                    await crearFila(file, homeDiv);
 
                   /*
                     // Crear fila
