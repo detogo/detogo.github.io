@@ -58,7 +58,7 @@
             border: 2px dodgerblue;
             border-radius: 20px;
             padding: 5px 10px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.5s ease, transform 0.5s ease;
             display: inline-block;
@@ -83,7 +83,7 @@
             border: 2px solid lime;
             border-radius: 20px;
             padding: 5px 10px;
-            font-size: 24px;
+            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.5s ease, transform 0.5s ease;
             display: inline-block;
@@ -1382,23 +1382,12 @@ async function crearFila(file, container) {
     const btnLlamar = document.createElement("button");
     btnLlamar.textContent = "Llamar";
     btnLlamar.classList.add('btn-llamar-telefono');
-    btnLlamar.style.marginRight = "10px";
-    btnLlamar.style.padding = "8px 16px";
-    //btnLlamar.style.background = "dodgerblue";
-    //btnLlamar.style.color = "white";
-    //btnLlamar.style.border = "none";
-    //btnLlamar.style.borderRadius = "8px";
-    btnLlamar.style.cursor = "pointer";
+   
 
     const btnWhatsapp = document.createElement("button");
     btnWhatsapp.textContent = "Whatsapp";
     btnWhatsapp.classList.add('btn-llamar-whatsapp');
-    btnWhatsapp.style.padding = "8px 16px";
-    //btnWhatsapp.style.background = "green";
-    //btnWhatsapp.style.color = "white";
-    //btnWhatsapp.style.border = "none";
-    //btnWhatsapp.style.borderRadius = "8px";
-    btnWhatsapp.style.cursor = "pointer";
+ 
 
     const botonesDiv = document.createElement("div");
     botonesDiv.style.display = "flex";
