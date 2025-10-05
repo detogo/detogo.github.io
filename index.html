@@ -1282,29 +1282,68 @@ async function actualizar_tiendas() {
     const carpetaTiendas = "tiendas";
 
     try {
-        // 📂 Obtener lista de archivos y carpetas dentro de /tiendas
+        // 📂 Obtener lista de archivos y subcarpetas dentro de /tiendas
         const responseTiendas = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${departamento}/${municipio}/${servicio}/${carpetaTiendas}`);
         if (!responseTiendas.ok) throw new Error("No se pudo acceder a la carpeta tiendas");
         const archivosTiendas = await responseTiendas.json();
 
+        // 🔹 Primero mostrar imágenes sueltas directamente dentro de /tiendas
         for (const file of archivosTiendas) {
-            // 🖼️ Archivos de imagen directamente dentro de tiendas
             if (file.type === "file" && /\.(jpg|jpeg|png|svg)$/i.test(file.name)) {
                 await crearFila(file, homeDiv);
             }
         }
 
-        // 📂 Intentar cargar subcarpeta "comida" (si existe)
-        const responseComida = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${departamento}/${municipio}/${servicio}/${carpetaTiendas}/comida`);
-        if (responseComida.ok) {
-            const archivosComida = await responseComida.json();
-            for (const file of archivosComida) {
-                if (file.type === "file" && /\.(jpg|jpeg|png|svg)$/i.test(file.name)) {
-                    await crearFila(file, homeDiv);
+        // 🔹 Luego, procesar todas las subcarpetas (como comida, ropa, bebidas, etc.)
+        for (const folder of archivosTiendas) {
+            if (folder.type === "dir") {
+                const subFolderName = folder.name;
+
+                // Crear encabezado colapsable
+                const folderDiv = document.createElement("div");
+                folderDiv.style.marginBottom = "20px";
+                folderDiv.style.border = "1px solid #555";
+                folderDiv.style.borderRadius = "10px";
+                folderDiv.style.padding = "10px";
+                folderDiv.style.background = "#1e1e1e";
+
+                // Título clickeable
+                const title = document.createElement("h2");
+                title.textContent = subFolderName;
+                title.style.color = "white";
+                title.style.cursor = "pointer";
+                title.style.userSelect = "none";
+                title.style.marginBottom = "10px";
+                title.style.textTransform = "capitalize";
+
+                // Contenedor para las imágenes de esa subcarpeta
+                const contenidoDiv = document.createElement("div");
+                contenidoDiv.style.display = "none"; // oculto por defecto
+                contenidoDiv.style.marginLeft = "20px";
+                contenidoDiv.style.marginTop = "10px";
+
+                // Evento para desplegar/ocultar
+                title.addEventListener("click", () => {
+                    const visible = contenidoDiv.style.display === "block";
+                    contenidoDiv.style.display = visible ? "none" : "block";
+                });
+
+                // Agregar título y contenido al bloque principal
+                folderDiv.appendChild(title);
+                folderDiv.appendChild(contenidoDiv);
+                homeDiv.appendChild(folderDiv);
+
+                // Obtener archivos de la subcarpeta
+                const respSub = await fetch(folder.url);
+                if (respSub.ok) {
+                    const archivosSub = await respSub.json();
+                    for (const file of archivosSub) {
+                        if (file.type === "file" && /\.(jpg|jpeg|png|svg)$/i.test(file.name)) {
+                            await crearFila(file, contenidoDiv);
+                        }
+                    }
                 }
             }
-        } else {
-            console.warn("No se encontró carpeta 'comida'. Continuando...");
         }
 
     } catch (error) {
@@ -1312,8 +1351,7 @@ async function actualizar_tiendas() {
     }
 }
 
-
-// Función auxiliar para crear la fila
+// 🧱 Función auxiliar para construir la fila
 async function crearFila(file, container) {
     const nombreImagen = file.name.split(".")[0];
     const imageUrl = file.download_url;
@@ -1321,7 +1359,7 @@ async function crearFila(file, container) {
     const fila = document.createElement("div");
     fila.style.display = "flex";
     fila.style.alignItems = "center";
-    fila.style.marginBottom = "20px";
+    fila.style.marginBottom = "15px";
     fila.style.gap = "15px";
 
     const img = document.createElement("img");
