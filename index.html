@@ -1297,6 +1297,10 @@ async function actualizar_tiendas() {
                     const nombreImagen = file.name.split(".")[0]; // nombre sin extensión
                     const imageUrl = file.download_url;
 
+
+                    await crearFila(imageUrl, homeDiv);
+
+                  /*
                     // Crear fila
                     const fila = document.createElement("div");
                     fila.style.display = "flex";
@@ -1360,6 +1364,7 @@ async function actualizar_tiendas() {
 
                     // Agregar fila al contenedor principal
                     homeDiv.appendChild(fila);
+                    */
                 }
             }
         } catch (error) {
@@ -1369,7 +1374,66 @@ async function actualizar_tiendas() {
 }
 
 
+// Función auxiliar para crear la fila
+async function crearFila(file, container) {
+    const nombreImagen = file.name.split(".")[0];
+    const imageUrl = file.download_url;
 
+    const fila = document.createElement("div");
+    fila.style.display = "flex";
+    fila.style.alignItems = "center";
+    fila.style.marginBottom = "20px";
+    fila.style.gap = "15px";
+
+    const img = document.createElement("img");
+    img.src = imageUrl;
+    img.alt = nombreImagen;
+    img.style.width = "100px";
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "10px";
+
+    const infoDiv = document.createElement("div");
+    infoDiv.style.display = "flex";
+    infoDiv.style.flexDirection = "column";
+    infoDiv.style.justifyContent = "center";
+
+    const nombre = document.createElement("h3");
+    nombre.textContent = nombreImagen;
+    nombre.style.margin = "0 0 10px 0";
+    nombre.style.color = "dodgerblue";
+
+    const btnLlamar = document.createElement("button");
+    btnLlamar.textContent = "Llamar";
+    btnLlamar.style.marginRight = "10px";
+    btnLlamar.style.padding = "8px 16px";
+    btnLlamar.style.background = "dodgerblue";
+    btnLlamar.style.color = "white";
+    btnLlamar.style.border = "none";
+    btnLlamar.style.borderRadius = "8px";
+    btnLlamar.style.cursor = "pointer";
+
+    const btnWhatsapp = document.createElement("button");
+    btnWhatsapp.textContent = "Whatsapp";
+    btnWhatsapp.style.padding = "8px 16px";
+    btnWhatsapp.style.background = "green";
+    btnWhatsapp.style.color = "white";
+    btnWhatsapp.style.border = "none";
+    btnWhatsapp.style.borderRadius = "8px";
+    btnWhatsapp.style.cursor = "pointer";
+
+    const botonesDiv = document.createElement("div");
+    botonesDiv.style.display = "flex";
+    botonesDiv.appendChild(btnLlamar);
+    botonesDiv.appendChild(btnWhatsapp);
+
+    infoDiv.appendChild(nombre);
+    infoDiv.appendChild(botonesDiv);
+
+    fila.appendChild(img);
+    fila.appendChild(infoDiv);
+
+    container.appendChild(fila);
+}
 
 
 
