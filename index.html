@@ -181,7 +181,8 @@
 
         /* Menú lateral */
         .menu {
-            position: fixed;
+            pos/
+            ition: fixed;
             top: 0;
             left: -250px;
             width: 250px;
@@ -383,11 +384,12 @@
   </div>  </center> 
 
   <!-- Imagen -->
-  <img id="image-perfil" 
+  <img id="image-administrador" 
        src="detogo_app/detogo_logo.svg" 
        alt="My svg_logo" 
        width="60" 
-       class="img-circle">
+       class="img-circle"
+       display="none">
 
   <!-- Texto -->
   <!--<h4 style="margin: 0; color: dodgerblue; font-style: italic;">detogo.app</h4>  -->
@@ -1235,6 +1237,9 @@ selectServicio.addEventListener("change", actualizar_plataforma);
     console.log('Actualizar administracion.', datos_administracion);
 
     const divBotonesAdministracion = document.getElementById('botones-administracion');
+    const imagen_administrador = document.getElementById('image-administrador');
+    imagen_administrador.style.display="block";
+    
 
     // Limpiar el contenido actual del div
     divBotonesAdministracion.innerHTML = '';
