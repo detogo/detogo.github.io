@@ -383,13 +383,7 @@
                                                  
   </div>  </center> 
 
-  <!-- Imagen -->
-  <img id="image-administrador" 
-       src="detogo_app/detogo_logo.svg" 
-       alt="My svg_logo" 
-       width="60" 
-       class="img-circle"
-       style = "display:none">
+ 
 
   <!-- Texto -->
   <!--<h4 style="margin: 0; color: dodgerblue; font-style: italic;">detogo.app</h4>  -->
@@ -1237,12 +1231,22 @@ selectServicio.addEventListener("change", actualizar_plataforma);
     console.log('Actualizar administracion.', datos_administracion);
 
     const divBotonesAdministracion = document.getElementById('botones-administracion');
-    const imagen_administrador = document.getElementById('image-administrador');
-    imagen_administrador.style.display="block";
-    
 
     // Limpiar el contenido actual del div
     divBotonesAdministracion.innerHTML = '';
+
+
+    // Crear la imagen dinámicamente
+    const imgAdministrador = document.createElement("img");
+
+    // Asignar atributos
+    imgAdministrador.id = "image-administrador";
+    imgAdministrador.src = "detogo_app/detogo_logo.svg";
+    imgAdministrador.alt = "My svg_logo";
+    imgAdministrador.width = 60;
+    imgAdministrador.classList.add("img-circle");
+
+    divBotonesAdministracion.appendChild(imgAdministrador);
 
     // Iterar sobre los datos de administración
     datos_administracion.forEach(item => {
