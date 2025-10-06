@@ -472,11 +472,14 @@
        <a data-toggle="tab" href="#home" style=" margin-left: 15px;">  <img  id="image-home" src="detogo_app/home.SVG" alt="home" width="45"></a> 
        <a data-toggle="tab" href="#godelivery" style=" margin-left: 15px;">  <img  id="image-home" src="detogo_app/godelivery.SVG" alt="home" width="45"> </a>
        <a data-toggle="tab" href="#gocars" style=" margin-left: 15px;">  <img  id="image-cars" src="detogo_app/gocar.SVG" alt="home" width="45"> </a>
+
+<!--
        <a data-toggle="tab" href="#gofood" style=" margin-left: 15px;">  <img  id="image-food" src="detogo_app/gofood.SVG" alt="home" width="45"> </a>
+
        <a data-toggle="tab" href="#gomarkets" style=" margin-left: 15px;">  <img  id="image-market" src="detogo_app/gomarket.SVG" alt="home" width="45"> </a>
                                    
        <a data-toggle="tab" href="#mymarket" style=" margin-left: 15px;">  <img  id="image-mymarket" src="detogo_app/mymarket.SVG" alt="mymarket" width="45"> </a>
-
+-->
        <a data-toggle="tab" href="#goservice" style=" margin-left: 15px;">  <img  id="image-service" src="detogo_app/goservice.SVG" alt="home" width="45"> </a>
        
        
@@ -1310,6 +1313,11 @@ async function actualizar_tiendas() {
                 folderDiv.style.borderRadius = "10px";
                 folderDiv.style.padding = "10px";
                 folderDiv.style.background = "#1e1e1e";
+
+                // 👇 Ajustes para ocupar todo el contenedor padre
+                folderDiv.style.width = "100%";
+                folderDiv.style.boxSizing = "border-box"; // asegura que padding y border no desborden el ancho
+                
 
                 // Título clickeable
                 const title = document.createElement("h2");
