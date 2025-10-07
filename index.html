@@ -704,8 +704,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     await listarEstructura();
 
-    try {
+    try {        
+
         const coords = await obtenerUbicacionGPS(); // GPS
+        
         console.log("Coordenadas del GPS:", coords);
 
         // Guardar como respaldo
@@ -846,27 +848,40 @@ function actualizarServicios() {
 }
 
 
-function obtenerUbicacionGPS() {
-    return new Promise((resolve, reject) => {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    resolve({
-                        lat: pos.coords.latitude,
-                        lng: pos.coords.longitude
-                    });
-                },
-                (err) => {
-                    reject("No se pudo obtener ubicación: " + err.message);
-                }
-            );
-        } else {
-            reject("Tu navegador no soporta geolocalización.");
-        }
-    });
+async function obtenerUbicacionGPS() {
+  return new Promise((resolve, reject) => {
+
+    if (window.isAppInventor) {
+      console.log("Solicitando ubicación a App Inventor...");
+
+      // 🔹 Esta función será llamada por App Inventor
+      window.recibirCoordenadas = (lat, lon) => {
+        console.log("📍 Coordenadas recibidas desde App Inventor:", lat, lon);
+        resolve({ lat, lon }); // Aquí se resuelve la promesa
+        delete window.recibirCoordenadas; // Limpia para futuras llamadas
+      };
+
+      // 🔹 Pedimos a App Inventor que nos mande la ubicación
+      AppInventor.setWebViewString("Ubicacion");
+
+      // 🔹 Si App Inventor no responde en 10s, cancelamos
+      setTimeout(() => reject(new Error("Timeout esperando coordenadas de App Inventor")), 10000);
+
+    } else if ("geolocation" in navigator) {
+      console.log("Solicitando ubicación al navegador...");
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude
+        }),
+        reject,
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      );
+    } else {
+      reject(new Error("Tu navegador no soporta geolocalización."));
+    }
+  });
 }
-
-
 
 
 // Función para recuperar coordenadas guardadas
@@ -1096,18 +1111,7 @@ async function actualizarSegunUbicacion(coords) {
     }
 }
 
-// Función que llama cuando se obtiene nueva ubicación del GPS
-function recibirCoordenadas(lat, lng) {
-    console.log("Ubicación recibida:", lat, lng);
-    alert("Latitud solicitada: " + lat + " - Longitud solicitada: " + lng);
 
-    // Guardar coordenadas en localStorage
-    localStorage.setItem("miLatitud", lat);
-    localStorage.setItem("miLongitud", lng);
-
-    // Llamar a la función única para actualizar todo
-    actualizarSegunUbicacion({ lat: parseFloat(lat), lng: parseFloat(lng) });
-}
 
 
 </script>
