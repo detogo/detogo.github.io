@@ -849,10 +849,12 @@ function actualizarServicios() {
 
 
 async function obtenerUbicacionGPS() {
+  alert("📍 Solicitando Coordenadas App Inventor 0");
   return new Promise((resolve, reject) => {
 
     if (window.isAppInventor) {
       console.log("Solicitando ubicación a App Inventor...");
+      alert("📍 Solicitando Coordenadas App Inventor 1");
 
      
 
@@ -865,7 +867,7 @@ async function obtenerUbicacionGPS() {
       };
 
       // 🔹 Pedimos a App Inventor que nos mande la ubicación
-       alert("Solicitando ubicación a App Inventor...");
+      alert("Solicitando ubicación a App Inventor 2...");
       AppInventor.setWebViewString("Ubicacion");
 
       // 🔹 Si App Inventor no responde en 10s, cancelamos
