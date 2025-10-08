@@ -870,7 +870,9 @@ async function obtenerUbicacionGPS() {
 
       // Pedir ubicación
       try {
+        alert("📍 envianr palabra ubicacion...");
         AppInventor.setWebViewString("Ubicacion");
+         alert("📍 ya se envio la palabra ubicacion...");
       } catch (e) {
         console.error("❌ Error al llamar a AppInventor:", e);
         reject(e);
