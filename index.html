@@ -848,39 +848,48 @@ function actualizarServicios() {
 }
 
 
+
+
 async function obtenerUbicacionGPS() {
-  alert("📍 Solicitando Coordenadas App Inventor 0");
+  alert("📍 Solicitando Coordenadas...");
+
   return new Promise((resolve, reject) => {
+    const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.setWebViewString === "function");
 
-    if (window.isAppInventor) {
+    if (isAppInventor) {
       console.log("Solicitando ubicación a App Inventor...");
-      alert("📍 Solicitando Coordenadas App Inventor 1");
+      alert("📍 Solicitando Coordenadas App Inventor...");
 
-     
-
-      // 🔹 Esta función será llamada por App Inventor
+      // Recibir coordenadas desde App Inventor
       window.recibirCoordenadas = (lat, lon) => {
-        console.log("📍 Coordenadas recibidas desde App Inventor:", lat, lon);
-        alert("📍 Coordenadas recibidas desde App Inventor:"+" "+lat+" "+lon);
-        resolve({ lat, lon }); // Aquí se resuelve la promesa
-        delete window.recibirCoordenadas; // Limpia para futuras llamadas
+        console.log("📍 Coordenadas recibidas:", lat, lon);
+        alert("📍 Coordenadas recibidas: " + lat + " " + lon);
+        resolve({ lat, lon });
+        delete window.recibirCoordenadas;
       };
 
-      // 🔹 Pedimos a App Inventor que nos mande la ubicación
-      alert("Solicitando ubicación a App Inventor 2...");
-      AppInventor.setWebViewString("Ubicacion");
+      // Pedir ubicación
+      try {
+        AppInventor.setWebViewString("Ubicacion");
+      } catch (e) {
+        console.error("❌ Error al llamar a AppInventor:", e);
+        reject(e);
+      }
 
-      // 🔹 Si App Inventor no responde en 10s, cancelamos
-      setTimeout(() => reject(new Error("Timeout esperando coordenadas de App Inventor")), 10000);
+      // Timeout de seguridad
+      setTimeout(() => reject(new Error("Timeout esperando coordenadas de App Inventor")), 15000);
 
     } else if ("geolocation" in navigator) {
-      console.log("Solicitando ubicación al navegador...");
+      console.log("📍 Solicitando ubicación al navegador...");
       navigator.geolocation.getCurrentPosition(
         (pos) => resolve({
           lat: pos.coords.latitude,
           lon: pos.coords.longitude
         }),
-        reject,
+        (err) => {
+          console.error("❌ Error en geolocalización del navegador:", err);
+          reject(err);
+        },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
       );
     } else {
@@ -888,7 +897,6 @@ async function obtenerUbicacionGPS() {
     }
   });
 }
-
 
 
 
