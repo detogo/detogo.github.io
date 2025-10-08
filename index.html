@@ -869,11 +869,18 @@ async function obtenerUbicacionGPS() {
       };
 
       // Pedir ubicación
-      try {
-        alert("📍 envianr palabra ubicacion...");
+     try {
+        alert("📍 Entrando al try...");
+        if (typeof AppInventor.setWebViewString !== "function") {
+          alert("⚠️ AppInventor.setWebViewString NO es una función");
+        } else {
+          alert("✅ AppInventor.setWebViewString es una función. Enviando...");
+        }
+
         AppInventor.setWebViewString("Ubicacion");
-         alert("📍 ya se envio la palabra ubicacion...");
+        alert("📤 Palabra 'Ubicacion' enviada a App Inventor");
       } catch (e) {
+        alert("❌ Excepción capturada: " + e.message);
         console.error("❌ Error al llamar a AppInventor:", e);
         reject(e);
       }
