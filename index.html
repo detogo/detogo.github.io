@@ -854,7 +854,7 @@ async function obtenerUbicacionGPS() {
     if (window.isAppInventor) {
       console.log("Solicitando ubicación a App Inventor...");
 
-      alert("Solicitando ubicación a App Inventor...");
+     
 
       // 🔹 Esta función será llamada por App Inventor
       window.recibirCoordenadas = (lat, lon) => {
@@ -865,6 +865,7 @@ async function obtenerUbicacionGPS() {
       };
 
       // 🔹 Pedimos a App Inventor que nos mande la ubicación
+       alert("Solicitando ubicación a App Inventor...");
       AppInventor.setWebViewString("Ubicacion");
 
       // 🔹 Si App Inventor no responde en 10s, cancelamos
