@@ -854,9 +854,12 @@ async function obtenerUbicacionGPS() {
     if (window.isAppInventor) {
       console.log("Solicitando ubicación a App Inventor...");
 
+      alert("Solicitando ubicación a App Inventor...");
+
       // 🔹 Esta función será llamada por App Inventor
       window.recibirCoordenadas = (lat, lon) => {
         console.log("📍 Coordenadas recibidas desde App Inventor:", lat, lon);
+        alert("📍 Coordenadas recibidas desde App Inventor:"+" "+lat+" "+lon);
         resolve({ lat, lon }); // Aquí se resuelve la promesa
         delete window.recibirCoordenadas; // Limpia para futuras llamadas
       };
@@ -884,13 +887,18 @@ async function obtenerUbicacionGPS() {
 }
 
 
+
+
+
+
+
 // Función para recuperar coordenadas guardadas
 function obtenerCoordenadasGuardadas() {
         const lat = localStorage.getItem("miLatitud");
         const lng = localStorage.getItem("miLongitud");
 
         if (lat && lng) {
-            alert("Latitud inicial: " + lat + " - Longitud inicial: " + lng);
+            alert("obtenidas de la memoria: " + lat + " - " + lng);
             return { lat: parseFloat(lat), lng: parseFloat(lng) };
            
         } else {
@@ -989,172 +997,11 @@ function setearSelects(masCercano) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-   
-
-
-
-
-
-
-
-
-// Encuentra la ubicación más cercana
-async function encontrarUbicacionMasCercana(coords) {
-    let mejor = null;
-    let menorDistancia = Infinity;
-
-    for (const carpeta of carpetas) {   // 🔹 ahora iteras sobre carpetas
-        try {
-            const username = 'detogo';
-            const repo = 'detogo.github.io';
-            const rutaArchivo = `${carpeta}/json_perfiles.txt`;
-
-            // Llamada a la API de GitHub para obtener contenido del archivo
-            const resp = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${rutaArchivo}`);
-            if (!resp.ok) continue;
-
-            const dataGitHub = await resp.json();
-            // El contenido viene en base64 → decodificar
-            const contenido = atob(dataGitHub.content);
-            const data = JSON.parse(contenido);
-
-            // Tomamos la primera administración
-            if (data.Administracion && data.Administracion.length > 0) {
-                const coorxy = data.Administracion[0].coorxy;
-                const partes = coorxy.split(",");
-                const lat = parseFloat(partes[0]);
-                const lng = parseFloat(partes[1]);
-
-                const distancia = calcularDistancia(
-                    coords.lat, coords.lng,
-                    lat, lng
-                );
-
-                if (distancia < menorDistancia) {
-                    menorDistancia = distancia;
-                    mejor = { carpeta, data, distancia };
-                }
-            }
-        } catch (e) {
-            console.error("Error leyendo carpeta", carpeta, e);
-        }
-    }
-
-    return mejor;
-}
-
-
-
-
-
-// Función principal que busca la ubicación más cercana y actualiza todo
-async function actualizarSegunUbicacion(coords) {
-    if (!coords) {
-        console.log("No hay coordenadas para buscar.");
-        return;
-    }
-
-    console.log("Buscando ubicación más cercana a:", coords);
-
-    const masCercano = await encontrarUbicacionMasCercana(coords);
-
-    if (masCercano) {
-        console.log("Ubicación más cercana:", masCercano);
-
-        // Sacamos depto y municipio desde el nombre de la carpeta
-        const partes = masCercano.carpeta.split(",");
-        const departamento = partes[0];
-        const ubicacion = partes.slice(1).join(",");
-
-        // Seteamos los selects
-        selectDepartamento.value = departamento;
-        await actualizarUbicaciones(); 
-        selectUbicacion.value = ubicacion;
-
-        // Ejecutar tu función principal
-        actualizar_plataforma();
-    } else {
-        console.log("No se encontró ubicación cercana.");
-    }
-}
-
-
-
-
 </script>
 
 
 <script>
  
-
-async function actualizarUbicaciones() {
-    // Obtener el departamento seleccionado
-    const departamentoSeleccionado = selectDepartamento.value;
-    console.log('Departamento seleccionado:', departamentoSeleccionado);
-
-    // Limpiar las opciones actuales del select de ubicación
-    selectUbicacion.innerHTML = "";
-
-    // Filtrar las carpetas según el departamento seleccionado
-    const carpetasFiltradas = carpetas.filter(nombreCarpeta => {
-        // Ignorar carpetas especiales
-        if (nombreCarpeta === ".git" || nombreCarpeta === "detogo_app") return false;
-        const partes = nombreCarpeta.split(",");
-        return partes[0] === departamentoSeleccionado;
-    });
-
-    console.log('Carpetas filtradas:', carpetasFiltradas);
-
-    // Crear nuevas opciones basadas en los nombres filtrados
-    carpetasFiltradas.forEach(nombreCarpeta => {
-        const partes = nombreCarpeta.split(",");
-        const municipioNombre = partes.slice(1).join(","); // todo lo que queda después del departamento
-        console.log('Municipio:', municipioNombre);
-
-        const option = document.createElement("option");
-        option.value = municipioNombre;
-        option.textContent = municipioNombre;
-        selectUbicacion.appendChild(option);
-    });
-}
-
-
-
-
-
 
 
  async function actualizar_plataforma() {
