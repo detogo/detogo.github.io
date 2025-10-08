@@ -682,8 +682,9 @@
 
 
 <script>
-    
+let resolverCoordenadasGlobal; // Guarda la función resolve activa
 const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.setWebViewString === "function");
+
 // Obtener el elemento select para el departamento
 
 const selectDepartamento = document.getElementById("select-departamento");
@@ -701,26 +702,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const loadingAnimation = document.getElementById('loadingAnimation-principal');
     loadingAnimation.style.display = 'block'; // Muestra la animación al ejecutar la función
-
+  
     await listarEstructura();
-
-    try {        
-
-        const coords = await obtenerUbicacionGPS(); // GPS
+    
+    try {             
+       
+        const coords = await obtenerCoordenadas(); // Aquí ya funciona tanto App Inventor como navegador
+        console.log("✅ Coordenadas finales:", coords);
         
-        console.log("Coordenadas del GPS:", coords);
-
         // Guardar como respaldo
         localStorage.setItem("miLatitudGPS", coords.lat);
         localStorage.setItem("miLongitudGPS", coords.lng);
 
         const masCercano = encontrarMasCercano(coords);
         setearSelects(masCercano);
+
+
         console.log("Más cercano:", masCercano);
-
-
-
-
 
     } catch (err) {
         console.error(err);
@@ -740,6 +738,64 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadingAnimation.style.display = 'none'; // quita la animacion
 });
 
+
+
+
+
+async function obtenerCoordenadas() {
+  console.log("🌍 Solicitando coordenadas...");
+  alert("🌍 Solicitando coordenadas...");
+
+  return new Promise((resolve, reject) => {
+    resolverCoordenadasGlobal = resolve; // Guardamos el resolve globalmente
+
+    if (isAppInventor) {
+      console.log("📱 Solicitando ubicación a App Inventor...");
+      alert("📱 Solicitando ubicación a App Inventor...");
+      try {
+        AppInventor.setWebViewString("Ubicacion"); // App Inventor responderá llamando a recibirCoordenadas(lat, lon)
+      } catch (e) {
+        console.error("❌ Error al comunicar con App Inventor:", e);
+        reject(e);
+      }
+    } else if ("geolocation" in navigator) {
+      console.log("🧭 Solicitando ubicación al navegador...");
+      alert("🧭 Solicitando ubicación al navegador...");
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude;
+          const lon = pos.coords.longitude;
+          console.log("✅ Coordenadas navegador:", lat, lon);
+          recibirCoordenadas(lat, lon); // Llamamos a la misma función que usa App Inventor
+        },
+        (err) => {
+          console.error("❌ Error al obtener ubicación del navegador:", err);
+          reject(err);
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      );
+    } else {
+      reject(new Error("Tu navegador no soporta geolocalización."));
+    }
+
+    // Timeout de seguridad (por si App Inventor o navegador no responden)
+    setTimeout(() => {
+      reject(new Error("Timeout esperando coordenadas"));
+    }, 15000);
+  });
+}
+
+// 📍 Esta función la llama App Inventor o el navegador
+function recibirCoordenadas(lat, lon) {
+  console.log("📍 Coordenadas recibidas:", lat, lon);
+  alert("📍 Coordenadas recibidas: " + lat + " " + lon);
+  if (resolverCoordenadasGlobal) {
+    resolverCoordenadasGlobal({ lat, lon });
+    resolverCoordenadasGlobal = null; // Limpiamos
+  } else {
+    console.warn("⚠️ No hay promesa esperando coordenadas.");
+  }
+}
 
 
 
@@ -846,69 +902,6 @@ function actualizarServicios() {
         });
     }
 }
-
-
-
-
-async function obtenerUbicacionGPS() {
-  alert("📍 Solicitando Coordenadas...");
-
-  return new Promise((resolve, reject) => {
-    const isAppInventor = (typeof AppInventor !== "undefined" && typeof AppInventor.setWebViewString === "function");
-
-    if (isAppInventor) {
-      console.log("Solicitando ubicación a App Inventor...");
-      alert("📍 Solicitando Coordenadas App Inventor...");
-
-      // Recibir coordenadas desde App Inventor
-      window.recibirCoordenadas = (lat, lon) => {
-        console.log("📍 Coordenadas recibidas:", lat, lon);
-        alert("📍 Coordenadas recibidas: " + lat + " " + lon);
-        resolve({ lat, lon });
-        delete window.recibirCoordenadas;
-      };
-
-      // Pedir ubicación
-     try {
-        alert("📍 Entrando al try...");
-        if (typeof AppInventor.setWebViewString !== "function") {
-          alert("⚠️ AppInventor.setWebViewString NO es una función");
-        } else {
-          alert("✅ AppInventor.setWebViewString es una función. Enviando...");
-        }
-
-        AppInventor.setWebViewString("Ubicacion");
-        alert("📤 Palabra 'Ubicacion' enviada a App Inventor");
-      } catch (e) {
-        alert("❌ Excepción capturada: " + e.message);
-        console.error("❌ Error al llamar a AppInventor:", e);
-        reject(e);
-      }
-
-      // Timeout de seguridad
-      setTimeout(() => reject(new Error("Timeout esperando coordenadas de App Inventor")), 15000);
-
-    } else if ("geolocation" in navigator) {
-      console.log("📍 Solicitando ubicación al navegador...");
-      navigator.geolocation.getCurrentPosition(
-        (pos) => resolve({
-          lat: pos.coords.latitude,
-          lon: pos.coords.longitude
-        }),
-        (err) => {
-          console.error("❌ Error en geolocalización del navegador:", err);
-          reject(err);
-        },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-      );
-    } else {
-      reject(new Error("Tu navegador no soporta geolocalización."));
-    }
-  });
-}
-
-
-
 
 
 
