@@ -730,6 +730,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("No se obtuvieron coordenadas del GPS.");
 
         const coords = obtenerCoordenadasGuardadas();
+        
         if (coords) {
             const masCercano = encontrarMasCercano(coords);
             setearSelects(masCercano);
@@ -949,7 +950,8 @@ function encontrarMasCercano(coords) {
     let menorDistancia = Infinity;
 
     console.log("Estructura :",estructura );
-
+    alert("Estructura: "+estructura);
+    alert("Coords y estructura: "+corrds.lat +" "+corrds.lon);
     estructura.forEach(dep => {
         dep.municipios.forEach(mun => {
             mun.servicios.forEach(serv => {
