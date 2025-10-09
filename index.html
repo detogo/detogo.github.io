@@ -709,13 +709,13 @@ document.addEventListener("DOMContentLoaded", async () => {
        
         const coords = await obtenerCoordenadas(); // Aquí ya funciona tanto App Inventor como navegador
         
-        alert("vamos bien"+coords.lat+ " "+ coords.lng);
+        alert("vamos bien"+coords.lat+ " "+ coords.lon);
 
         console.log("✅ Coordenadas finales:", coords);
         
         // Guardar como respaldo
         localStorage.setItem("miLatitudGPS", coords.lat);
-        localStorage.setItem("miLongitudGPS", coords.lng);
+        localStorage.setItem("miLongitudGPS", coords.lon);
 
         const masCercano = encontrarMasCercano(coords);
         setearSelects(masCercano);
