@@ -709,7 +709,7 @@ document.addEventListener("DOMContentLoaded", async () => {
        
         const coords = await obtenerCoordenadas(); // Aquí ya funciona tanto App Inventor como navegador
         
-
+        alert("vamos bien"+coords.lat+ " "+ coords.lng);
 
         console.log("✅ Coordenadas finales:", coords);
         
@@ -719,7 +719,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const masCercano = encontrarMasCercano(coords);
         setearSelects(masCercano);
-
 
         console.log("Más cercano:", masCercano);
 
@@ -788,6 +787,9 @@ async function obtenerCoordenadas() {
   });
 }
 
+
+
+
 // 📍 Esta función la llama App Inventor o el navegador
 function recibirCoordenadas(lat, lon) {
   console.log("📍 Coordenadas recibidas:", lat, lon);
@@ -795,6 +797,7 @@ function recibirCoordenadas(lat, lon) {
   if (resolverCoordenadasGlobal) {
     resolverCoordenadasGlobal({ lat, lon });
     resolverCoordenadasGlobal = null; // Limpiamos
+    alert("📍📍📍📍📍📍📍 Coordenadas recibidas: ");
   } else {
     console.warn("⚠️ No hay promesa esperando coordenadas.");
   }
