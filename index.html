@@ -714,9 +714,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("✅ Coordenadas finales:", coords);
         
         // Guardar como respaldo
-        localStorage.setItem("miLatitudGPS", coords.lat);
-        localStorage.setItem("miLongitudGPS", coords.lon);
+        localStorage.setItem("miLatitud", coords.lat);
+        localStorage.setItem("miLongitud", coords.lon);
 
+                
+        alert("vamos al mas cercano"+coords.lat+ " "+ coords.lon);
+         
         const masCercano = encontrarMasCercano(coords);
         setearSelects(masCercano);
 
@@ -914,11 +917,11 @@ function actualizarServicios() {
 // Función para recuperar coordenadas guardadas
 function obtenerCoordenadasGuardadas() {
         const lat = localStorage.getItem("miLatitud");
-        const lng = localStorage.getItem("miLongitud");
+        const lon = localStorage.getItem("miLongitud");
 
-        if (lat && lng) {
-            alert("obtenidas de la memoria: " + lat + " - " + lng);
-            return { lat: parseFloat(lat), lng: parseFloat(lng) };
+        if (lat && lon) {
+            alert("obtenidas de la memoria: " + lat + " - " + lon);
+            return { lat: parseFloat(lat), lon: parseFloat(lon) };
            
         } else {
             return null;
